@@ -178,14 +178,14 @@ const Sidebar = () => {
                     
                     </Box>
                     <Box paddingLeft={isCollapsed ? undefined : "0%"} marginTop="30%">
-                        {/* { auth.isLoggedIn === true ?  */}
-                          {/* <Item
+                        { auth.user ? 
+                          <Item
                           title="Logout"
                           // to="/logout"
                           icon={<LogoutIcon />}
                           selected={selected}
                           setSelected={setSelected}                       
-                      /> : */}
+                      /> : 
                         <Item
                             title="Login"
                             to="/"
@@ -193,7 +193,7 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         /> 
-                      {/* } */}
+                       } 
                         </Box>
                        
                 </Menu>

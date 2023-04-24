@@ -13,7 +13,7 @@ import "./login/index";
 
 function App() {
   const auth = useUserAuth();
-  console.log("Auth: " + JSON.stringify(auth));
+  console.log("Auth-User: " + JSON.stringify(auth.user));
   const [theme, colorMode] = useMode();
 
   return (
