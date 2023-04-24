@@ -8,83 +8,92 @@ import { useTheme } from '@mui/material';
 import { tokens } from '../theme';
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import SigninValidation from "./SigninValidation";
-import { auth } from '../firebase';
-import { useUserAuth } from '../auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import Validation from './Validation';
+import { auth , db} from '../firebase';
+import { doc, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 
-const SignIn = () => {
+const SignUp = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
     // const {role, setRole, isLoggedIn, setIsLoggedIn, logout} = useAuthContext()
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const navigate = useNavigate();
-  const { googleSignIn, user } = useUserAuth();
-
-  const [signinData, setSigninData] = useState({
+  const [signupData, setSignupData] = useState({
+    name: "",
+    mobile: "",
     email: "",
     password: "",
   });
-
   const [errors, setErrors] = useState({});
-  const [error, setError] = useState("");
- 
-
   const [dataIsCorrect, setDataIsCorrect] = useState(false);
-  
-  const handleChange = (event) => {
-    setSigninData({
-      ...signinData,
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const navigateToSignIn = () => {
+    navigate("/signin");
+  };
+  const updateHandleChange = (event) => {
+    // setErrors(Validation(signupData));
+
+    setSignupData({
+      ...signupData,
       [event.target.name]: event.target.value,
     });
   };
-  const handleLogin = async (e) => {
+
+  const handleSubmitSignup = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    setErrors(SigninValidation(signinData));
+    setErrors(Validation(signupData));
     setDataIsCorrect(true);
     setError("");
 
-    signInWithEmailAndPassword(auth, signinData.email, signinData.password)
+    createUserWithEmailAndPassword(auth, signupData.email, signupData.password)
       .then(async (res) => {
-        console.log(res);
-        navigate(`/eventslist?profile=${res.user.uid}`);
-       
+        const user = res.user;
+        await updateProfile(user, {
+          displayName: signupData.name,
+        });
+        // create Profile here
+        await setDoc(doc(db, "users", res.user.uid), {
+          uid: res.user.uid,
+          name: signupData.name,
+          mobile: signupData.mobile,
+          email: signupData.email,
+          password: signupData.password,
+        });
+        console.log("firebase signup created");
+        axios
+          .post("http://localhost:2010/profile", {
+            profileId: user.uid,
+            // id: id,
+            name: signupData.name,
+            email: signupData.email,
+          })
+          .then((response) => {
+            console.log(response);
+            console.log(response.data);
+            console.log("axios id:" + response.data.profileId);
+            // navigate(`/eventslist?id=${id}`);
+            navigate(`/eventslist?profile=${user.uid}`);
+          });
+
+        // navigate("/signin");
+        // navigate(`/eventslist?id=${res.user.uid}`);
       })
       .catch((err) => {
+        // setSubmitButtonDisabled(false);
         setError(err.message);
       });
- 
-  };
-  
-  const handleClick = async () => {
-    try {
-      await googleSignIn();
-      axios
-        .post("http://localhost:2010/profile", {
-          profileId: user.uid,
-          name: user.displayName,
-          email: user.email,
-        })
-        .then((response) => {
-          console.log(response);
-          console.log(response.data);
-          console.log(response.data.profileId);
-          navigate(`/eventslist?profile=${response.user.uid}`);
-        });
 
-      // signInWithPopup(auth, provider).then((data) => {
-      //   setValue(data.user.email);
-      // localStorage.setItem("email", data.user.email);
-    } catch (error) {
-      console.log(error.message);
-    }
   };
   return (
     <>
-      {/* {isLoggedIn === false ? ( */}
+     
         <Box display="flex" width="100%" height="100%" marginTop="-5%" flexDirection="column" alignItems="center" justifyContent="center">
              
           <Avatar sx={{ m: 1, backgroundColor: "#2499ef" }}>
@@ -92,9 +101,9 @@ const SignIn = () => {
           </Avatar>
           <br />
         
-            <Header title="SIGN IN" />
+            <Header title="SIGN UP" />
             <br />
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmitSignup}>
              
               <Box
                 display="grid"
@@ -105,6 +114,40 @@ const SignIn = () => {
                   "& > div": { gridColumn: isNonMobile ? undefined : "span 10" },
                 }}
               >
+                 <TextField fullWidth
+                 InputProps={{
+                  style: { fontSize: "16px" },
+                }}
+                InputLabelProps={{ style: { fontSize: 18 } }}
+                  id="outlined-basic-name"
+                  label="Name"
+                  variant="outlined"
+                  value={signupData.name}
+                  onChange={updateHandleChange}
+                  name="name"
+                  sx={{ gridColumn: "span 10" }}
+                  autoComplete="off"
+                  color="secondary"
+                  // required
+                  type="text"
+                />
+                <TextField fullWidth
+                 InputProps={{
+                  style: { fontSize: "16px" },
+                }}
+                InputLabelProps={{ style: { fontSize: 18 } }}
+                  id="outlined-basic-mobile"
+                  label="Mobile Number"
+                  variant="outlined"
+                  value={signupData.mobile}
+                  onChange={updateHandleChange}
+                  name="mobile"
+                  sx={{ gridColumn: "span 10" }}
+                  autoComplete="off"
+                  color="secondary"
+                  // required
+                  type="text"
+                />
               <TextField fullWidth
                  InputProps={{
                   style: { fontSize: "16px" },
@@ -113,8 +156,8 @@ const SignIn = () => {
                   id="outlined-basic-email"
                   label="Email"
                   variant="outlined"
-                  onChange={handleChange}
-                  value={signinData.email}
+                  value={signupData.email}
+                  onChange={updateHandleChange}
                   name="email"
                   sx={{ gridColumn: "span 10" }}
                   autoComplete="off"
@@ -132,8 +175,8 @@ const SignIn = () => {
                   id="outlined-basic-password"
                   label="Password"
                   variant="outlined"
-                  onChange={handleChange}
-                  value={signinData.password}
+                  value={signupData.password}
+                  onChange={updateHandleChange}
                   name="password"
                   sx={{ gridColumn: "span 10" }}
                   color="secondary"
@@ -164,9 +207,15 @@ const SignIn = () => {
                               color: colors.blueAccent[700]
                             },
                         }}>
-                  Login
+                  Sign Up
               </Button>
-              
+              <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="signin" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
           
       </form>
@@ -178,40 +227,20 @@ const SignIn = () => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Link href="signup" sx={{color: "white"}} >
-                  Don't have an account? Sign Up
+                <Link href="/" to="/" sx={{color: "white"}} >
+                Already have an account? Sign in
                 </Link>
       
               </Grid>
             </Grid>
             </Box>
-            <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
-            <Button
-            onClick={handleClick}
-            type="submit"
-          
-            // variant="contained"
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 50px",
-              width: '100%', 
-              '&:hover ': {
-                backgroundColor: colors.grey[100],
-                color: colors.blueAccent[700]
-              },
-          }}>
-            Sign In with Google
-          </Button>
+            
   </Box>
-  </Box>
-   {/* ) : {logout}} */}
+  
 
   </>
 )
 
 }
 
-export default SignIn;
+export default SignUp;

@@ -21,19 +21,17 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const auth = useUserAuth();
+  const { logOut } = useUserAuth();
   const navigate = useNavigate()
 
-  console.log("auth in Sidebar: ", auth);
 
-  const handleLogout = () => {
-      console.log("logout button clicked")
-      console.log("auth before logout: ", auth);
-      auth.logout();
-      auth.setIsLoggedIn(false);
-      console.log("auth after logout: ", auth);
-      console.log("isLoggedIn after logout: ", auth.isLoggedIn);
+  const handleLogout = async () => {
+    try {
+      await logOut();
       navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   console.log("Item component rendered");

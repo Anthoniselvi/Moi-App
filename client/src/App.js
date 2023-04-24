@@ -3,13 +3,13 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
-import SignIn from "./login/index";
-
 import Reports from "./scenes/reports";
+import Dashboard from "./scenes/dashboard";
 import { useMode } from "./theme";
 import { useUserAuth } from "./auth";
 
-import "./login/index";
+import SignIn from "./signin";
+import SignUp from "./signup";
 
 function App() {
   const auth = useUserAuth();
@@ -22,20 +22,28 @@ function App() {
         <CssBaseline />
 
         <div className="app">
-          {/* {auth.isLoggedIn === true ? <Sidebar /> : null} */}
-          <Sidebar />
+          {auth.user ? <Sidebar /> : null}
+
           <main className="content">
-            {/* {auth.isLoggedIn === true ? <Topbar /> : null} */}
-            <Topbar />
+            {auth.user ? <Topbar /> : null}
+
             <Routes>
-              {/* {auth.isLoggedIn === true ? ( */}
-              <>
-                <Route path="/" element={<SignIn />} />
-                {/* <Route path="signup" element={<NewSignUp />} /> */}
-              </>
-              {/* ) : (
-                <Route path="/" element={<Login />} />
-              )} */}
+              {/* {auth.user ? (
+                <>
+                  <Route
+                    path="/"
+                    element={!auth.user ? <SignIn /> : <Dashboard />}
+                  />
+
+                  <Route
+                    path="/signup"
+                    element={!auth.user ? <SignUp /> : <Dashboard />}
+                  />
+                </>
+              ) : ( */}
+              <Route path="/" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              {/* )} */}
             </Routes>
           </main>
         </div>
