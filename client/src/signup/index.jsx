@@ -45,49 +45,55 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmitSignup = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-    setErrors(Validation(signupData));
-    setDataIsCorrect(true);
-    setError("");
+const handleSubmitSignup = async (e) => {
+  setLoading(true);
+  e.preventDefault();
+  setErrors(Validation(signupData));
+  setDataIsCorrect(true);
+  setError("");
 
-    createUserWithEmailAndPassword(auth, signupData.email, signupData.password)
-      .then(async (res) => {
-        const user = res.user;
-        await updateProfile(user, {
-          displayName: signupData.name,
-        });
-        // create Profile here
-        await setDoc(doc(db, "users", res.user.uid), {
-          uid: res.user.uid,
-          name: signupData.name,
-          mobile: signupData.mobile,
-          email: signupData.email,
-          password: signupData.password,
-        });
-        console.log("firebase signup created");
-        axios
-          .post("http://localhost:1234/profile/add", {
-            profileId: user.uid,
-            name: signupData.name,
-            email: signupData.email,
-          })
-          .then((response) => {
-            console.log(response);
-            console.log(response.data);
-            console.log("axios id:" + response.data.profileId);
-         
-            navigate(`/dashboard?profile=${user.uid}`);
-          });
-
-      })
-      .catch((err) => {
-        // setSubmitButtonDisabled(false);
-        setError(err.message);
+  createUserWithEmailAndPassword(auth, signupData.email, signupData.password)
+    .then(async (res) => {
+      const user = res.user;
+      await updateProfile(user, {
+        displayName: signupData.name,
       });
+      // create Profile here
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        name: signupData.name,
+        mobile: signupData.mobile,
+        email: signupData.email,
+        password: signupData.password,
+      });
+      console.log("firebase signup created");
 
-  };
+      // Make the POST request to your API endpoint
+      fetch("http://localhost:1234/profile/add", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    profileId: user.uid,
+    name: signupData.name,
+    email: signupData.email,
+  }),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    console.log("fetch id:" + data.profileId);
+    navigate(`/dashboard?profile=${user.uid}`);
+  })
+  .catch((error) => {
+    console.log(error);
+    setError(error.message);
+  });
+
+})
+}
+
   return (
     <>
      
