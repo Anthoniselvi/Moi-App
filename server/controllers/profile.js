@@ -5,12 +5,20 @@ export const postProfile = (req, res) => {
   const name = req.body.name;
   const mobile = req.body.mobile;
   const email = req.body.email;
+  const age = "";
+  const gender = "";
+  const address = "";
+  const city = "";
 
   const newProfile = new Profiles({
     profileId,
     name,
     mobile,
     email,
+    age,
+    gender,
+    address,
+    city,
   });
 
   newProfile
@@ -35,4 +43,24 @@ export const getProfileById = (req, res) => {
       res.json(profile);
     })
     .catch((err) => res.status(400).json("Error: " + err));
+};
+
+export const updateProfile = (req, res) => {
+  Profiles.findById(req.params.id)
+    .then((profile) => {
+      profile.profileId = req.body.profileId;
+      profile.name = req.body.name;
+      profile.mobile = req.body.mobile;
+      profile.email = req.body.email;
+      profile.age = req.body.age;
+      profile.gender = req.body.gender;
+      profile.address = req.body.address;
+      profile.city = req.body.city;
+
+      profile
+        .save()
+        .then(() => res.json("Profile updated"))
+        .catch((err) => res.status(400).json("Error : " + err));
+    })
+    .catch((err) => res.status(400).json("Error : " + err));
 };
