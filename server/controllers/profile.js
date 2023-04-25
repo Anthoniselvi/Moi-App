@@ -1,7 +1,6 @@
 import Profiles from "../models/Profile.js";
 
 export const postProfile = (req, res) => {
-  console.log("postProfile called");
   const profileId = req.body.profileId;
   const name = req.body.name;
   const mobile = req.body.mobile;
@@ -20,18 +19,20 @@ export const postProfile = (req, res) => {
     .catch((err) => res.status(400).json("Error : " + err));
 };
 
-export const getProfile = (req, res) => {
+export const getAllProfiles = (req, res) => {
   Profiles.find()
-    .then((users) => res.json(users))
+    .then((profiles) => res.json(profiles))
     .catch((err) => res.status(400).json("Error : " + err));
 };
 
-// export const getUser = async (req, res) => {
-//   try {
-//     const { profileId } = req.params;
-//     const profile = await Profiles.findById(profileId);
-//     res.status(200).json(profile);
-//   } catch (error) {
-//     res.status(404).json({ message: error.message });
-//   }
-// };
+export const getProfileById = (req, res) => {
+  const profileId = req.params.id;
+  Profiles.findById(profileId)
+    .then((profile) => {
+      if (!profile) {
+        return res.status(404).json("Profile not found");
+      }
+      res.json(profile);
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+};
