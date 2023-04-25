@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.post("/profile", postProfile);
+router.post("/add", postProfile);
 router.get("/all", getAllProfiles);
 router.get("/:id", getProfileById);
 router.put("/:id", updateProfile);

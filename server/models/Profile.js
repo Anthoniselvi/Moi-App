@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const ProfileSchema = new mongoose.Schema({
   profileId: { type: String, required: true },
   name: { type: String, required: true },
-  mobile: { type: String, required: true },
   email: { type: String, required: true },
+  mobile: { type: String, default: "" },
   age: { type: Number, default: "" },
   gender: { type: String, default: "" },
   address: { type: String, default: "" },

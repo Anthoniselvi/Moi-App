@@ -4,8 +4,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import profileRoutes from "./routes/profile.js";
+import eventsRoutes from "./routes/events.js";
 
 import Profiles from "./models/Profile.js";
+import Events from "./models/Events.js";
 
 dotenv.config();
 const app = express();
@@ -18,6 +20,7 @@ app.use(cors());
 //   res.send("Welcome to Moi App");
 // });
 app.use("/profile", profileRoutes);
+app.use("/events", eventsRoutes);
 
 const PORT = process.env.PORT || 3000;
 mongoose

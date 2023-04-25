@@ -68,9 +68,8 @@ const SignUp = () => {
         });
         console.log("firebase signup created");
         axios
-          .post("http://localhost:2010/profile", {
+          .post("http://localhost:1234/profile/add", {
             profileId: user.uid,
-            // id: id,
             name: signupData.name,
             email: signupData.email,
           })
@@ -78,12 +77,10 @@ const SignUp = () => {
             console.log(response);
             console.log(response.data);
             console.log("axios id:" + response.data.profileId);
-            // navigate(`/eventslist?id=${id}`);
-            navigate(`/eventslist?profile=${user.uid}`);
+         
+            navigate(`/dashboard?profile=${user.uid}`);
           });
 
-        // navigate("/signin");
-        // navigate(`/eventslist?id=${res.user.uid}`);
       })
       .catch((err) => {
         // setSubmitButtonDisabled(false);

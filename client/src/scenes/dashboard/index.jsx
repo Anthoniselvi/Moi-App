@@ -12,10 +12,13 @@ import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import { useSearchParams } from "react-router-dom";
 
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const [searchParam] = useSearchParams();
+    const profileId = searchParam.get("profile");
 
     return (
         <Box m="20px">

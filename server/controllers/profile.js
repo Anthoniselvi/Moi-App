@@ -3,8 +3,8 @@ import Profiles from "../models/Profile.js";
 export const postProfile = (req, res) => {
   const profileId = req.body.profileId;
   const name = req.body.name;
-  const mobile = req.body.mobile;
   const email = req.body.email;
+  const mobile = "";
   const age = "";
   const gender = "";
   const address = "";
@@ -13,8 +13,8 @@ export const postProfile = (req, res) => {
   const newProfile = new Profiles({
     profileId,
     name,
-    mobile,
     email,
+    mobile,
     age,
     gender,
     address,

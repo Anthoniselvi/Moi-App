@@ -10,6 +10,7 @@ import { useUserAuth } from "./auth";
 
 import SignIn from "./signin";
 import SignUp from "./signup";
+import EventsList from "./scenes/events";
 
 function App() {
   const auth = useUserAuth();
@@ -43,6 +44,8 @@ function App() {
               ) : ( */}
               <Route path="/" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/events" element={<EventsList />} />
               {/* )} */}
             </Routes>
           </main>

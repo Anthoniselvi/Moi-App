@@ -34,7 +34,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     }
   };
 
-  console.log("Item component rendered");
+//   console.log("Item component rendered");
 
   return (
       <MenuItem active={selected === title} style={{ color: colors.grey[100], "!important": true }}onClick={(title.toLowerCase() === "logout") ? handleLogout : () => setSelected(title)} icon={icon}>
