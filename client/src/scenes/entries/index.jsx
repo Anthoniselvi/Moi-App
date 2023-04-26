@@ -2,7 +2,7 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { useTheme} from "@mui/material";
+import { Typography, useTheme} from "@mui/material";
 import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { useState, useEffect, createContext } from "react";
 import { Delete, Edit } from "@mui/icons-material";
@@ -13,6 +13,9 @@ import axios from "axios";
 import AddIcon from '@mui/icons-material/Add';
 // import CreateNewParts from "./CreatePart";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import CreateNewEntry from "./CreateNewEntry";
+import EditEntry from "./EditEntry";
+import DeleteEntry from "./DeleteEntry";
 
 export const RefreshContext = createContext();
 
@@ -23,7 +26,7 @@ const EntriesList = () => {
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("event");
   const [entries, setEntries] = useState([]);
- const [eventsList, setEventsList] = useState([])
+ const [eventsList, setEventsList] = useState({})
     const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false); 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -42,7 +45,7 @@ const EntriesList = () => {
   
     const handleDeleteRow = (row) => {
       setDeleteModalOpen(true);
-      setSelectedRowId(row.id);
+      setSelectedRowId(row.entryId);
     };
   
     const handleEditRow = (row) => {
@@ -52,15 +55,15 @@ const EntriesList = () => {
     };
 
    
-    // const fetchAllEvents = () => {
-    //     axios
-    //       .get(`http://localhost:1234/events/all/${profileId}`)
-    //       .then((response) => {
-    //         // console.log(response);
-    //         console.log(response.data);
-    //         setEventsList(response.data);
-    //       });
-    //   };
+    const getSelectedEvent = () => {
+        axios
+          .get(`http://localhost:1234/events/single/${eventId}`)
+          .then((response) => {
+            // console.log(response);
+            console.log(response.data);
+            setEventsList(response.data);
+          });
+      };
     
       const fetchAllEntries = () => {
         axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
@@ -70,21 +73,42 @@ const EntriesList = () => {
         });
       };
       useEffect(() => {
-        // fetchAllEvents();
+        getSelectedEvent();
         fetchAllEntries();
       }, [refreshCount]);
     const columns = [
     
-        { field: "id", headerName: "Part ID", flex: 1},
+        { field: "entryId", headerName: "Entry ID", flex: 1},
         {
-            field: "part_number",
-            headerName: "Part Number",
+            field: "personName",
+            headerName: "Person Name",
             flex: 2,
             cellClassName: "name-column--cell",
         },
         {
-            field: "part_name",
-            headerName: "Part Name",
+            field: "city",
+            headerName: "City",
+            flex: 2,
+            headerAlign: "left",
+            align: "left",
+        },
+        {
+            field: "presentType",
+            headerName: "Present Type",
+            flex: 2,
+            headerAlign: "left",
+            align: "left",
+        },
+        {
+            field: "amount",
+            headerName: "Amount",
+            flex: 2,
+            headerAlign: "left",
+            align: "left",
+        },
+        {
+            field: "gift",
+            headerName: "Gift",
             flex: 2,
             headerAlign: "left",
             align: "left",
@@ -125,8 +149,8 @@ const EntriesList = () => {
         <RefreshContext.Provider value={{ updateRefreshCount }}>
         <Box m="20px">
         <Box display="flex" alignContent="center" justifyContent="space-between" marginBottom="-4%">
-                <Header title="ENTRIES LIST" />
-
+                <Header title="ENTRIES LIST"   />
+                <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography>
                 <Box>
                     <Button
                         sx={{
@@ -183,6 +207,7 @@ const EntriesList = () => {
                     rows={entries}
                     columns={columns}
                     // components={{ Toolbar: GridToolbar }}
+                    getRowId={(row) => row.entryId} 
                     initialState={{
                       pagination: {
                      paginationModel: {
@@ -194,28 +219,29 @@ const EntriesList = () => {
                
                 />
                  <div>
-          {/* <CreateNewParts
+          <CreateNewEntry
             open={createModalOpen}
             onClose={() => setCreateModalOpen(false)}
-          /> */}
-          {/* {editModalOpen ? (
-            <NewEditPart
+            eventId={eventId}
+          />
+          {editModalOpen ? (
+            <EditEntry
               row={selectedRow}
               open={editModalOpen}
               onClose={() => setEditModalOpen(false)}
             />
           ) : (
             <></>
-          )} */}
-          {/* {deleteModalOpen ? (
-            <NewDeletePopUp
-              partId={selectedRowId}
+          )}
+          {deleteModalOpen ? (
+            <DeleteEntry
+              entryId={selectedRowId}
               open={deleteModalOpen}
               onClose={() => setDeleteModalOpen(false)}
             />
           ) : (
             <></>
-          )} */}
+          )}
         </div>
     
   
