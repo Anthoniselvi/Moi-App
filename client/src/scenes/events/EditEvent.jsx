@@ -12,7 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import { RefreshContext } from "./index";
 
-export default function NewEditPart({ open, columns, onClose, onSubmit, row }) {
+export default function EditEvent({ open, columns, onClose, onSubmit, row }) {
   
   console.log("selected Row in NewEditPart: " + JSON.stringify(row));
 

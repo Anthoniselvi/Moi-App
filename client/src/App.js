@@ -11,7 +11,7 @@ import { useUserAuth } from "./auth";
 import SignIn from "./signin";
 import SignUp from "./signup";
 import EventsList from "./scenes/events";
-import CreateEvent from "./scenes/events/CreateEvent";
+import CreateEvent from "./scenes/events/CreateNewEvent";
 import EntriesList from "./scenes/entries";
 
 function App() {

@@ -6,11 +6,11 @@ import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { useState, useEffect, createContext } from "react";
 import { Delete, Edit } from "@mui/icons-material";
 import axios from "axios";
-import NewEditPart from "./EditEvent";
-import NewDeletePopUp from "./DeleteEvent";
+import EditEvent from "./EditEvent";
+import DeleteEvent from "./DeleteEvent";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
-import CreateNewParts from "./CreateEvent";
+import CreateNewEvent from "./CreateNewEvent";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -53,16 +53,16 @@ const EventsList = () => {
 const navigateToEntryList = (eventId) => {
   navigate(`/entries?event=${eventId}`)
 }
-      const handleDeleteRow = (row) => {
-        setDeleteModalOpen(true);
-        setSelectedRowId(row.eventId);
-      };
-    
-      const handleEditRow = (row) => {
-        console.log("Row inside edit button click:" + JSON.stringify(row));
-        setEditModalOpen(true);
-        setSelectedRow(row);
-      };
+const handleDeleteEvent = (eventId) => {
+  setDeleteModalOpen(true);
+  setSelectedRowId(eventId);
+};
+
+const handleEditEvent = (row) => {
+  console.log("Row inside edit button click:" + JSON.stringify(row));
+  setEditModalOpen(true);
+  setSelectedRow(row);
+};
   
       const fetchAllEvents = () => {
         axios
@@ -86,66 +86,66 @@ const navigateToEntryList = (eventId) => {
         fetchAllEntries();
       }, [refreshCount]);
 
-    const columns = [
+    // const columns = [
     
-        { field: "eventId", headerName: "Events ID", flex: 1},
-        {
-            field: "eventType",
-            headerName: "Event Type",
-            flex: 2,
-            cellClassName: "name-column--cell",
-        },
-        {
-            field: "name",
-            headerName: "Event Name",
-            flex: 2,
-            headerAlign: "left",
-            align: "left",
-        },
-        {
-          field: "place",
-          headerName: "Place",
-          flex: 2,
-          headerAlign: "left",
-          align: "left",
-      },
-      {
-        field: "date",
-        headerName: "Date",
-        flex: 2,
-        headerAlign: "left",
-        align: "left",
-    },
-        {
-            field: "action",
-            headerName: "Actions",
-            headerAlign: "center",
-            align: "center",
-            flex: 3,
-            renderCell: ({ row }) => (
-                <>
-               <Box sx={{ display: "flex", gap: "1rem" }}>
-                <Tooltip arrow placement="left" title="Edit">
-                  <IconButton onClick={()=>handleEditRow(row)}            
-                  >
-                    <Edit />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip arrow placement="right" title="Delete">
-                  <IconButton
-                    color="error"
-                    onClick={() =>handleDeleteRow(row)}
-                     >
-                    <Delete />
+    //     { field: "eventId", headerName: "Events ID", flex: 1},
+    //     {
+    //         field: "eventType",
+    //         headerName: "Event Type",
+    //         flex: 2,
+    //         cellClassName: "name-column--cell",
+    //     },
+    //     {
+    //         field: "name",
+    //         headerName: "Event Name",
+    //         flex: 2,
+    //         headerAlign: "left",
+    //         align: "left",
+    //     },
+    //     {
+    //       field: "place",
+    //       headerName: "Place",
+    //       flex: 2,
+    //       headerAlign: "left",
+    //       align: "left",
+    //   },
+    //   {
+    //     field: "date",
+    //     headerName: "Date",
+    //     flex: 2,
+    //     headerAlign: "left",
+    //     align: "left",
+    // },
+    //     {
+    //         field: "action",
+    //         headerName: "Actions",
+    //         headerAlign: "center",
+    //         align: "center",
+    //         flex: 3,
+    //         renderCell: ({ row }) => (
+    //             <>
+    //            <Box sx={{ display: "flex", gap: "1rem" }}>
+    //             <Tooltip arrow placement="left" title="Edit">
+    //               <IconButton onClick={()=>handleEditRow(row)}            
+    //               >
+    //                 <Edit />
+    //               </IconButton>
+    //             </Tooltip>
+    //             <Tooltip arrow placement="right" title="Delete">
+    //               <IconButton
+    //                 color="error"
+    //                 onClick={() =>handleDeleteEvent(row)}
+    //                  >
+    //                 <Delete />
 
-                  </IconButton>
-                </Tooltip>
-              </Box>
-                </>
-            )
-        }
+    //               </IconButton>
+    //             </Tooltip>
+    //           </Box>
+    //             </>
+    //         )
+    //     }
         
-    ];
+    // ];
 
   
 
@@ -251,6 +251,27 @@ const navigateToEntryList = (eventId) => {
         //     </Box>
         // </Box>
         // </RefreshContext.Provider>
+        <RefreshContext.Provider value={{ updateRefreshCount }}>
+        <Box display="flex" alignContent="center" justifyContent="space-between" marginBottom="-4%">
+                <Header title="EVENTS LIST"   />
+                {/* <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography> */}
+                <Box>
+                    <Button
+                        sx={{
+                            backgroundColor: colors.blueAccent[700],
+                            color: colors.grey[100],
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            padding: "10px 20px",
+                        }}
+                        onClick={() => setCreateModalOpen(true)}
+           
+                    >
+                        <AddIcon sx={{ mr: "10px" }} />
+                        New
+                    </Button>
+                </Box>
+            </Box>
         <Box display="grid" gridTemplateColumns="1fr 1fr" gap="2%" rowGap="8%" padding="2%">
         {eventslist.length > 0 && (
           <>
@@ -347,12 +368,53 @@ const navigateToEntryList = (eventId) => {
                         </ul>
                       </Typography>
                     </CardContent>
+                    <Box sx={{ display: "flex", gap: "1rem" }}>
+                <Tooltip arrow placement="left" title="Edit">
+                  <IconButton
+                    onClick={() => handleEditEvent(singleEvent) }                  
+                  >
+                    <Edit />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip arrow placement="right" title="Delete">
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDeleteEvent(singleEvent.eventId)}
+                  >
+                    <Delete />
+                  </IconButton>
+                </Tooltip>
+              </Box>
                   </CardActionArea>
                 </Card>
             
             ))}
           </>
         )}</Box>
+        <CreateNewEvent
+            open={createModalOpen}
+            onClose={() => setCreateModalOpen(false)}
+            
+          />
+           {editModalOpen ? (
+            <EditEvent
+              row={selectedRow}
+              open={editModalOpen}
+              onClose={() => setEditModalOpen(false)}
+            />
+          ) : (
+            <></>
+          )}
+          {deleteModalOpen ? (
+            <DeleteEvent
+              eventId={eventslist.eventId}
+              open={deleteModalOpen}
+              onClose={() => setDeleteModalOpen(false)}
+            />
+          ) : (
+            <></>
+          )}
+        </RefreshContext.Provider>
     );
 };
 

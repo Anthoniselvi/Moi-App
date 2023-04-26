@@ -13,7 +13,7 @@ import { useNavigate,useSearchParams } from "react-router-dom";
 
 import { RefreshContext } from "./index";
 
-export default function CreateNewParts({ open, columns, onClose, onSubmit }) {
+export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
   const [eventType, setEventType] = useState("");
   const [name, setName] = useState("");
   const [place, setPlace] = useState("");
@@ -87,7 +87,7 @@ export default function CreateNewParts({ open, columns, onClose, onSubmit }) {
 
   return (
     <Dialog open={open}>
-      <DialogTitle textAlign="center">Add New Event</DialogTitle>
+      <DialogTitle textAlign="center">Create Event</DialogTitle>
       <DialogContent>
         <form>
           <TextField

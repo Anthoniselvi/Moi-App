@@ -11,7 +11,7 @@ import axios from "axios";
 
 import { RefreshContext } from "./index";
 
-export default function NewDeletePopUp({ partId, open, status, onClose }) {
+export default function DeleteEvent({ partId, open, status, onClose }) {
   console.log("Part ID recd in NewDeletePopup : " + partId);
   const { updateRefreshCount } = useContext(RefreshContext);
 
