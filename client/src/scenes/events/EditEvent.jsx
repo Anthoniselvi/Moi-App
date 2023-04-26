@@ -16,8 +16,15 @@ export default function NewEditPart({ open, columns, onClose, onSubmit, row }) {
   
   console.log("selected Row in NewEditPart: " + JSON.stringify(row));
 
-  const [part_number, setPart_Number] = useState(row.part_number);
-  const [part_name, setPart_Name] = useState(row.part_name);
+  const [eventType, setEventType] = useState("");
+  const [name, setName] = useState();
+  const [place, setPlace] = useState();
+  const [date, setDate] = useState();
+  // const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  // const navigate = useNavigate();
+
+  // const [searchParam] = useSearchParams();
+  // const eventId = searchParam.get("event");
   const { updateRefreshCount } = useContext(RefreshContext);
   //   const { updateRefreshCount = () => {} } = useContext(RefreshContext);
   function refreshPage() {
@@ -25,46 +32,66 @@ export default function NewEditPart({ open, columns, onClose, onSubmit, row }) {
   }
 
   const handleEditSave = (e) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:5000/parts/${row.id}`, {
-        part_number: part_number,
-        part_name: part_name,
-      })
-      .then((response) => {
-        console.log("Updated Parts : " + JSON.stringify(response));
-      });
-    onClose();
-    refreshPage();
+    // e.preventDefault();
+    // axios
+    //   .put(`http://localhost:5000/parts/${row.id}`, {
+    //     part_number: part_number,
+    //     part_name: part_name,
+    //   })
+    //   .then((response) => {
+    //     console.log("Updated Parts : " + JSON.stringify(response));
+    //   });
+    // onClose();
+    // refreshPage();
   };
 
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Edit Part No : {row.id}</DialogTitle>
+        <DialogTitle>Edit Event - {row.name}</DialogTitle>
         <DialogContent>
-          <form>
-            <TextField
-              style={{ width: "300px", margin: "5px" }}
-              type="text"
-              label="Part Number"
-              variant="outlined"
-              value={part_number}
-              onChange={(e) => setPart_Number(e.target.value)}
-            />
-
-            <br />
-            <br />
-            <TextField
-              style={{ width: "300px", margin: "5px" }}
-              type="text"
-              label="Part Name"
-              variant="outlined"
-              value={part_name}
-              onChange={(e) => setPart_Name(e.target.value)}
-            />
-            <br />
-          </form>
+        <form>
+          <TextField
+            style={{ width: "300px", margin: "5px" }}
+            type="text"
+            label="Event Type"
+            variant="outlined"
+            value={eventType}
+            onChange={(e) => setEventType(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            style={{ width: "300px", margin: "5px" }}
+            type="text"
+            label="Event Name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            style={{ width: "300px", margin: "5px" }}
+            type="text"
+            label="Place"
+            variant="outlined"
+            value={place}
+            onChange={(e) => setPlace(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            style={{ width: "300px", margin: "5px" }}
+            type="date"
+            label="Date"
+            variant="outlined"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <br />
+          <br />
+        </form>
         </DialogContent>
         <DialogActions>
           <Button type="submit" color="secondary" variant="contained" onClick={onClose}>CANCEL</Button>

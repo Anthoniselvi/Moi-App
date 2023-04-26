@@ -9,12 +9,18 @@ import {
   TextField,
 } from "@mui/material";
 import "date-fns";
-import { RefreshContext } from "./index";
-export default function CreateNewParts({ open, columns, onClose, onSubmit }) {
-  // const [parts, setParts] = useState([]);
+import { useNavigate,useSearchParams } from "react-router-dom";
 
-  const [part_number, setPart_Number] = useState();
-  const [part_name, setPart_Name] = useState();
+import { RefreshContext } from "./index";
+
+export default function CreateNewParts({ open, columns, onClose, onSubmit }) {
+  const [eventType, setEventType] = useState("");
+  const [name, setName] = useState("");
+  const [place, setPlace] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const navigate = useNavigate();
+  const [searchParam] = useSearchParams();
+  const profileId = searchParam.get("profile");
   const { updateRefreshCount } = useContext(RefreshContext);
 
   function refreshPage() {
@@ -24,57 +30,103 @@ export default function CreateNewParts({ open, columns, onClose, onSubmit }) {
 
   const handleClose = () => {
     onClose();
-    setPart_Name("");
-    setPart_Number("");
+    setEventType("");
+    setName("");
+    setPlace("");
+    setDate("");
   };
+
   const handleSubmit = (e) => {
-    //put your validation logic here
-    // onSubmit(values);
-
     e.preventDefault();
-
     axios
-      .post("http://localhost:5000/parts", {
-        part_number: part_number,
-        part_name: part_name,
+      .post("http://localhost:1234/events/add", {
+        // eventId: eventId,
+        eventType: eventType,
+        name: name,
+        place: place,
+        date: date,
+        profileId: profileId,
       })
       .then((response) => {
-        console.log("Post new Parts Response : " + JSON.stringify(response));
-      })
-      .catch((error) => {
-        const errorMessage = error.response
-          ? error.response.data.error
-          : "Unable to connect to server";
-        alert(errorMessage);
+        console.log(response);
+        // navigate(`/events?profile=${profileId}`);
       });
+    setEventType("");
+    setName("");
+    setPlace("");
+    setDate("");
     onClose();
-    setPart_Name("");
-    setPart_Number("");
+  
     refreshPage();
   };
+  // const handleSubmit = (e) => {
+  //   //put your validation logic here
+  //   // onSubmit(values);
+
+  //   e.preventDefault();
+
+  //   axios
+  //     .post("http://localhost:5000/parts", {
+  //       part_number: part_number,
+  //       part_name: part_name,
+  //     })
+  //     .then((response) => {
+  //       console.log("Post new Parts Response : " + JSON.stringify(response));
+  //     })
+  //     .catch((error) => {
+  //       const errorMessage = error.response
+  //         ? error.response.data.error
+  //         : "Unable to connect to server";
+  //       alert(errorMessage);
+  //     });
+  //   onClose();
+  //   setPart_Name("");
+  //   setPart_Number("");
+  //   refreshPage();
+  // };
 
   return (
     <Dialog open={open}>
-      <DialogTitle textAlign="center">Add New Parts</DialogTitle>
+      <DialogTitle textAlign="center">Add New Event</DialogTitle>
       <DialogContent>
         <form>
           <TextField
             style={{ width: "300px", margin: "5px" }}
             type="text"
-            label="Part Number"
+            label="Event Type"
             variant="outlined"
-            value={part_number}
-            onChange={(e) => setPart_Number(e.target.value)}
+            value={eventType}
+            onChange={(e) => setEventType(e.target.value)}
           />
           <br />
           <br />
           <TextField
             style={{ width: "300px", margin: "5px" }}
             type="text"
-            label="Part Name"
+            label="Event Name"
             variant="outlined"
-            value={part_name}
-            onChange={(e) => setPart_Name(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            style={{ width: "300px", margin: "5px" }}
+            type="text"
+            label="Place"
+            variant="outlined"
+            value={place}
+            onChange={(e) => setPlace(e.target.value)}
+          />
+          <br />
+          <br />
+          <TextField
+            style={{ width: "300px", margin: "5px" }}
+            type="date"
+            label="Date"
+            variant="outlined"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
           <br />
           <br />
