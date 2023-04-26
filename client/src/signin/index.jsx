@@ -50,7 +50,7 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, signinData.email, signinData.password)
       .then(async (res) => {
         console.log(res);
-        navigate(`/eventslist?profile=${res.user.uid}`);
+    navigate(`/events?profile=${res.user.uid}`);
        
       })
       .catch((err) => {

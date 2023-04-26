@@ -1,7 +1,6 @@
 import Events from "../models/Events.js";
 
 export const postEvent = (req, res) => {
-  //   const profileId = req.body.profileId;
   const eventType = req.body.eventType;
   const name = req.body.name;
   const place = req.body.place;
@@ -28,9 +27,9 @@ export const getAllEvents = (req, res) => {
     .catch((err) => res.status(400).json("Error : " + err));
 };
 
-export const getEventById = (req, res) => {
-  const eventId = req.params.id;
-  Events.findById(eventId)
+export const getEventByEventId = (req, res) => {
+  const eventId = req.params.eventId; // Extract eventId from req.params
+  Events.findOne({ eventId }) // Use eventId instead of _id
     .then((event) => {
       if (!event) {
         return res.status(404).json("Event not found");
@@ -40,15 +39,28 @@ export const getEventById = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-export const updateEvent = (req, res) => {
-  Events.findById(req.params.id)
+export const getEventsByProfileId = (req, res) => {
+  const profileId = req.params.profileId;
+  Events.find({ profileId: profileId })
+    .then((events) => {
+      if (!events || events.length === 0) {
+        return res.status(404).json("Events not found");
+      }
+      res.json(events);
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+};
+
+export const updateEventByEventId = (req, res) => {
+  const eventId = req.params.eventId; // Extract eventId from req.params
+  Events.findOne({ eventId })
     .then((event) => {
       // event.profileId = req.body.profileId;
       event.eventType = req.body.eventType;
       event.name = req.body.name;
       event.place = req.body.place;
       event.date = req.body.date;
-      event.profileId = req.body.profileId;
+      // event.profileId = req.body.profileId;
 
       event
         .save()
@@ -56,4 +68,16 @@ export const updateEvent = (req, res) => {
         .catch((err) => res.status(400).json("Error : " + err));
     })
     .catch((err) => res.status(400).json("Error : " + err));
+};
+
+export const deleteEventByEventId = (req, res) => {
+  const eventId = req.params.eventId; // Extract eventId from req.params
+  Events.deleteOne({ eventId: eventId })
+    .then((result) => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json("Event not found");
+      }
+      res.json("Event deleted successfully");
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
 };

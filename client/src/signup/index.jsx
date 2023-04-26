@@ -84,7 +84,7 @@ const handleSubmitSignup = async (e) => {
   .then((data) => {
     console.log(data);
     console.log("fetch id:" + data.profileId);
-    navigate(`/dashboard?profile=${user.uid}`);
+    navigate(`/events?profile=${user.uid}`);
   })
   .catch((error) => {
     console.log(error);

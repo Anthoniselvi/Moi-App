@@ -11,6 +11,7 @@ import { useUserAuth } from "./auth";
 import SignIn from "./signin";
 import SignUp from "./signup";
 import EventsList from "./scenes/events";
+import CreateEvent from "./scenes/events/CreateEvent";
 
 function App() {
   const auth = useUserAuth();
@@ -46,6 +47,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/events" element={<EventsList />} />
+              <Route path="/events/new" element={<CreateEvent />} />
               {/* )} */}
             </Routes>
           </main>
