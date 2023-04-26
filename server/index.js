@@ -5,9 +5,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import profileRoutes from "./routes/profile.js";
 import eventsRoutes from "./routes/events.js";
+import entriesRoutes from "./routes/entries.js";
 
 import Profiles from "./models/Profile.js";
 import Events from "./models/Events.js";
+import Entries from "./models/Entries.js";
 
 dotenv.config();
 const app = express();
@@ -21,6 +23,7 @@ app.use(cors());
 // });
 app.use("/profile", profileRoutes);
 app.use("/events", eventsRoutes);
+app.use("/entries", entriesRoutes);
 
 const PORT = process.env.PORT || 3000;
 mongoose
