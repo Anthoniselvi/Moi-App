@@ -120,7 +120,7 @@ const Sidebar = () => {
                     <Box paddingLeft={isCollapsed ? undefined :"0%"}>
                         <Item
                             title="Dashboard"
-                            to="/dashboard"
+                            to={`/dashboard?profile=${auth.user.uid}`}
                             icon={<HomeOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -128,7 +128,7 @@ const Sidebar = () => {
                         />
                         <Item
                             title="Events List"
-                            to="/events"
+                            to={`/events?profile=${auth.user.uid}`}
                             icon={<ListIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -141,7 +141,7 @@ const Sidebar = () => {
                         >Utilities</Typography> */}
                         <Item
                             title="Profile"
-                            to="profile"
+                            to={`/profile/${auth.user.uid}`}
                             icon={<BuildIcon />}
                             selected={selected}
                             setSelected={setSelected}

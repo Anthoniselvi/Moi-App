@@ -10,7 +10,10 @@ import {
 } from "@mui/material";
 import "date-fns";
 import { useNavigate,useSearchParams } from "react-router-dom";
-
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import { RefreshContext } from "./index";
 
 export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
@@ -51,53 +54,49 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
         console.log(response);
         // navigate(`/events?profile=${profileId}`);
       });
+      onClose();
     setEventType("");
     setName("");
     setPlace("");
-    setDate("");
-    onClose();
+    setDate("");  
   
     refreshPage();
   };
-  // const handleSubmit = (e) => {
-  //   //put your validation logic here
-  //   // onSubmit(values);
 
-  //   e.preventDefault();
-
-  //   axios
-  //     .post("http://localhost:5000/parts", {
-  //       part_number: part_number,
-  //       part_name: part_name,
-  //     })
-  //     .then((response) => {
-  //       console.log("Post new Parts Response : " + JSON.stringify(response));
-  //     })
-  //     .catch((error) => {
-  //       const errorMessage = error.response
-  //         ? error.response.data.error
-  //         : "Unable to connect to server";
-  //       alert(errorMessage);
-  //     });
-  //   onClose();
-  //   setPart_Name("");
-  //   setPart_Number("");
-  //   refreshPage();
-  // };
 
   return (
     <Dialog open={open}>
       <DialogTitle textAlign="center">Create Event</DialogTitle>
       <DialogContent>
         <form>
-          <TextField
+          {/* <TextField
             style={{ width: "300px", margin: "5px" }}
             type="text"
             label="Event Type"
             variant="outlined"
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
-          />
+          /> */}
+          <br />
+           <FormControl sx={{ width: "300px" }}>
+          <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            required
+            value={eventType}
+            label="Event Type"
+            onChange={
+              (e) => setEventType(e.target.value)
+              // (e) => setImageSource(images[e.target.value]))
+            }
+          >
+            <MenuItem value="wedding">Wedding</MenuItem>
+            <MenuItem value="birthday">Birthday</MenuItem>
+            <MenuItem value="baby">Baby Shower</MenuItem>
+            <MenuItem value="others">Others</MenuItem>
+          </Select>
+        </FormControl>
           <br />
           <br />
           <TextField

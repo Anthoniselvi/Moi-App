@@ -54,14 +54,14 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
         console.log(response);
         console.log("Created New Entry: " + response.data)
       });
+      onClose();
       setPersonName("");
       setCity("");
       setPresentType("");
       setAmount("");
       setGift("");
-    onClose();
   
-    refreshPage();
+      refreshPage();
   };
  
   return (

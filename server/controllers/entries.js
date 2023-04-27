@@ -1,11 +1,12 @@
 import Entries from "../models/Entries.js";
+import Events from "../models/Events.js";
 
 export const postEntry = (req, res) => {
   const personName = req.body.personName;
   const city = req.body.city;
   const presentType = req.body.presentType;
-  const amount = req.body.amount;
-  const gift = req.body.gift;
+  const amount = req.body.amount || 0;
+  const gift = req.body.gift || "";
   const eventId = req.body.eventId;
 
   const newEntry = new Entries({
@@ -41,16 +42,25 @@ export const getEntryByEntryId = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-export const getAllEntriesByEventId = (req, res) => {
+export const getAllEntriesByEventId = async (req, res) => {
   const eventId = req.params.eventId;
-  Entries.find({ eventId: eventId })
-    .then((entries) => {
-      if (!entries || entries.length === 0) {
-        return res.status(404).json("Entries not found");
-      }
-      res.json(entries);
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
+  try {
+    const result = await Entries.find({ eventId: eventId });
+    console.log("Matching Documents:", result);
+    const entriesList = result;
+    const totalAmount = entriesList.reduce((acc, doc) => acc + doc.amount, 0);
+    console.log("Total Amount:", totalAmount);
+    const totalGift = entriesList.filter((entry) => entry.gift !== "").length;
+    console.log("Filled Gift Count:", totalGift);
+    res.status(200).json({
+      entriesList: entriesList,
+      totalAmount: totalAmount,
+      totalGift: totalGift,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 export const updateEntryByEntryId = (req, res) => {
@@ -81,4 +91,35 @@ export const deleteEntryByEntryId = (req, res) => {
       res.json("Entry deleted successfully");
     })
     .catch((err) => res.status(400).json("Error: " + err));
+};
+
+export const getTotals = async (req, res) => {
+  const profileId = req.params.profileId;
+  try {
+    // Get all events for the given profileId
+    const events = await Events.find({ profileId });
+
+    // Get the eventIds for the events
+    const eventIds = events.map((event) => event.eventId);
+
+    // Loop through each eventId and calculate the total amount and gift count
+    const eventTotals = [];
+    for (const eventId of eventIds) {
+      const result = await Entries.find({ eventId });
+      const entriesList = result;
+      const totalAmount = entriesList.reduce((acc, doc) => acc + doc.amount, 0);
+      const totalGift = entriesList.filter((entry) => entry.gift !== "").length;
+
+      // Find the event name for the current eventId
+      const eventName = events.find((event) => event.eventId === eventId).name;
+
+      eventTotals.push({ eventId, eventName, totalAmount, totalGift });
+    }
+
+    console.log("Event Totals:", eventTotals);
+    res.status(200).json(eventTotals);
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };

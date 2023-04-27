@@ -1,5 +1,6 @@
 
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { GridFooterContainer, GridFooter } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { Typography, useTheme} from "@mui/material";
@@ -32,6 +33,8 @@ const EntriesList = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(); 
   const [selectedRowId, setSelectedRowId] = useState();
+  const [totalAmount, setTotalAmount] = useState(0)
+  const [totalGift, setTotalGift] = useState(0)
   const [refreshCount, setRefreshCount] = useState(0);
  
   
@@ -54,6 +57,16 @@ const EntriesList = () => {
       setSelectedRow(row);
     };
 
+    function CustomFooter () {
+      return (
+        <GridFooterContainer sx={{fontSize: 20}}>
+          Total Amount : {totalAmount}, Total No.of Gifts : {totalGift}
+          <GridFooter sx={{
+            border: 'none', // To delete double border.
+            }} />
+        </GridFooterContainer>
+      );
+    }
    
     const getSelectedEvent = () => {
         axios
@@ -68,8 +81,12 @@ const EntriesList = () => {
       const fetchAllEntries = () => {
         axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
           // console.log(response);
-          console.log(response.data);
-          setEntries(response.data);
+          // console.log("fetchAllEntries : " + JSON.stringify(response.data));
+          console.log("fetchAllEntries : " + JSON.stringify(response.data.entriesList));
+          console.log("totalAmount : " + JSON.stringify(response.data.totalAmount));
+          setEntries(response.data.entriesList);
+          setTotalAmount(response.data.totalAmount)
+          setTotalGift(response.data.totalGift)
         });
       };
       useEffect(() => {
@@ -78,7 +95,7 @@ const EntriesList = () => {
       }, [refreshCount]);
     const columns = [
     
-        { field: "entryId", headerName: "Entry ID", flex: 1},
+        // { field: "entryId", headerName: "Entry ID", flex: 1},
         {
             field: "personName",
             headerName: "Person Name",
@@ -206,17 +223,19 @@ const EntriesList = () => {
                 <DataGrid 
                     rows={entries}
                     columns={columns}
-                    // components={{ Toolbar: GridToolbar }}
+                  
                     getRowId={(row) => row.entryId} 
+              
+                 components={{ Toolbar: GridToolbar,  Footer: CustomFooter  }}
                     initialState={{
-                      pagination: {
-                     paginationModel: {
-                       pageSize: 10,
-                     },
-                   },                  
-                 }}
-                 pageSizeOptions={[10]}
-               
+                       pagination: {
+                      paginationModel: {
+                        pageSize: 10,
+                      },
+                    }, 
+                                   
+                  }}
+                  pageSizeOptions={[10]}
                 />
                  <div>
           <CreateNewEntry

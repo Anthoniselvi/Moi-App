@@ -11,8 +11,8 @@ import axios from "axios";
 
 import { RefreshContext } from "./index";
 
-export default function DeleteEvent({ partId, open, status, onClose }) {
-  console.log("Part ID recd in NewDeletePopup : " + partId);
+export default function DeleteEvent({ eventId, open, onClose }) {
+
   const { updateRefreshCount } = useContext(RefreshContext);
 
   function refreshPage() {
@@ -24,7 +24,7 @@ export default function DeleteEvent({ partId, open, status, onClose }) {
   };
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:5000/parts/${partId}`).then((response) => {
+    axios.delete(`http://localhost:1234/events/delete/${eventId}`).then((response) => {
       console.log("Deleted Parts :" + JSON.stringify(response));
     });
     onClose();
@@ -33,7 +33,7 @@ export default function DeleteEvent({ partId, open, status, onClose }) {
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Part ID : {partId}</DialogTitle>
+        <DialogTitle>Event ID : {eventId}</DialogTitle>
         <DialogContent>
           <DialogContentText>Are you sure want to Delete?</DialogContentText>
           <br />

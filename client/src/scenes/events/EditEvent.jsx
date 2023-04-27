@@ -1,64 +1,109 @@
 import * as React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 import DialogTitle from "@mui/material/DialogTitle";
 
 
 import { RefreshContext } from "./index";
 
-export default function EditEvent({ open, columns, onClose, onSubmit, row }) {
+export default function EditEvent({ open, onClose, eventId }) {
   
-  console.log("selected Row in NewEditPart: " + JSON.stringify(row));
 
-  const [eventType, setEventType] = useState("");
+  const [eventType, setEventType] = useState();
   const [name, setName] = useState();
   const [place, setPlace] = useState();
   const [date, setDate] = useState();
+ 
   // const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   // const navigate = useNavigate();
 
   // const [searchParam] = useSearchParams();
   // const eventId = searchParam.get("event");
+  const [refreshCount, setRefreshCount] = useState(0);
   const { updateRefreshCount } = useContext(RefreshContext);
+  // const updateRefreshCount = () => {
+  //   setRefreshCount(refreshCount + 1);
+  // };
   //   const { updateRefreshCount = () => {} } = useContext(RefreshContext);
   function refreshPage() {
     updateRefreshCount();
   }
 
   const handleEditSave = (e) => {
-    // e.preventDefault();
-    // axios
-    //   .put(`http://localhost:5000/parts/${row.id}`, {
-    //     part_number: part_number,
-    //     part_name: part_name,
-    //   })
-    //   .then((response) => {
-    //     console.log("Updated Parts : " + JSON.stringify(response));
-    //   });
-    // onClose();
-    // refreshPage();
+    e.preventDefault();
+    axios
+      .put(`http://localhost:1234/events/edit/${eventId}`, {
+        eventType : eventType,
+        name: name,
+        place: place,
+        date: date,
+      })
+      .then((response) => {
+        console.log("Updated Event : " + JSON.stringify(response));
+      });
+    onClose();
+    refreshPage();
   };
 
+  const getSelectedEvent = () => {
+    axios.get(`http://localhost:1234/events/single/${eventId}`).then((response) => {
+      // console.log(response);
+     
+      console.log("Totals : " + JSON.stringify(response.data));
+      setEventType(response.data.eventType);
+      setName(response.data.name);
+      setPlace(response.data.place);
+      setDate(response.data.date);
+    });
+  };
+  useEffect(() => {
+   
+    getSelectedEvent()
+  }, [refreshCount]);
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Edit Event - {row.name}</DialogTitle>
+        <DialogTitle>Edit Event - {name}</DialogTitle>
         <DialogContent>
         <form>
-          <TextField
+          {/* <TextField
             style={{ width: "300px", margin: "5px" }}
             type="text"
             label="Event Type"
             variant="outlined"
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
-          />
+          /> */}
+          <br />
+          <FormControl sx={{ width: "300px" }}>
+          <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            required
+            value={eventType}
+            label="Event Type"
+            onChange={
+              (e) => setEventType(e.target.value)
+              // (e) => setImageSource(images[e.target.value]))
+            }
+          >
+            <MenuItem value="wedding">Wedding</MenuItem>
+            <MenuItem value="birthday">Birthday</MenuItem>
+            <MenuItem value="baby">Baby Shower</MenuItem>
+            <MenuItem value="others">Others</MenuItem>
+          </Select>
+        </FormControl>
           <br />
           <br />
           <TextField

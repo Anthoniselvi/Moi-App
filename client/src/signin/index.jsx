@@ -73,7 +73,7 @@ const SignIn = () => {
           console.log(response.data);
           console.log(response.data.profileId);
           // navigate(`/eventslist?profile=${response.user.uid}`);
-          navigate(`/dashboard?profile={response.user.uid}`)
+          navigate(`/events?profile={response.user.uid}`)
         });
 
       // signInWithPopup(auth, provider).then((data) => {

@@ -18,6 +18,7 @@ import { CardActionArea } from "@mui/material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import Typography from "@mui/material/Typography";
 import image from "./image.png"
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 
 export const RefreshContext = createContext();
 
@@ -34,6 +35,9 @@ const EventsList = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState();
   const [selectedRowId, setSelectedRowId] = useState();
+  const [totalAmount, setTotalAmount] = useState(0)
+  const [totalGift, setTotalGift] = useState(0)
+  const [total, setTotal] = useState()
       const navigate = useNavigate()
 
   const [refreshCount, setRefreshCount] = useState(0);
@@ -58,32 +62,69 @@ const handleDeleteEvent = (eventId) => {
   setSelectedRowId(eventId);
 };
 
-const handleEditEvent = (row) => {
-  console.log("Row inside edit button click:" + JSON.stringify(row));
+const handleEditEvent = (eventId) => {
+
   setEditModalOpen(true);
-  setSelectedRow(row);
+  setSelectedRowId(eventId);
 };
   
-      const fetchAllEvents = () => {
-        axios
-          .get(`http://localhost:1234/events/all/${profileId}`)
-          .then((response) => {
-            // console.log(response);
-            console.log(response.data);
-            setEventsList(response.data);
-          });
-      };
+// const getTotalAmount = (eventId) => {
+//   console.log(eventId);
+
+//   axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
+//           // console.log(response);
+//           console.log(response.data);
+//           // setEntries(response.data);
+//           setTotalAmount(response.data.totalAmount)
+//           setTotalGift(response.data.totalGift)
+//         });
+
+//   return totalAmount
+// };
+
+// const getTotalGift= (eventId) => {
+//   console.log(eventId);
+
+//   axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
+//           // console.log(response);
+//           console.log(response.data);
+      
+//           setTotalGift(response.data.totalGift)
+//         });
+
+//   return totalGift
+// };
+      // const fetchAllEvents = () => {
+      //   axios
+      //     .get(`http://localhost:1234/events/all/${profileId}`)
+      //     .then((response) => {
+      //       // console.log(response);
+      //       console.log(response.data);
+      //       setEventsList(response.data);
+      //     });
+      // };
     
-      const fetchAllEntries = () => {
-        axios.get("http://localhost:1234/entries/all").then((response) => {
+      // const fetchAllEntries = () => {
+      //   axios.get("http://localhost:1234/entries/all").then((response) => {
+      //     // console.log(response);
+      //     console.log(response.data);
+      //     setEntries(response.data);
+      //   });
+      // };
+      const fetchTotals = () => {
+        axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
           // console.log(response);
-          console.log(response.data);
-          setEntries(response.data);
+         
+          console.log("Totals : " + JSON.stringify(response.data));
+         setEventsList(response.data)
+          // setTotalAmount(response.data.totalAmount)
+          // setTotalGift(response.data.totalGift)
         });
       };
       useEffect(() => {
-        fetchAllEvents();
-        fetchAllEntries();
+        // fetchAllEvents();
+        // fetchAllEntries();
+        fetchTotals()
       }, [refreshCount]);
 
     // const columns = [
@@ -150,109 +191,9 @@ const handleEditEvent = (row) => {
   
 
     return (
-        // <RefreshContext.Provider value={{ updateRefreshCount }}>
-        // <Box m="20px">
-        // <Box display="flex" alignContent="center" justifyContent="space-between" marginBottom="-4%">
-        //         <Header title="EVENTS" />
-
-        //         <Box>
-        //             <Button
-        //                 sx={{
-        //                     backgroundColor: colors.blueAccent[700],
-        //                     color: colors.grey[100],
-        //                     fontSize: "14px",
-        //                     fontWeight: "bold",
-        //                     padding: "10px 20px",
-        //                 }}
-        //                 onClick={() => setCreateModalOpen(true)}
-          
-        //             >
-        //                 <AddIcon sx={{ mr: "10px" }} />
-        //                 New
-        //             </Button>
-        //         </Box>
-        //     </Box>
-        //     <Box
-        //         m="40px 0 0 0"
-        //         height="75vh"
-        //         sx={{
-        //             "& .MuiDataGrid-root": {
-        //                 border: "none",
-        //             },
-        //             "& .MuiDataGrid-cell": {
-        //                 borderBottom: "none",
-        //             },
-        //             "& .name-column--cell": {
-        //                 color: colors.greenAccent[300],
-        //             },
-        //             "& .MuiDataGrid-columnHeaders": {
-        //               backgroundColor: colors.blueAccent[2000],
-        //               borderBottom: "none",
-        //               fontWeight: 700,
-        //               fontSize: 18
-        //             },
-        //             "& .MuiDataGrid-virtualScroller": {
-        //                 backgroundColor: colors.primary[400],
-        //             },
-        //             "& .MuiDataGrid-footerContainer": {
-        //                 borderTop: "none",
-        //                 // backgroundColor: colors.blueAccent[700],
-        //                 backgroundColor: colors.blueAccent[2000],
-        //             },
-        //             "& .MuiCheckbox-root": {
-        //                 color: `${colors.greenAccent[200]} !important`,
-        //             },
-        //             "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-        //                 color: `${colors.grey[100]} !important`,
-        //             },
-        //         }}
-        //     >
-        //         <DataGrid 
-        //             rows={eventslist}
-        //             columns={columns}
-        //             getRowId={(row) => row.eventId}
-        //             // components={{ Toolbar: GridToolbar }}
-        //             initialState={{
-        //               pagination: {
-        //              paginationModel: {
-        //                pageSize: 10,
-        //              },
-        //            },                  
-        //          }}
-        //          pageSizeOptions={[10]}
-               
-        //         />
-        //          <div>
-        //   <CreateNewParts
-        //     open={createModalOpen}
-        //     onClose={() => setCreateModalOpen(false)}
-        //   />
-        //   {editModalOpen ? (
-        //     <NewEditPart
-        //       row={selectedRow}
-        //       open={editModalOpen}
-        //       onClose={() => setEditModalOpen(false)}
-        //     />
-        //   ) : (
-        //     <></>
-        //   )}
-        //   {deleteModalOpen ? (
-        //     <NewDeletePopUp
-        //       eventId={selectedRowId}
-        //       open={deleteModalOpen}
-        //       onClose={() => setDeleteModalOpen(false)}
-        //     />
-        //   ) : (
-        //     <></>
-        //   )}
-        // </div>
-    
-  
-        //     </Box>
-        // </Box>
-        // </RefreshContext.Provider>
+        
         <RefreshContext.Provider value={{ updateRefreshCount }}>
-        <Box display="flex" alignContent="center" justifyContent="space-between" marginBottom="-4%">
+        <Box display="flex" alignContent="center" justifyContent="space-between" margin= "2%" marginBottom= "0%">
                 <Header title="EVENTS LIST"   />
                 {/* <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography> */}
                 <Box>
@@ -272,15 +213,16 @@ const handleEditEvent = (row) => {
                     </Button>
                 </Box>
             </Box>
-        <Box display="grid" gridTemplateColumns="1fr 1fr" gap="2%" rowGap="8%" padding="2%">
+        <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="2%" rowGap="8%" padding="2%" background= "colors.primary[400]">
         {eventslist.length > 0 && (
           <>
             {eventslist.map((singleEvent, eventId) => (
             
-                <Card sx={{ border: "1px solid white", backgroundColor: colors.blueAccent[600]  }}> 
+                <Card sx={{ backgroundColor: colors.primary[400]  }}> 
                  
                   <CardActionArea>
-                  <CardMedia sx={{background: image}}
+                  <CardMedia component="img"
+  // src={image} sx={{height: 150, backgroundSize: "contain"}}
                         className="card-image-birthday"
                         // height="194"
                         onClick={(e) => {
@@ -289,7 +231,8 @@ const handleEditEvent = (row) => {
                         }}
                       />
                    
-                    <CardContent className="card_content">
+                    <CardContent >
+                      <Box display="flex" justifyContent="space-between" alignItems="center" >
                       <Typography
                         className="card_name"
                         sx={{ fontSize: 16, marginBottom: 0 }}
@@ -301,77 +244,12 @@ const handleEditEvent = (row) => {
                           navigateToEntryList(singleEvent.eventId);
                         }}
                       >
-                        {singleEvent.name}
+                        {singleEvent.eventName}
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigateToEntryList(singleEvent.eventId);
-                        }}
-                      >
-                        <ul className="event-row">
-                          <li className="amount-row">
-                            <>
-                              <CurrencyRupeeIcon
-                                sx={{ fontSize: "14px", color: "black" }}
-                              />
-                              <p
-                                style={{
-                                  fontSize: "14px",
-                                  color: "black",
-                                  margin: 2,
-                                }}
-                              >
-                                Amount
-                              </p>
-                            </>
-                            <p
-                              style={{
-                                fontSize: "14px",
-                                color: "#9C27B0",
-                                margin: 2,
-                                alignItems: "right",
-                              }}
-                            >
-                              {/* {getTotalAmount(singleEvent.eventId)} */}
-                            </p>
-                          </li>
-                          <li className="amount-row">
-                            <>
-                              {/* <CardGiftcardIcon
-                                sx={{ fontSize: "14px", color: "black" }}
-                              /> */}
-                              <p
-                                style={{
-                                  fontSize: "14px",
-                                  color: "black",
-                                  margin: 2,
-                                }}
-                              >
-                                {" "}
-                                No.of Gifts{" "}
-                              </p>
-                            </>
-                            <p
-                              style={{
-                                fontSize: "14px",
-                                color: "black",
-                                margin: 2,
-                                alignItems: "right",
-                              }}
-                            >
-                              {/* {gettotalGiftforEvent(singleEvent.eventId)} */}
-                            </p>
-                          </li>
-                        </ul>
-                      </Typography>
-                    </CardContent>
-                    <Box sx={{ display: "flex", gap: "1rem" }}>
+                      <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Tooltip arrow placement="left" title="Edit">
                   <IconButton
-                    onClick={() => handleEditEvent(singleEvent) }                  
+                    onClick={() => handleEditEvent(singleEvent.eventId) }                  
                   >
                     <Edit />
                   </IconButton>
@@ -385,6 +263,72 @@ const handleEditEvent = (row) => {
                   </IconButton>
                 </Tooltip>
               </Box>
+              </Box>
+                      <Box 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigateToEntryList(singleEvent.eventId);
+                        }}
+                      >
+                        <ul style={{listStyle: "none", alignItems: "left" , display: "flex" , flexDirection: "column"}}>
+                          <li style={{display:"flex" , alignItems:"left", justifyContent: "space-between", marginTop:"2%", marginBottom: "2%" }}>
+                            <Box display="flex" alignItems="left" gap="5%" color="#fff" justifyContent= "space-between" >
+                              <CurrencyRupeeIcon
+                                sx={{ fontSize: "16px", color: "#fff" }}
+                              />
+                              <p
+                                style={{
+                                  fontSize: "16px",
+                                  color: "#fff",
+                                  margin: 2,
+                                }}
+                              >
+                                Amount
+                              </p>
+                            </Box>
+                            <p
+                              style={{
+                                fontSize: "20px",
+                                color: "#fff",
+                                margin: 2,
+                                alignItems: "right",
+                              }}
+                            >
+                              {singleEvent.totalAmount}
+                              {/* {getTotalAmount(singleEvent.eventId)} */}
+                            </p>
+                          </li>
+                          <li style={{display:"flex" , alignItems:"center", justifyContent: "space-between"}}>
+                            <Box display="flex"  gap="5%" alignItems="center" justifyContent= "space-between">
+                              <CardGiftcardIcon
+                                sx={{ fontSize: "16px", color: "#fff" }}
+                              />
+                              <p
+                                style={{
+                                  fontSize: "16px",
+                                  color: "#fff",
+                                  margin: 2,
+                                }}
+                              >                              
+                                Gifts
+                              </p>
+                            </Box>
+                            <p
+                              style={{
+                                fontSize: "20px",
+                                color: "#fff",
+                                margin: 2,
+                                alignItems: "right",
+                              }}
+                            >
+                               {singleEvent.totalGift}
+                              {/* {getTotalGift(singleEvent.eventId)} */}
+                            </p>
+                          </li>
+                        </ul>
+                      </Box>
+                    </CardContent>
+                    
                   </CardActionArea>
                 </Card>
             
@@ -398,7 +342,7 @@ const handleEditEvent = (row) => {
           />
            {editModalOpen ? (
             <EditEvent
-              row={selectedRow}
+              eventId={selectedRowId}
               open={editModalOpen}
               onClose={() => setEditModalOpen(false)}
             />
@@ -407,7 +351,7 @@ const handleEditEvent = (row) => {
           )}
           {deleteModalOpen ? (
             <DeleteEvent
-              eventId={eventslist.eventId}
+              eventId={selectedRowId}
               open={deleteModalOpen}
               onClose={() => setDeleteModalOpen(false)}
             />
