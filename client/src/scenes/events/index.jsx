@@ -20,6 +20,8 @@ import Typography from "@mui/material/Typography";
 import image from "./image.png"
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 
+import EditOrDelete from "./EditOrDelete";
+
 export const RefreshContext = createContext();
 
 const EventsList = () => {
@@ -221,15 +223,17 @@ const handleEditEvent = (eventId) => {
                 <Card sx={{ backgroundColor: colors.primary[400]  }}> 
                  
                   <CardActionArea>
-                  <CardMedia component="img"
-  // src={image} sx={{height: 150, backgroundSize: "contain"}}
-                        className="card-image-birthday"
-                        // height="194"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigateToEntryList(singleEvent.eventId);
-                        }}
-                      />
+                  <CardMedia
+  component="img"
+  src={singleEvent.eventImage}
+  sx={{ height: 150, backgroundSize: "contain" }}
+  className="card-image-birthday"
+  onClick={(e) => {
+    e.stopPropagation();
+    navigateToEntryList(singleEvent.eventId);
+  }}
+/>
+
                    
                     <CardContent >
                       <Box display="flex" justifyContent="space-between" alignItems="center" >
@@ -246,7 +250,8 @@ const handleEditEvent = (eventId) => {
                       >
                         {singleEvent.eventName}
                       </Typography>
-                      <Box sx={{ display: "flex", gap: "1rem" }}>
+                     <EditOrDelete eventId={singleEvent.eventId} />
+                      {/* <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Tooltip arrow placement="left" title="Edit">
                   <IconButton
                     onClick={() => handleEditEvent(singleEvent.eventId) }                  
@@ -262,70 +267,41 @@ const handleEditEvent = (eventId) => {
                     <Delete />
                   </IconButton>
                 </Tooltip>
+              </Box> */}
               </Box>
-              </Box>
-                      <Box 
+                      <Box  display="flex" flexDirection="column"
                         onClick={(e) => {
                           e.stopPropagation();
                           navigateToEntryList(singleEvent.eventId);
                         }}
                       >
-                        <ul style={{listStyle: "none", alignItems: "left" , display: "flex" , flexDirection: "column"}}>
-                          <li style={{display:"flex" , alignItems:"left", justifyContent: "space-between", marginTop:"2%", marginBottom: "2%" }}>
-                            <Box display="flex" alignItems="left" gap="5%" color="#fff" justifyContent= "space-between" >
+                       
+                            <Box display="flex" alignItems="center" gap="5%" marginBottom="-1rem" >
                               <CurrencyRupeeIcon
-                                sx={{ fontSize: "16px", color: "#fff" }}
-                              />
-                              <p
-                                style={{
-                                  fontSize: "16px",
-                                  color: "#fff",
-                                  margin: 2,
-                                }}
-                              >
-                                Amount
-                              </p>
-                            </Box>
-                            <p
-                              style={{
+                                sx={{ fontSize: "20px", color: "#fff" }}
+                              />                            
+                            <p style={{
                                 fontSize: "20px",
-                                color: "#fff",
-                                margin: 2,
-                                alignItems: "right",
-                              }}
+                                color: "#fff" }}
                             >
                               {singleEvent.totalAmount}
-                              {/* {getTotalAmount(singleEvent.eventId)} */}
                             </p>
-                          </li>
-                          <li style={{display:"flex" , alignItems:"center", justifyContent: "space-between"}}>
-                            <Box display="flex"  gap="5%" alignItems="center" justifyContent= "space-between">
+                          </Box>
+                            <Box display="flex"  gap="5%" alignItems="center">
                               <CardGiftcardIcon
-                                sx={{ fontSize: "16px", color: "#fff" }}
-                              />
-                              <p
-                                style={{
-                                  fontSize: "16px",
-                                  color: "#fff",
-                                  margin: 2,
-                                }}
-                              >                              
-                                Gifts
-                              </p>
-                            </Box>
+                                sx={{ fontSize: "20px", color: "#fff" }}
+                              />                             
                             <p
                               style={{
                                 fontSize: "20px",
                                 color: "#fff",
-                                margin: 2,
-                                alignItems: "right",
+                              
                               }}
                             >
                                {singleEvent.totalGift}
-                              {/* {getTotalGift(singleEvent.eventId)} */}
+                          
                             </p>
-                          </li>
-                        </ul>
+                            </Box>
                       </Box>
                     </CardContent>
                     

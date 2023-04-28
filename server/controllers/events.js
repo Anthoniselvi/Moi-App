@@ -15,6 +15,18 @@ export const postEvent = (req, res) => {
     profileId,
   });
 
+  if (eventType === "wedding") {
+    newEvent.eventImage = "https://example.com/wedding.jpg";
+  } else if (eventType === "birthday") {
+    newEvent.eventImage = "https://example.com/birthday.jpg";
+  } else if (eventType === "baby") {
+    newEvent.eventImage = "https://example.com/baby.jpg";
+  } else if (eventType === "house") {
+    newEvent.eventImage = "https://example.com/house.jpg";
+  } else {
+    newEvent.eventImage = "https://example.com/others.jpg";
+  }
+
   newEvent
     .save()
     .then(() => res.json("Event added"))
