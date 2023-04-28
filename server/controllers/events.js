@@ -1,4 +1,5 @@
 import Events from "../models/Events.js";
+import Entries from "../models/Entries.js";
 
 export const postEvent = (req, res) => {
   const eventType = req.body.eventType;
@@ -84,12 +85,19 @@ export const updateEventByEventId = (req, res) => {
 
 export const deleteEventByEventId = (req, res) => {
   const eventId = req.params.eventId; // Extract eventId from req.params
-  Events.deleteOne({ eventId: eventId })
-    .then((result) => {
-      if (result.deletedCount === 0) {
-        return res.status(404).json("Event not found");
-      }
-      res.json("Event deleted successfully");
+
+  // Delete all entries with matching eventId first
+  Entries.deleteMany({ eventId: eventId })
+    .then(() => {
+      // Then delete the event itself
+      Events.deleteOne({ eventId: eventId })
+        .then((result) => {
+          if (result.deletedCount === 0) {
+            return res.status(404).json("Event not found");
+          }
+          res.json("Event and associated entries deleted successfully");
+        })
+        .catch((err) => res.status(400).json("Error deleting event: " + err));
     })
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json("Error deleting entries: " + err));
 };
