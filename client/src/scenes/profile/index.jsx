@@ -93,7 +93,7 @@ function Profile(props) {
   }, []);
 
   return (
-    <div className="editprofile-container">
+    <div style={{margin: 20}}>
       <ArrowBackIcon onClick={navigateToEventsList} />
       <h1>Profile</h1>
 
@@ -121,6 +121,9 @@ function Profile(props) {
           autoFocus
           value={name}
           readOnly
+          InputLabelProps={{
+            style: { color: "#fff" }
+          }}
           onChange={(e) => setName(e.target.value)}
           // error={errors.email}
         />
@@ -135,6 +138,9 @@ function Profile(props) {
           type="age"
           id="age"
           autoComplete="age"
+          InputLabelProps={{
+            style: { color: "#fff" }
+          }}
           value={age}
           onChange={(e) => setAge(e.target.value)}
           // error={errors.password}
@@ -164,6 +170,9 @@ function Profile(props) {
           name="address"
           autoComplete="address"
           autoFocus
+          InputLabelProps={{
+            style: { color: "#fff" }
+          }}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           // error={errors.email}
@@ -177,6 +186,9 @@ function Profile(props) {
           name="city"
           autoComplete="city"
           autoFocus
+          InputLabelProps={{
+            style: { color: "#fff" }
+          }}
           value={city}
           onChange={(e) => setCity(e.target.value)}
           // error={errors.email}
@@ -190,6 +202,9 @@ function Profile(props) {
           name="mobile"
           autoComplete="mobile"
           autoFocus
+          InputLabelProps={{
+            style: { color: "#fff" }
+          }}
           value={mobile}
           onChange={(e) => setMobile(e.target.value)}
           // error={errors.email}
@@ -205,6 +220,9 @@ function Profile(props) {
           autoFocus
           value={email}
           readOnly
+          InputLabelProps={{
+            style: { color: "#fff" }
+          }}
           onChange={(e) => setEmail(e.target.value)}
           // error={errors.email}
         />

@@ -260,14 +260,14 @@ const navigateToEntryList = (eventId) => {
                 </Tooltip>
               </Box> */}
               </Box>
-                      <Box  display="flex" flexDirection="column"
+                      <Box  display="flex" alignItems="center" gap="5%" justifyContent="space-between"
                         onClick={(e) => {
                           e.stopPropagation();
                           navigateToEntryList(singleEvent.eventId);
                         }}
                       >
                        
-                            <Box display="flex" alignItems="center" gap="5%" marginBottom="-1rem" >
+                            <Box display="flex" alignItems="center" gap="5%" >
                               <CurrencyRupeeIcon
                                 sx={{ fontSize: "20px", color: "#fff" }}
                               />                            
@@ -278,7 +278,7 @@ const navigateToEntryList = (eventId) => {
                               {singleEvent.totalAmount}
                             </p>
                           </Box>
-                            <Box display="flex"  gap="5%" alignItems="center">
+                            <Box display="flex"  gap="20%" alignItems="center">
                               <CardGiftcardIcon
                                 sx={{ fontSize: "20px", color: "#fff" }}
                               />                             
