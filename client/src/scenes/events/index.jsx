@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import { useTheme} from "@mui/material";
 import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { useState, useEffect, createContext } from "react";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, MoreVert } from "@mui/icons-material";
 import axios from "axios";
 import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
@@ -59,43 +59,8 @@ const EventsList = () => {
 const navigateToEntryList = (eventId) => {
   navigate(`/entries?event=${eventId}`)
 }
-const handleDeleteEvent = (eventId) => {
-  setDeleteModalOpen(true);
-  setSelectedRowId(eventId);
-};
 
-const handleEditEvent = (eventId) => {
 
-  setEditModalOpen(true);
-  setSelectedRowId(eventId);
-};
-  
-// const getTotalAmount = (eventId) => {
-//   console.log(eventId);
-
-//   axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
-//           // console.log(response);
-//           console.log(response.data);
-//           // setEntries(response.data);
-//           setTotalAmount(response.data.totalAmount)
-//           setTotalGift(response.data.totalGift)
-//         });
-
-//   return totalAmount
-// };
-
-// const getTotalGift= (eventId) => {
-//   console.log(eventId);
-
-//   axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
-//           // console.log(response);
-//           console.log(response.data);
-      
-//           setTotalGift(response.data.totalGift)
-//         });
-
-//   return totalGift
-// };
       // const fetchAllEvents = () => {
       //   axios
       //     .get(`http://localhost:1234/events/all/${profileId}`)
@@ -223,7 +188,33 @@ const handleEditEvent = (eventId) => {
                 <Card sx={{ backgroundColor: colors.primary[400]  }}> 
                  
                   <CardActionArea>
-                  <CardMedia
+                  <Box sx={{ position: "relative" }}>
+  <CardMedia
+    component="img" 
+    src={singleEvent.eventImage}
+    sx={{ height: 150, backgroundSize: "contain" }}
+    className="card-image-birthday"
+    onClick={(e) => {
+      e.stopPropagation();
+      navigateToEntryList(singleEvent.eventId);
+    }}
+  />
+  <Typography variant="subtitle1" sx={{ position: "absolute", top: 0, left: 0, p: 0.5, color: colors.blueAccent[800], fontWeight: "bold", fontSize: 20 }}>
+    {singleEvent.eventName}
+  </Typography>
+ 
+  <IconButton
+    aria-label="more"
+    sx={{ position: "absolute", top: 0, right: 0, color: colors.blueAccent[800], p: 1 }}
+    onClick={(e) => {
+      e.stopPropagation();
+      // handle more button click
+    }}
+  >
+     <EditOrDelete eventId={singleEvent.eventId} />
+  </IconButton>
+</Box>
+                  {/* <CardMedia
   component="img"
   src={singleEvent.eventImage}
   sx={{ height: 150, backgroundSize: "contain" }}
@@ -232,12 +223,12 @@ const handleEditEvent = (eventId) => {
     e.stopPropagation();
     navigateToEntryList(singleEvent.eventId);
   }}
-/>
+/> */}
 
                    
                     <CardContent >
                       <Box display="flex" justifyContent="space-between" alignItems="center" >
-                      <Typography
+                      {/* <Typography
                         className="card_name"
                         sx={{ fontSize: 16, marginBottom: 0 }}
                         gutterBottom
@@ -250,7 +241,7 @@ const handleEditEvent = (eventId) => {
                       >
                         {singleEvent.eventName}
                       </Typography>
-                     <EditOrDelete eventId={singleEvent.eventId} />
+                     <EditOrDelete eventId={singleEvent.eventId} /> */}
                       {/* <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Tooltip arrow placement="left" title="Edit">
                   <IconButton

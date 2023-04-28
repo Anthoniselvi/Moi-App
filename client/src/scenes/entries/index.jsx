@@ -17,7 +17,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import CreateNewEntry from "./CreateNewEntry";
 import EditEntry from "./EditEntry";
 import DeleteEntry from "./DeleteEntry";
-
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 export const RefreshContext = createContext();
 
 const EntriesList = () => {
@@ -35,7 +35,9 @@ const EntriesList = () => {
   const [selectedRowId, setSelectedRowId] = useState();
   const [totalAmount, setTotalAmount] = useState(0)
   const [totalGift, setTotalGift] = useState(0)
+  const [profileId, setProfileId] = useState()
   const [refreshCount, setRefreshCount] = useState(0);
+
  
   
     const updateRefreshCount = () => {
@@ -68,6 +70,16 @@ const EntriesList = () => {
       );
     }
    
+    const navigateToEventsPage = () => {
+      axios.get(`http://localhost:1234/events/single/${eventId}`).then((response) => {
+      // console.log(response);
+     
+      console.log("Totals : " + JSON.stringify(response.data));
+      // setProfileId(response.data.profileId);
+      navigate(`/events?profile=${response.data.profileId}`)
+    });
+   
+    }
     const getSelectedEvent = () => {
         axios
           .get(`http://localhost:1234/events/single/${eventId}`)
@@ -165,6 +177,8 @@ const EntriesList = () => {
     return (
         <RefreshContext.Provider value={{ updateRefreshCount }}>
         <Box m="20px">
+        <KeyboardBackspaceIcon onClick={navigateToEventsPage}/>
+      
         <Box display="flex" alignContent="center" justifyContent="space-between" marginBottom="-4%">
                 <Header title="ENTRIES LIST"   />
                 <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography>

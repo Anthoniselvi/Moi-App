@@ -2,7 +2,9 @@ import * as React from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
+import { tokens } from "../../theme";
 
+import { useTheme} from "@mui/material";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Delete, Edit } from "@mui/icons-material";
 import EditEvent from "./EditEvent";
@@ -10,7 +12,8 @@ import DeleteEvent from "./DeleteEvent";
 
 
 export default function EditOrDelete({ eventId }) {
-
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedRow, setSelectedRow] = React.useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false); 
@@ -42,7 +45,7 @@ export default function EditOrDelete({ eventId }) {
   return (
     <div>
       <Button
-   
+   sx={{color: colors.blueAccent[800]}}
         id="basic-button"
         // variant="contained"
         color="secondary"

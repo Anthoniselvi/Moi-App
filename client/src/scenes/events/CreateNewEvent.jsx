@@ -94,6 +94,7 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
             <MenuItem value="wedding">Wedding</MenuItem>
             <MenuItem value="birthday">Birthday</MenuItem>
             <MenuItem value="baby">Baby Shower</MenuItem>
+            <MenuItem value="house">House Warming</MenuItem>
             <MenuItem value="others">Others</MenuItem>
           </Select>
         </FormControl>

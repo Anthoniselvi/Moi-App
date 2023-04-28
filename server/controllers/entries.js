@@ -112,8 +112,17 @@ export const getTotals = async (req, res) => {
 
       // Find the event name for the current eventId
       const eventName = events.find((event) => event.eventId === eventId).name;
+      const eventImage = events.find(
+        (event) => event.eventId === eventId
+      ).eventImage;
 
-      eventTotals.push({ eventId, eventName, totalAmount, totalGift });
+      eventTotals.push({
+        eventId,
+        eventName,
+        eventImage,
+        totalAmount,
+        totalGift,
+      });
     }
 
     console.log("Event Totals:", eventTotals);
