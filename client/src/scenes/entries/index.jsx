@@ -180,8 +180,8 @@ const EntriesList = () => {
         <KeyboardBackspaceIcon onClick={navigateToEventsPage}/>
       
         <Box display="flex" alignContent="center" justifyContent="space-between" marginBottom="-4%">
-                <Header title="ENTRIES LIST"   />
-                <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography>
+                <Header title={eventsList.name}   />
+                {/* <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography> */}
                 <Box>
                     <Button
                         sx={{

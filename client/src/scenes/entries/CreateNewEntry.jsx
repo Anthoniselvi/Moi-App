@@ -23,7 +23,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
     const [city, setCity] = useState();
     const [amount, setAmount] = useState(0);
     const [gift, setGift] = useState("");
-    const [presentType, setPresentType] = useState("");
+    const [presentType, setPresentType] = useState("amount");
   // const navigate = useNavigate();
   // const [searchParam] = useSearchParams();
   // const profileId = searchParam.get("profile");

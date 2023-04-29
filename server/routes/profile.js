@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/add", postProfile);
 router.get("/all", getAllProfiles);
-router.get("/:id", getProfileById);
-router.put("/:id", updateProfile);
+router.get("/:profileId", getProfileById);
+router.put("/:profileId", updateProfile);
 
 export default router;

@@ -1,4 +1,6 @@
 import Profiles from "../models/Profile.js";
+import mongoose from "mongoose";
+const { ObjectId } = mongoose.Types;
 
 export const postProfile = (req, res) => {
   const profileId = req.body.profileId;
@@ -34,8 +36,8 @@ export const getAllProfiles = (req, res) => {
 };
 
 export const getProfileById = (req, res) => {
-  const profileId = req.params.id;
-  Profiles.findById(profileId)
+  const profileId = req.params.profileId;
+  Profiles.findOne({ profileId })
     .then((profile) => {
       if (!profile) {
         return res.status(404).json("Profile not found");
@@ -46,9 +48,9 @@ export const getProfileById = (req, res) => {
 };
 
 export const updateProfile = (req, res) => {
-  Profiles.findById(req.params.id)
+  const profileId = req.params.profileId;
+  Profiles.findOne({ profileId })
     .then((profile) => {
-      profile.profileId = req.body.profileId;
       profile.name = req.body.name;
       profile.mobile = req.body.mobile;
       profile.email = req.body.email;

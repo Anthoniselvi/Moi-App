@@ -141,7 +141,7 @@ const Sidebar = () => {
                         >Utilities</Typography> */}
                         <Item
                             title="Profile"
-                            to={`/profile/${auth.user.uid}`}
+                            to={`/profile?profile=${auth.user.uid}`}
                             icon={<BuildIcon />}
                             selected={selected}
                             setSelected={setSelected}

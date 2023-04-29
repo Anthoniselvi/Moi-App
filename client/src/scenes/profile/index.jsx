@@ -26,7 +26,7 @@ function Profile(props) {
   const [show, setShow] = useState(true);
   const { user } = useUserAuth();
 
-  const [mobile, setMobile] = useState();
+  const [mobile, setMobile] = useState("");
   const [age, setAge] = useState();
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState();
@@ -35,29 +35,28 @@ function Profile(props) {
   const profileId = searchParam.get("profile");
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // axios
-    //   .put("http://localhost:1234/profile", {
-    //     profileId: profileId,
-    //     name: name,
-    //     age: age,
-    //     gender: gender,
-    //     address: address,
-    //     city: city,
-    //     mobile: mobile,
-    //     email: email,
-    //   })
-    //   .then((response) => {
-    //     console.log("updated profile: " + JSON.stringify(response));
-    //     // alert("Profile added Successfully");
-    //     // Open pop-up
-    //     navigate(`/eventslist?profile=${profileId}`);
-    //   });
+    axios
+      .put(`http://localhost:1234/profile/${profileId}`, {
+      
+        name: name,
+        age: age,
+        gender: gender,
+        address: address,
+        city: city,
+        mobile: mobile,
+        email: email,
+      })
+      .then((response) => {
+        console.log("updated profile: " + JSON.stringify(response));
+        alert("Profile updated successfully")
+        // navigate(`/events?profile=${profileId}`);
+      });
   };
 
   const navigateToEventsList = () => {
-    // navigate(`/eventslist?profile=${profileId}`);
+    navigate(`/events?profile=${profileId}`);
   };
   useEffect(() => {
     // auth.onAuthStateChanged((user) => {
@@ -75,15 +74,17 @@ function Profile(props) {
   }, []);
  
   const getProfile = () => {
-    axios.get(`http://localhost:2010/profile/${profileId}`).then((response) => {
+    axios.get(`http://localhost:1234/profile/${profileId}`).then((response) => {
       // console.log(response);
       console.log("get selected Profile : " + JSON.stringify(response.data));
       // setProfiles(response.data);
-      setAge(response.data.age);
-      setGender(response.data.gender);
-      setAddress(response.data.address);
-      setCity(response.data.city);
-      setMobile(response.data.mobile);
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setMobile(response.data.mobile)
+      setAge(response.data.age)
+      setAddress(response.data.address)
+      setCity(response.data.city)
+      setGender(response.data.gender)
     });
   };
 
@@ -107,7 +108,7 @@ function Profile(props) {
         component="form"
         onSubmit={handleSubmit}
         noValidate
-        sx={{ mt: 1 }}
+        sx={{ mt: 1 ,  width: "500px"}}
         className="profile-form"
       >
         <TextField
@@ -121,9 +122,13 @@ function Profile(props) {
           autoFocus
           value={name}
           readOnly
-          InputLabelProps={{
-            style: { color: "#fff" }
-          }}
+                   sx={{
+            '& label': {
+              color: '#fff',
+            },
+            '& .MuiOutlinedInput-root': {
+              borderColor: '#fff',
+            },}}
           onChange={(e) => setName(e.target.value)}
           // error={errors.email}
         />
