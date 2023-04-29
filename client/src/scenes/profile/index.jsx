@@ -27,10 +27,10 @@ function Profile(props) {
   const { user } = useUserAuth();
 
   const [mobile, setMobile] = useState("");
-  const [age, setAge] = useState();
+  const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
-  const [address, setAddress] = useState();
-  const [city, setCity] = useState();
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
   const [searchParam] = useSearchParams();
   const profileId = searchParam.get("profile");
 

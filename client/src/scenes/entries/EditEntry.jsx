@@ -12,9 +12,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import {RefreshContext} from "./NewEntryList"
 
-
-import { RefreshContext } from "./index";
+// import { RefreshContext } from "./index";
 
 export default function EditEntry({ open,  onClose,  row }) {
   
@@ -57,7 +57,7 @@ export default function EditEntry({ open,  onClose,  row }) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Edit Event - {row.name}</DialogTitle>
+        <DialogTitle>Edit </DialogTitle>
         <DialogContent>
         <form>
           <TextField
