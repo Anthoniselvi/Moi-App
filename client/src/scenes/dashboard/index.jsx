@@ -1,21 +1,18 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import EmailIcon from "@mui/icons-material/Email";
+
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
+
 import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
-import GeographyChart from "../../components/GeographyChart";
+
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
-import ProgressCircle from "../../components/ProgressCircle";
+
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AppsIcon from '@mui/icons-material/Apps';
+import PieChart from "../../components/PieChart";
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -55,6 +52,7 @@ const Dashboard = () => {
                 {/* ROW 1 */}
                 <Box
                     gridColumn="span 4"
+                    gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
@@ -63,8 +61,8 @@ const Dashboard = () => {
                     <StatBox
                         title={eventsList.length}
                         subtitle="Total Events"
-                        progress="0.75"
-                        increase="+14%"
+                        // progress="0.75"
+                        // increase="+14%"
                         icon={
                             <AppsIcon
                                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -74,12 +72,13 @@ const Dashboard = () => {
                 </Box>
                 <Box
                     gridColumn="span 4"
+                    gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                 >
-                    <StatBox
+                    {/* <StatBox
                         title="431,225"
                         subtitle="Sales Obtained"
                         progress="0.50"
@@ -89,7 +88,8 @@ const Dashboard = () => {
                                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
                             />
                         }
-                    />
+                    /> */}
+                    <PieChart />
                 </Box>
                 {/* <Box
                     gridColumn="span 4"
