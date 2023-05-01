@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { GridFooterContainer, GridFooter } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { Typography, useTheme} from "@mui/material";
+import { useTheme} from "@mui/material";
 import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { useState, useEffect, createContext } from "react";
 import { Delete, Edit } from "@mui/icons-material";
@@ -35,7 +35,7 @@ const EntriesList = () => {
   const [selectedRowId, setSelectedRowId] = useState();
   const [totalAmount, setTotalAmount] = useState(0)
   const [totalGift, setTotalGift] = useState(0)
-  const [profileId, setProfileId] = useState()
+
   const [refreshCount, setRefreshCount] = useState(0);
 
  
@@ -44,9 +44,9 @@ const EntriesList = () => {
       setRefreshCount(refreshCount + 1);
     };
   
-    function refreshPage() {
-      updateRefreshCount();
-    }
+    // function refreshPage() {
+    //   updateRefreshCount();
+    // }
   
     const handleDeleteRow = (row) => {
       setDeleteModalOpen(true);

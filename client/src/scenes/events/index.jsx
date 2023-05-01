@@ -1,10 +1,8 @@
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useTheme} from "@mui/material";
-import { Box, Button, IconButton, Tooltip } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 import { useState, useEffect, createContext } from "react";
-import { Delete, Edit, MoreVert } from "@mui/icons-material";
 import axios from "axios";
 import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
@@ -17,7 +15,6 @@ import CardContent from "@mui/material/CardContent";
 import { CardActionArea } from "@mui/material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import Typography from "@mui/material/Typography";
-import image from "./image.png"
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 
 import EditOrDelete from "./EditOrDelete";
@@ -31,15 +28,13 @@ const EventsList = () => {
     const [searchParam] = useSearchParams();
       const profileId = searchParam.get("profile");
       const [eventslist, setEventsList] = useState([])
-      const [entries, setEntries] = useState([])
+
       const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false); 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState();
+
   const [selectedRowId, setSelectedRowId] = useState();
-  const [totalAmount, setTotalAmount] = useState(0)
-  const [totalGift, setTotalGift] = useState(0)
-  const [total, setTotal] = useState()
+
       const navigate = useNavigate()
 
   const [refreshCount, setRefreshCount] = useState(0);
@@ -48,116 +43,34 @@ const EventsList = () => {
       setRefreshCount(refreshCount + 1);
     };
   
-    function refreshPage() {
-      updateRefreshCount();
-    }
+    // function refreshPage() {
+    //   updateRefreshCount();
+    // }
   
   
-      const navigateToCreate = () => {
-        navigate(`/events/new?profile=${profileId}`);
-      }
+    //   const navigateToCreate = () => {
+    //     navigate(`/events/new?profile=${profileId}`);
+    //   }
 const navigateToEntryList = (eventId) => {
   navigate(`/entries?event=${eventId}`)
   // navigate(`/entriesList?event=${eventId}`)
 }
 
-
-      // const fetchAllEvents = () => {
-      //   axios
-      //     .get(`http://localhost:1234/events/all/${profileId}`)
-      //     .then((response) => {
-      //       // console.log(response);
-      //       console.log(response.data);
-      //       setEventsList(response.data);
-      //     });
-      // };
-    
-      // const fetchAllEntries = () => {
-      //   axios.get("http://localhost:1234/entries/all").then((response) => {
-      //     // console.log(response);
-      //     console.log(response.data);
-      //     setEntries(response.data);
-      //   });
-      // };
       const fetchTotals = () => {
         axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
           // console.log(response);
          
           console.log("Totals : " + JSON.stringify(response.data));
          setEventsList(response.data)
-          // setTotalAmount(response.data.totalAmount)
-          // setTotalGift(response.data.totalGift)
+
         });
       };
       useEffect(() => {
-        // fetchAllEvents();
-        // fetchAllEntries();
+
         fetchTotals()
       }, [refreshCount]);
 
-    // const columns = [
     
-    //     { field: "eventId", headerName: "Events ID", flex: 1},
-    //     {
-    //         field: "eventType",
-    //         headerName: "Event Type",
-    //         flex: 2,
-    //         cellClassName: "name-column--cell",
-    //     },
-    //     {
-    //         field: "name",
-    //         headerName: "Event Name",
-    //         flex: 2,
-    //         headerAlign: "left",
-    //         align: "left",
-    //     },
-    //     {
-    //       field: "place",
-    //       headerName: "Place",
-    //       flex: 2,
-    //       headerAlign: "left",
-    //       align: "left",
-    //   },
-    //   {
-    //     field: "date",
-    //     headerName: "Date",
-    //     flex: 2,
-    //     headerAlign: "left",
-    //     align: "left",
-    // },
-    //     {
-    //         field: "action",
-    //         headerName: "Actions",
-    //         headerAlign: "center",
-    //         align: "center",
-    //         flex: 3,
-    //         renderCell: ({ row }) => (
-    //             <>
-    //            <Box sx={{ display: "flex", gap: "1rem" }}>
-    //             <Tooltip arrow placement="left" title="Edit">
-    //               <IconButton onClick={()=>handleEditRow(row)}            
-    //               >
-    //                 <Edit />
-    //               </IconButton>
-    //             </Tooltip>
-    //             <Tooltip arrow placement="right" title="Delete">
-    //               <IconButton
-    //                 color="error"
-    //                 onClick={() =>handleDeleteEvent(row)}
-    //                  >
-    //                 <Delete />
-
-    //               </IconButton>
-    //             </Tooltip>
-    //           </Box>
-    //             </>
-    //         )
-    //     }
-        
-    // ];
-
-  
-
     return (
         
         <RefreshContext.Provider value={{ updateRefreshCount }}>

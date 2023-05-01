@@ -1,12 +1,10 @@
 
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { GridFooterContainer, GridFooter } from "@mui/x-data-grid";
+
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { Typography, useTheme} from "@mui/material";
-import { Box, Button, IconButton, Tooltip } from "@mui/material";
+import { useTheme} from "@mui/material";
+import { Box} from "@mui/material";
 import { useState, useEffect, createContext } from "react";
-import { Delete, Edit } from "@mui/icons-material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import axios from "axios";
@@ -16,15 +14,13 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import Avatar from "react-avatar";
 // import NewEditPart from "./EditPart";
 // import NewDeletePopUp from "./DeletePart";
-
-import AddIcon from '@mui/icons-material/Add';
 // import CreateNewParts from "./CreatePart";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import CreateNewEntry from "./CreateNewEntry";
 import EditEntry from "./EditEntry";
 import DeleteEntry from "./DeleteEntry";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+
 export const RefreshContext = createContext();
 
 const NewEntryList = () => {
@@ -35,35 +31,28 @@ const NewEntryList = () => {
   const eventId = searchParam.get("event");
   const [entries, setEntries] = useState([]);
  const [eventsList, setEventsList] = useState({})
-    const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false); 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(); 
   const [selectedRowId, setSelectedRowId] = useState();
   const [totalAmount, setTotalAmount] = useState(0)
   const [totalGift, setTotalGift] = useState(0)
-  const [profileId, setProfileId] = useState()
   const [refreshCount, setRefreshCount] = useState(0);
   const [selectedEntry, setSelectedEntry] = useState("");
-  const [show, setShow] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
  
 
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
- 
   
     const updateRefreshCount = () => {
       setRefreshCount(refreshCount + 1);
     };
   
-    function refreshPage() {
-      updateRefreshCount();
-    }
+    // function refreshPage() {
+    //   updateRefreshCount();
+    // }
   
     const handleDeleteRow = (entryId) => {
       setDeleteModalOpen(true);

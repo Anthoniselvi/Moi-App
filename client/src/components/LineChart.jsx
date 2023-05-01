@@ -2,16 +2,48 @@ import { ResponsiveLine } from "@nivo/line";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
 import { mockLineData as data } from "../data/mockData";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 
 const LineChart = ({ isDashboard = false }) => {
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const [eventsList, setEventsList] = useState([])
+    const [searchParam] = useSearchParams();
+    const profileId = searchParam.get("profile");
 
+    const chartData = eventsList.map(event => {
+        return {
+          id: event.eventName,
+          data: [
+            { x: "totalAmount", y: event.totalAmount, color: "blue" },
+            { x: "totalGift", y: event.totalGift, color: "green" }
+          ]
+        };
+      });
+      
+      
+      
+
+    const fetchTotals = () => {
+        axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
+          // console.log(response);
+         
+          console.log("Totals : " + JSON.stringify(response.data));
+         setEventsList(response.data)
+     
+        });
+      };
+      useEffect(() => {
+      
+        fetchTotals()
+      }, []);
     return (
 
         <ResponsiveLine
-            data={data}
+            data={chartData}
             theme={{
                 axis: {
                     domain: {

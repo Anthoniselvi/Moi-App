@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import axios from "axios";
-// import "./Profile.css";
-import { auth } from "../../firebase";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useUserAuth } from "../../auth";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
@@ -18,13 +13,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Profile(props) {
   const navigate = useNavigate();
-  const [profiles, setProfiles] = useState([]);
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
+    const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
-  const [show, setShow] = useState(true);
-  const { user } = useUserAuth();
+
 
   const [mobile, setMobile] = useState("");
   const [age, setAge] = useState("");
@@ -58,20 +50,7 @@ function Profile(props) {
   const navigateToEventsList = () => {
     navigate(`/events?profile=${profileId}`);
   };
-  useEffect(() => {
-    // auth.onAuthStateChanged((user) => {
-    //   console.log(user);
-    //   if (user) {
-    //     setId(user.uid);
-    //     setName(user.displayName);
-    //     setEmail(user.email);
-    //     // setMobile(user.mobile);
-    //   } else {
-    //     setId("");
-    //     setName("");
-    //   }
-    // });
-  }, []);
+
  
   const getProfile = () => {
     axios.get(`http://localhost:1234/profile/${profileId}`).then((response) => {
@@ -101,9 +80,7 @@ function Profile(props) {
       <div className="editprofile-image">
         <FaUserAlt className="profile-icon" />
       </div>
-      {/* {profiles.map((singleProfile) => (
-        <>
-          {singleProfile.id === profileId && show ? ( */}
+    
       <Box
         component="form"
         onSubmit={handleSubmit}
