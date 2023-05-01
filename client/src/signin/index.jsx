@@ -59,7 +59,8 @@ const SignIn = () => {
  
   };
   
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     try {
       await googleSignIn();
       axios
@@ -72,9 +73,9 @@ const SignIn = () => {
           console.log(response);
           console.log(response.data);
           console.log(response.data.profileId);
-                 
+          navigate(`/events?profile=${user.uid}`);
         });
-        navigate(`/events?profile=${user.uid}`);
+       
   
     } catch (error) {
       console.log(error.message);

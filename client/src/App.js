@@ -7,6 +7,7 @@ import Reports from "./scenes/reports";
 import Dashboard from "./scenes/dashboard";
 import { useMode } from "./theme";
 import { useUserAuth } from "./auth";
+import { useEffect } from "react";
 
 import SignIn from "./signin";
 import SignUp from "./signup";
@@ -18,7 +19,11 @@ import NewEntryList from "./scenes/entries/NewEntryList";
 
 function App() {
   const auth = useUserAuth();
-  console.log("Auth-User: " + JSON.stringify(auth.user));
+
+  useEffect(() => {
+    console.log("Auth-User useEffect : " + JSON.stringify(auth.user));
+  }, [auth.user]);
+
   const [theme, colorMode] = useMode();
 
   return (
@@ -33,28 +38,21 @@ function App() {
             {auth.user ? <Topbar /> : null}
 
             <Routes>
-              {/* {auth.user ? (
+              {auth.user ? (
                 <>
-                  <Route
-                    path="/"
-                    element={!auth.user ? <SignIn /> : <Dashboard />}
-                  />
-
-                  <Route
-                    path="/signup"
-                    element={!auth.user ? <SignUp /> : <Dashboard />}
-                  />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/events" element={<EventsList />} />
+                  <Route path="/events/new" element={<CreateEvent />} />
+                  <Route path="/entries" element={<EntriesList />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/entriesList" element={<NewEntryList />} />
                 </>
-              ) : ( */}
-              <Route path="/" element={<SignIn />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/events" element={<EventsList />} />
-              <Route path="/events/new" element={<CreateEvent />} />
-              <Route path="/entries" element={<EntriesList />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/entriesList" element={<NewEntryList />} />
-              {/* )} */}
+              ) : (
+                <>
+                  <Route path="/" element={<SignIn />} />
+                  <Route path="/signup" element={<SignUp />} />
+                </>
+              )}
             </Routes>
           </main>
         </div>
