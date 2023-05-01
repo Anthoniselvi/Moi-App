@@ -3,26 +3,17 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBAK0EeindIp7n0Zs7k1gZSfwcp7nrYzsM",
-//   authDomain: "functionapp-c76ba.firebaseapp.com",
-//   projectId: "functionapp-c76ba",
-//   storageBucket: "functionapp-c76ba.appspot.com",
-//   messagingSenderId: "813622487992",
-//   appId: "1:813622487992:web:f4c8ec720cfa7a7c603d4d",
-// };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBAK0EeindIp7n0Zs7k1gZSfwcp7nrYzsM",
-  authDomain: "functionapp-c76ba.firebaseapp.com",
-  projectId: "functionapp-c76ba",
-  storageBucket: "functionapp-c76ba.appspot.com",
-  messagingSenderId: "813622487992",
-  appId: "1:813622487992:web:9fac7e9c8803aeb3603d4d",
+  apiKey: process.env.REACT_APP_FB_APIKEY,
+  authDomain: process.env.REACT_APP_FB_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FB_PROJECTID,
+  storageBucket: process.env.REACT_APP_FB_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FB_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FB_APPID,
 };
+console.log("APIKEY:" + process.env.REACT_APP_FB_APIKEY);
+console.log("base url:" + process.env.REACT_APP_BASE_URL);
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const storage = getStorage();

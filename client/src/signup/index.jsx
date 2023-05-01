@@ -14,11 +14,11 @@ import { doc, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-
+import { useUserAuth } from '../auth';
 const SignUp = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
     // const {role, setRole, isLoggedIn, setIsLoggedIn, logout} = useAuthContext()
-
+    const { googleSignIn, user } = useUserAuth();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [signupData, setSignupData] = useState({
@@ -94,10 +94,32 @@ const handleSubmitSignup = async (e) => {
 })
 }
 
+const handleClick = async () => {
+  try {
+    await googleSignIn();
+    axios
+      .post("http://localhost:2010/profile", {
+        profileId: user.uid,
+        name: user.displayName,
+        email: user.email,
+      })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+        console.log(response.data.profileId);
+      
+      
+      });
+      navigate(`/events?profile=${user.uid}`);
+   
+  } catch (error) {
+    console.log(error.message);
+  }
+};
   return (
     <>
      
-        <Box display="flex" width="100%" height="100%" marginTop="-5%" flexDirection="column" alignItems="center" justifyContent="center">
+        <Box display="flex" width="100%" height="100%" marginTop="5%" flexDirection="column" alignItems="center" justifyContent="center">
              
           <Avatar sx={{ m: 1, backgroundColor: "#2499ef" }}>
             <LockOutlinedIcon />
@@ -194,7 +216,7 @@ const handleSubmitSignup = async (e) => {
                   {error}
                 </Typography>
               )}
-              <br />
+             
 
           <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
           <Button type="submit" 
@@ -212,13 +234,13 @@ const handleSubmitSignup = async (e) => {
                         }}>
                   Sign Up
               </Button>
-              <Grid container justifyContent="flex-end">
+              {/* <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
           
       </form>
@@ -237,7 +259,27 @@ const handleSubmitSignup = async (e) => {
               </Grid>
             </Grid>
             </Box>
-            
+            <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
+            <Button
+            onClick={handleClick}
+            type="submit"
+          
+            // variant="contained"
+            sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: "14px",
+              fontWeight: "bold",
+              padding: "10px 50px",
+              width: '100%', 
+              '&:hover ': {
+                backgroundColor: colors.grey[100],
+                color: colors.blueAccent[700]
+              },
+          }}>
+            Sign Up with Google
+          </Button>
+  </Box>
   </Box>
   
 

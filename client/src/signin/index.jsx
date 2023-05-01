@@ -72,13 +72,10 @@ const SignIn = () => {
           console.log(response);
           console.log(response.data);
           console.log(response.data.profileId);
-          // navigate(`/eventslist?profile=${response.user.uid}`);
-          navigate(`/events?profile={response.user.uid}`)
+                 
         });
-
-      // signInWithPopup(auth, provider).then((data) => {
-      //   setValue(data.user.email);
-      // localStorage.setItem("email", data.user.email);
+        navigate(`/events?profile=${user.uid}`);
+  
     } catch (error) {
       console.log(error.message);
     }
