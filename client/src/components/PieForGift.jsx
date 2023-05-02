@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
-const PieChart = () => {
+const PieForGift = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [eventsList, setEventsList] = useState([])
@@ -14,7 +14,7 @@ const PieChart = () => {
 
     const data = eventsList.map((event) => ({
         id: event.eventName,
-        value: event.totalAmount,
+        value: event.totalGift,
       }));
 
       const fetchTotals = () => {
@@ -36,8 +36,7 @@ const PieChart = () => {
         theme={{
           textColor: '#fff',
         }}
-        margin={{ top: 80, right: 100, bottom: 100, left: 110 }}
-      
+        margin={{ top: 80, right: 100, bottom: 100, left: 100 }}
         innerRadius={0.8}
         padAngle={0.7}
         cornerRadius={3}
@@ -53,4 +52,4 @@ const PieChart = () => {
     );
 };
 
-export default PieChart;
+export default PieForGift;

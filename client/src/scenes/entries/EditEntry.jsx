@@ -17,11 +17,11 @@ import { RefreshContext } from "./Entries";
 export default function EditEntry({ open,  onClose,  entryId }) {
   
 
-  const [personName, setPersonName] = useState();
-  const [city, setCity] = useState();
-  const [amount, setAmount] = useState();
-  const [gift, setGift] = useState();
-  const [presentType, setPresentType] = useState();
+  const [personName, setPersonName] = useState("");
+  const [city, setCity] = useState("");
+  const [amount, setAmount] = useState("");
+  const [gift, setGift] = useState("");
+  const [presentType, setPresentType] = useState("");
   const [refreshCount, setRefreshCount] = useState(0);
   // const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
 

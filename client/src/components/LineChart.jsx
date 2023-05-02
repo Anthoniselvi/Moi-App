@@ -14,15 +14,13 @@ const LineChart = ({ isDashboard = false }) => {
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
 
-    const chartData = eventsList.map(event => {
-        return {
-          id: event.eventName,
-          data: [
-            { x: "totalAmount", y: event.totalAmount, color: "blue" },
-            { x: "totalGift", y: event.totalGift, color: "green" }
-          ]
-        };
-      });
+    const chartData = eventsList.map((event) => ({
+        id: event.eventName,
+        data: [
+          { x: 'totalAmount', y: event.totalAmount },
+          { x: 'totalGift', y: event.totalGift },
+        ],
+      }));
       
       
       

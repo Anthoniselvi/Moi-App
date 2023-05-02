@@ -10,8 +10,9 @@ import AddIcon from "@mui/icons-material/Add";
 import CreateNewEntry from "./CreateNewEntry";
 import EditEntry from "./EditEntry";
 import DeleteEntry from "./DeleteEntry";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import EditOrDelete from "./EditOrDeleteEntry";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 // export const RefreshContext = createContext();
 export const RefreshContext = createContext({
@@ -98,8 +99,10 @@ const Entries = () => {
     return (
         <RefreshContext.Provider value={{ updateRefreshCount }}>
         <Box  m="20px">
-            <Header title={eventsList.name} />
-        
+            <Box  sx={{padding: "3%", paddingLeft: 0, display: "flex", alignItems: "center", gap: "3%"}}>
+        <KeyboardBackspaceIcon onClick={navigateToEventsPage} sx={{alignItems: "center"}}/>
+            <Header title={eventsList.name} sx={{alignItems: "center"}} />
+            </Box>
             <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px" >
   {entries.length > 0 && (
     <>

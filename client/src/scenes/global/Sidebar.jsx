@@ -61,10 +61,12 @@ const Sidebar = () => {
         <Box
         sx={{
           "& .pro-sidebar-inner": {
-            background: `${colors.primary[400]} !important`
+            background: `${colors.primary[400]} !important`,
+        
           },
           "& .pro-icon-wrapper": {
             backgroundColor: "transparent !important",
+            
           },
           "& .pro-inner-item": {
             padding: "5px 20px 5px 20px !important",

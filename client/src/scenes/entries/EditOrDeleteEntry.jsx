@@ -42,7 +42,7 @@ export default function EditOrDelete({ entryId }) {
     setEditModalOpen(true);
     setSelectedRowId(entryId);
   };
-  
+
   return (
     <div>
       <Button
@@ -56,7 +56,7 @@ export default function EditOrDelete({ entryId }) {
         onClick={handleClick}
      
       >
-        <MoreVertIcon />
+        <MoreVertIcon style={{color: "white"}} />
        
       </Button>
       <Menu display="flex" flexDirection="column" id="basic-menu"

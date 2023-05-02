@@ -13,6 +13,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AppsIcon from '@mui/icons-material/Apps';
 import PieChart from "../../components/PieChart";
+import PieForGift from "../../components/PieForGift";
+import LineChart from "../../components/LineChart";
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -43,7 +45,7 @@ const Dashboard = () => {
             </Box>
 
             {/* GRID & CHARTS */}
-            <Box
+            <Box m="20px 0px"
                 display="grid"
                 gridTemplateColumns="repeat(12, 1fr)"
                 gridAutoRows="140px"
@@ -51,7 +53,7 @@ const Dashboard = () => {
             >
                 {/* ROW 1 */}
                 <Box
-                    gridColumn="span 4"
+                    gridColumn="span 3"
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
@@ -71,45 +73,74 @@ const Dashboard = () => {
                     />
                 </Box>
                 <Box
-                    gridColumn="span 4"
+                    gridColumn="span 5"
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                 >
-                    {/* <StatBox
-                        title="431,225"
-                        subtitle="Sales Obtained"
-                        progress="0.50"
-                        increase="+21%"
-                        icon={
-                            <PointOfSaleIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                            />
-                        }
-                    /> */}
+                   
                     <PieChart />
                 </Box>
                 {/* <Box
-                    gridColumn="span 4"
+                    gridColumn="span 5"
+                    gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                 >
-                    <StatBox
-                        title="431,225"
-                        subtitle="Sales Obtained"
-                        progress="0.50"
-                        increase="+21%"
-                        icon={
-                            <PointOfSaleIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                            />
-                        }
-                    />
+                   
+                    <PieForGift />
+                    <LineChart />
                 </Box> */}
+                <Box
+                    gridColumn="span 4"
+                    gridRow="span 2"
+                    backgroundColor={colors.primary[400]}
+                    overflow="auto"
+                >
+
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        borderBottom={`4px solid ${colors.primary[500]}`}
+                        colors={colors.grey[100]}
+                        p="15px"
+                    >
+
+                        <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            All Events - Total Amount
+                        </Typography>
+                    </Box>
+                    {eventsList.map((singleEvent, i) => (
+                        <Box
+                            key={`${singleEvent.eventId}-${i}`}
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            borderBottom={`4px solid ${colors.primary[500]}`}
+                            p="15px"
+                        >
+                            <Box>
+                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+                                    {singleEvent.eventName}
+                                </Typography>
+                                {/* <Typography color={colors.grey[100]}>
+                                    {transaction.eventName}
+                                </Typography> */}
+                            </Box>
+                            <Box color={colors.grey[100]}>
+                                {singleEvent.eventDate}
+                            </Box>
+                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
+                            ₹{singleEvent.totalAmount}
+                            </Box>
+                        </Box>
+                    ))}
+                </Box>
 {/* ROW 2 */}
                 <Box
                     gridColumn="span 8"
@@ -161,7 +192,7 @@ const Dashboard = () => {
                     >
 
                         <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                            All Events - Total Amount
+                            All Events - Total Gift
                         </Typography>
                     </Box>
                     {eventsList.map((singleEvent, i) => (
@@ -185,7 +216,7 @@ const Dashboard = () => {
                                 {singleEvent.eventDate}
                             </Box>
                             <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                                ${singleEvent.totalAmount}
+                                {singleEvent.totalGift}
                             </Box>
                         </Box>
                     ))}
