@@ -52,8 +52,8 @@ const EventsList = () => {
     //     navigate(`/events/new?profile=${profileId}`);
     //   }
 const navigateToEntryList = (eventId) => {
-  navigate(`/entries?event=${eventId}`)
-  // navigate(`/entriesList?event=${eventId}`)
+  // navigate(`/entries?event=${eventId}`)
+  navigate(`/entriesList?event=${eventId}`)
 }
 
       const fetchTotals = () => {

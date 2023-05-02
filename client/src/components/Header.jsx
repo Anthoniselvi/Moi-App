@@ -7,7 +7,7 @@ const Header = ({ title, subtitle }) => {
     return (
         <Box mb="30px" alignItems="center">
             <Typography
-                variant="h4"
+                variant="h3"
                 color={colors.grey[100]}
                 fontWeight="bold"
                 sx={{ m: "0 0 5px 0", alignItems:"center" }}

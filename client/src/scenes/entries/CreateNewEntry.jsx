@@ -15,8 +15,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-
-import { RefreshContext } from "./index";
+import { RefreshContext } from "./Entries";
+// import { RefreshContext } from "./index";
 
 export default function CreateNewEntry({ open, onClose, eventId }) {
     const [personName, setPersonName] = useState();
@@ -24,13 +24,9 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
     const [amount, setAmount] = useState(0);
     const [gift, setGift] = useState("");
     const [presentType, setPresentType] = useState("amount");
-  // const navigate = useNavigate();
-  // const [searchParam] = useSearchParams();
-  // const profileId = searchParam.get("profile");
-  const { updateRefreshCount } = useContext(RefreshContext);
+   const { updateRefreshCount } = useContext(RefreshContext);
 
   function refreshPage() {
-    // window.location.reload(false);
     updateRefreshCount();
   }
 
@@ -42,8 +38,8 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
     setAmount("");
     setGift("");
   };
-
-  const handleSubmit = (e, eventId) => {
+  
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:1234/entries/add", {
@@ -58,15 +54,15 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
       .then((response) => {
         console.log(response);
         console.log("Created New Entry: " + response.data)
-      });
+      })
       onClose();
       setPersonName("");
       setCity("");
       setPresentType("");
       setAmount("");
       setGift("");
-  
       refreshPage();
+     
   };
  
   return (
@@ -163,34 +159,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
              
             </RadioGroup>
           </FormControl>
-          {/* <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="text"
-            label="Present Type"
-            variant="outlined"
-            value={presentType}
-            onChange={(e) => setPresentType(e.target.value)}
-          />
-          <br />
-          <br />
-          <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="number"
-            label="Amount"
-            variant="outlined"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <br />
-          <br />
-          <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="text"
-            label="Gift"
-            variant="outlined"
-            value={gift}
-            onChange={(e) => setGift(e.target.value)}
-          /> */}
+        
           <br />
           <br />
         </form>

@@ -74,11 +74,14 @@ function Profile(props) {
 
   return (
     <div style={{margin: 20}}>
-      <ArrowBackIcon onClick={navigateToEventsList} />
-      <h1>Profile</h1>
+      <div style={{display: "flex", alignItems: "center", gap: "3%"}}>
+     
+        <ArrowBackIcon onClick={navigateToEventsList} style={{cursor: "pointer"}} />
 
       <div className="editprofile-image">
-        <FaUserAlt className="profile-icon" />
+        <FaUserAlt className="profile-icon" style={{fontSize: 22}} />
+      </div>
+      <h1>Profile</h1>
       </div>
     
       <Box

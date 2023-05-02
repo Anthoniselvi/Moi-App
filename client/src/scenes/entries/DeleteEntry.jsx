@@ -8,8 +8,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
-
-import { RefreshContext } from "./index";
+import { RefreshContext } from "./Entries";
 
 export default function DeleteEntry({ entryId, open, onClose }) {
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,26 +12,21 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import {RefreshContext} from "./NewEntryList"
+import { RefreshContext } from "./Entries";
 
-// import { RefreshContext } from "./index";
-
-export default function EditEntry({ open,  onClose,  row }) {
+export default function EditEntry({ open,  onClose,  entryId }) {
   
-  console.log("selected Row in NewEditPart: " + JSON.stringify(row));
 
-  const [personName, setPersonName] = useState(row.personName);
-  const [city, setCity] = useState(row.city);
-  const [amount, setAmount] = useState(row.amount);
-  const [gift, setGift] = useState(row.gift);
-  const [presentType, setPresentType] = useState(row.presentType);
+  const [personName, setPersonName] = useState();
+  const [city, setCity] = useState();
+  const [amount, setAmount] = useState();
+  const [gift, setGift] = useState();
+  const [presentType, setPresentType] = useState();
+  const [refreshCount, setRefreshCount] = useState(0);
   // const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-  // const navigate = useNavigate();
 
-  // const [searchParam] = useSearchParams();
-  // const eventId = searchParam.get("event");
   const { updateRefreshCount } = useContext(RefreshContext);
-  //   const { updateRefreshCount = () => {} } = useContext(RefreshContext);
+
   function refreshPage() {
     updateRefreshCount();
   }
@@ -39,7 +34,7 @@ export default function EditEntry({ open,  onClose,  row }) {
   const handleEditSave = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:1234/entries/edit/${row.entryId}`, {
+      .put(`http://localhost:1234/entries/edit/${entryId}`, {
         personName: personName,
         city: city,
         presentType: presentType,
@@ -51,8 +46,26 @@ export default function EditEntry({ open,  onClose,  row }) {
         console.log("Updated Entry : " + JSON.stringify(response));
       });
     onClose();
+
     refreshPage();
   };
+
+  const getSelectedEntry = () => {
+    axios.get(`http://localhost:1234/entries/single/${entryId}`).then((response) => {
+      // console.log(response);
+     
+      console.log("Totals : " + JSON.stringify(response.data));
+      setPersonName(response.data.personName);
+      setCity(response.data.city);
+      setPresentType(response.data.presentType);
+      setAmount(response.data.amount);
+      setGift(response.data.gift);
+    });
+  };
+  useEffect(() => {
+   
+    getSelectedEntry()
+  }, [refreshCount]);
 
   return (
     <div>
@@ -143,34 +156,7 @@ export default function EditEntry({ open,  onClose,  row }) {
              
             </RadioGroup>
           </FormControl>
-          {/* <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="text"
-            label="Present Type"
-            variant="outlined"
-            value={presentType}
-            onChange={(e) => setPresentType(e.target.value)}
-          />
-          <br />
-          <br />
-          <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="number"
-            label="Amount"
-            variant="outlined"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <br />
-          <br />
-          <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="text"
-            label="Gift"
-            variant="outlined"
-            value={gift}
-            onChange={(e) => setGift(e.target.value)}
-          /> */}
+   
           <br />
           <br />
         </form>
