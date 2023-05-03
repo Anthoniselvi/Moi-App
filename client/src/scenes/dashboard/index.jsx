@@ -1,6 +1,10 @@
 import { Box, Button, IconButton, TextField, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
+import { styled } from "@mui/material/styles";
+import { alpha } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
 
+import InputBase from "@mui/material/InputBase";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 
 import Header from "../../components/Header";
@@ -18,6 +22,49 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import PieChart from "../../components/PieChart";
 import PieForGift from "../../components/PieForGift";
 import LineChart from "../../components/LineChart";
+
+
+const Search = styled("div")(({ theme }) => ({
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+  }));
+  
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }));
+  
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: "inherit",
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {
+        width: "12ch",
+        "&:focus": {
+          width: "20ch",
+        },
+      },
+    },
+  }));
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -30,6 +77,7 @@ const Dashboard = () => {
     const [maxAmount, setMaxAmount] = useState({})
     const [maxAmountEvent, setMaxAmountEvent] = useState({})
     const [inputValue, setInputValue] = useState()
+    const [searchName, setSearchName] = useState("")
    
     const moreThanAmount = allEntries.filter(entry => entry.amount > 10000);
 
@@ -37,7 +85,15 @@ console.log("Amount more than 10000: " + JSON.stringify(moreThanAmount));
 
 const filteredEntries = allEntries.filter(entry => entry.amount >= inputValue);
 
-console.log("filteredEntries more than" + inputValue + ":" + JSON.stringify(filteredEntries));
+console.log("filteredEntries more than " + inputValue + ":" + JSON.stringify(filteredEntries));
+
+
+const searchResult = allEntries.filter(entry => entry.personName && entry.personName.toLowerCase().includes(searchName.toLowerCase()));
+
+console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResult));
+
+
+
 
     const fetchTotals = () => {
         axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
@@ -155,15 +211,55 @@ console.log("filteredEntries more than" + inputValue + ":" + JSON.stringify(filt
                 </Box>
                 
                 <Box
-                    gridColumn="span 4"
-                    gridRow="span 2"
-                    backgroundColor={colors.primary[400]}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
+                   gridColumn="span 4"
+                   gridRow="span 2"
+                   backgroundColor={colors.primary[400]}
+                   overflow="auto"
+                  
                 >
-                   
-                    <PieChart />
+                    <Box display="flex" flexDirection="column" padding="10px">
+                   <TextField type="text" value={searchName} onChange={(e)=>setSearchName(e.target.value)} placeholder="Search by Name" />
+                   <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        borderBottom={`4px solid ${colors.primary[500]}`}
+                        colors={colors.grey[100]}
+                        p="15px"
+                    >
+
+                        {/* <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            Entries more than {inputValue}
+                        </Typography> */}
+                    </Box>
+                    {/* {searchName && ( */}
+                        <Box>
+                    {searchResult.map((entry) => (
+                        <Box
+                        key={entry.entryId}
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            borderBottom={`4px solid ${colors.primary[500]}`}
+                            p="15px"
+                        >
+                            <Box>
+                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+                                    {entry.personName}
+                                </Typography>
+                                {/* <Typography color={colors.grey[100]}>
+                                    {transaction.eventName}
+                                </Typography> */}
+                            </Box>
+                            <Box color={colors.grey[100]}>
+                            {entry.city}
+                            </Box>
+                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
+                            ₹{entry.amount}
+                            </Box>
+                        </Box>
+                    ))}</Box>
+              </Box>
                 </Box>
                 {/* <Box
                     gridColumn="span 5"
