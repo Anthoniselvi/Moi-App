@@ -12,6 +12,9 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AppsIcon from '@mui/icons-material/Apps';
+import AllInboxIcon from '@mui/icons-material/AllInbox';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import PieChart from "../../components/PieChart";
 import PieForGift from "../../components/PieForGift";
 import LineChart from "../../components/LineChart";
@@ -22,7 +25,7 @@ const Dashboard = () => {
     const profileId = searchParam.get("profile");
     const [eventsList, setEventsList] = useState([])
     const allTotalAmount = eventsList.reduce((total, event) => total + event.totalAmount, 0);
-
+    const allTotalGift = eventsList.reduce((total, event) => total + event.totalGift, 0);
     const fetchTotals = () => {
         axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
           // console.log(response);
@@ -53,27 +56,77 @@ const Dashboard = () => {
             >
                 {/* ROW 1 */}
                 <Box
-                    gridColumn="span 3"
-                    gridRow="span 2"
+                    gridColumn="span 4"
+                    // gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
+                    paddingTop="30px"
+                  
                 >
                     <StatBox
-                        title={eventsList.length}
-                        subtitle="Total Events"
+                        title={`Total Events - ${eventsList.length}`}
+                        // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
+                        // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
                         // progress="0.75"
                         // increase="+14%"
                         icon={
-                            <AppsIcon
+                            <AllInboxIcon
                                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
                             />
                         }
                     />
                 </Box>
                 <Box
-                    gridColumn="span 5"
+                    gridColumn="span 4"
+                    // gridRow="span 2"
+                    backgroundColor={colors.primary[400]}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    paddingTop="30px"
+                >
+                    <StatBox
+                        title={`Total Amount - ₹ ${allTotalAmount}`}
+                        // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
+                        // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
+                        // progress="0.75"
+                        // increase="+14%"
+                        icon={
+                            <CurrencyRupeeIcon
+                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                            />
+                        }
+                    />
+                </Box>
+                
+    {/* ROW 2 */}
+                <Box
+                    gridColumn="span 4"
+                    // gridRow="span 2"
+                    backgroundColor={colors.primary[400]}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    paddingTop="30px"
+                >
+                    <StatBox
+                        title={`Total Gifts - ${allTotalGift}`}
+                        // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
+                        // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
+                        // progress="0.75"
+                        // increase="+14%"
+                        icon={
+                            <CardGiftcardIcon
+                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                            />
+                        }
+                    />
+                </Box>
+                
+                <Box
+                    gridColumn="span 4"
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
@@ -141,40 +194,6 @@ const Dashboard = () => {
                         </Box>
                     ))}
                 </Box>
-{/* ROW 2 */}
-                <Box
-                    gridColumn="span 8"
-                    gridRow="span 2"
-                    backgroundColor={colors.primary[400]}
-                >
-                    <Box
-                        mt="25px"
-                        p="0 30px"
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                    >
-                        <Box>
-                            <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
-                                Events Generated
-                            </Typography>
-                            <Typography variant="h3" fontWeight="500" color={colors.greenAccent[500]}>
-                            {`₹ ${allTotalAmount}`}
-                            </Typography>
-                        </Box>
-                        {/* <Box>
-                            <IconButton>
-                                <DownloadOutlinedIcon
-                                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                                />
-                            </IconButton>
-                        </Box> */}
-                    </Box>
-                    <Box height="250px" mt="-20px">
-                        <BarChart isDashboard={true} />
-                    </Box>
-                </Box>
-
                 <Box
                     gridColumn="span 4"
                     gridRow="span 2"
@@ -221,6 +240,42 @@ const Dashboard = () => {
                         </Box>
                     ))}
                 </Box>
+                
+ {/* ROW 3 */}
+                <Box
+                    gridColumn="span 8"
+                    gridRow="span 2"
+                    backgroundColor={colors.primary[400]}
+                >
+                    <Box
+                        mt="25px"
+                        p="0 30px"
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Box>
+                            <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
+                                Events Generated
+                            </Typography>
+                            <Typography variant="h3" fontWeight="500" color={colors.greenAccent[500]}>
+                            {`₹ ${allTotalAmount}`}
+                            </Typography>
+                        </Box>
+                        {/* <Box>
+                            <IconButton>
+                                <DownloadOutlinedIcon
+                                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                                />
+                            </IconButton>
+                        </Box> */}
+                    </Box>
+                    <Box height="250px" mt="-20px">
+                        <BarChart isDashboard={true} />
+                    </Box>
+                </Box>
+
+                
 
 
             </Box>
