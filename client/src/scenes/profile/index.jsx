@@ -123,20 +123,24 @@ function Profile(props) {
           type="age"
           id="age"
           autoComplete="age"
-          InputLabelProps={{
-            style: { color: "#fff" }
-          }}
+          focused={false}
+          inputProps={{ style: { borderColor: '#FFF' } }}
+          InputLabelProps={{ style: { color: '#FFF' } }}
           value={age}
           onChange={(e) => setAge(e.target.value)}
           // error={errors.password}
         />
         {/* {errors.password && <p className="error">{errors.password}</p>} */}
         {/* /> */}
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+       
+        <FormControl   focused={false}
+          inputProps={{ style: { borderColor: '#FFF' } }}
+          InputLabelProps={{ style: { color: '#FFF' } }} fullWidth>
+          <InputLabel id="demo-simple-select-label" >Gender</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            
             value={gender}
             label="Gender"
             onChange={(e) => setGender(e.target.value)}
@@ -155,9 +159,9 @@ function Profile(props) {
           name="address"
           autoComplete="address"
           autoFocus
-          InputLabelProps={{
-            style: { color: "#fff" }
-          }}
+          focused={false}
+          inputProps={{ style: { borderColor: '#FFF' } }}
+          InputLabelProps={{ style: { color: '#FFF' } }}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           // error={errors.email}
@@ -171,9 +175,9 @@ function Profile(props) {
           name="city"
           autoComplete="city"
           autoFocus
-          InputLabelProps={{
-            style: { color: "#fff" }
-          }}
+          focused={false}
+          inputProps={{ style: { borderColor: '#FFF' } }}
+          InputLabelProps={{ style: { color: '#FFF' } }}
           value={city}
           onChange={(e) => setCity(e.target.value)}
           // error={errors.email}
@@ -187,9 +191,9 @@ function Profile(props) {
           name="mobile"
           autoComplete="mobile"
           autoFocus
-          InputLabelProps={{
-            style: { color: "#fff" }
-          }}
+          focused={false}
+          inputProps={{ style: { borderColor: '#FFF' } }}
+          InputLabelProps={{ style: { color: '#FFF' } }}
           value={mobile}
           onChange={(e) => setMobile(e.target.value)}
           // error={errors.email}
@@ -205,9 +209,9 @@ function Profile(props) {
           autoFocus
           value={email}
           readOnly
-          InputLabelProps={{
-            style: { color: "#fff" }
-          }}
+          focused={false}
+          inputProps={{ style: { borderColor: '#FFF' } }}
+          InputLabelProps={{ style: { color: '#FFF' } }}
           onChange={(e) => setEmail(e.target.value)}
           // error={errors.email}
         />
