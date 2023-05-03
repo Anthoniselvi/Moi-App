@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Button, IconButton, TextField, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
@@ -24,8 +24,21 @@ const Dashboard = () => {
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
     const [eventsList, setEventsList] = useState([])
-    const allTotalAmount = eventsList.reduce((total, event) => total + event.totalAmount, 0);
-    const allTotalGift = eventsList.reduce((total, event) => total + event.totalGift, 0);
+    const [allEntries, setAllEntries] = useState([])
+    const [totalAmount, setTotalAmount] = useState()
+    const [totalGift, setTotalGift] = useState()
+    const [maxAmount, setMaxAmount] = useState({})
+    const [maxAmountEvent, setMaxAmountEvent] = useState({})
+    const [inputValue, setInputValue] = useState()
+   
+    const moreThanAmount = allEntries.filter(entry => entry.amount > 10000);
+
+console.log("Amount more than 10000: " + JSON.stringify(moreThanAmount)); 
+
+const filteredEntries = allEntries.filter(entry => entry.amount >= inputValue);
+
+console.log("filteredEntries more than" + inputValue + ":" + JSON.stringify(filteredEntries));
+
     const fetchTotals = () => {
         axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
           // console.log(response);
@@ -35,9 +48,25 @@ const Dashboard = () => {
      
         });
       };
-      useEffect(() => {
-      
+      const fetchAllEntriesByProfileId = () => {
+        axios.get(`http://localhost:1234/entries/allentries/${profileId}`).then((response) => {
+          // console.log(response);
+         
+          console.log("All Entries from ProfileId : " + JSON.stringify(response.data));
+         setAllEntries(response.data.entriesList)
+         setTotalAmount(response.data.totalAmount)
+         setTotalGift(response.data.totalGift)
+         setMaxAmount(response.data.maxAmountEntry)
+     setMaxAmountEvent(response.data.maxAmountEventList)
+        });
+      };
+      console.log("MaxAmount : " + maxAmount.amount)
+      console.log("MaxAmount Given By : " + maxAmount.personName)
+      console.log("MaxAmount Event Name : " + maxAmountEvent.name)
+
+      useEffect(() => {      
         fetchTotals()
+        fetchAllEntriesByProfileId()
       }, []);
     return (
         <Box m="20px">
@@ -88,8 +117,8 @@ const Dashboard = () => {
                     paddingTop="30px"
                 >
                     <StatBox
-                        title={`Total Amount - ₹ ${allTotalAmount}`}
-                        // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
+                        title={`Total Amount - ₹ ${totalAmount}`}
+                        // subtitle1={`Maximum Amount - ₹ ${maxAmount.amount}`}
                         // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
                         // progress="0.75"
                         // increase="+14%"
@@ -112,7 +141,7 @@ const Dashboard = () => {
                     paddingTop="30px"
                 >
                     <StatBox
-                        title={`Total Gifts - ${allTotalGift}`}
+                        title={`Total Gifts - ${totalGift}`}
                         // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
                         // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
                         // progress="0.75"
@@ -259,7 +288,7 @@ const Dashboard = () => {
                                 Events Generated
                             </Typography>
                             <Typography variant="h3" fontWeight="500" color={colors.greenAccent[500]}>
-                            {`₹ ${allTotalAmount}`}
+                            {`₹ ${totalAmount}`}
                             </Typography>
                         </Box>
                         {/* <Box>
@@ -275,7 +304,58 @@ const Dashboard = () => {
                     </Box>
                 </Box>
 
-                
+                <Box
+                   gridColumn="span 4"
+                   gridRow="span 2"
+                   backgroundColor={colors.primary[400]}
+                   overflow="auto"
+                  
+                >
+                    <Box display="flex" flexDirection="column" padding="10px">
+                    <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            Entries more than Given Amount
+                        </Typography><br />
+                  <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" />
+                  <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        borderBottom={`4px solid ${colors.primary[500]}`}
+                        colors={colors.grey[100]}
+                        p="15px"
+                    >
+
+                        {/* <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            Entries more than {inputValue}
+                        </Typography> */}
+                    </Box>
+                    {filteredEntries.map((singleEntry, i) => (
+                        <Box
+                            key={`${singleEntry.entryId}-${i}`}
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            borderBottom={`4px solid ${colors.primary[500]}`}
+                            p="15px"
+                        >
+                            <Box>
+                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+                                    {singleEntry.personName}
+                                </Typography>
+                                {/* <Typography color={colors.grey[100]}>
+                                    {transaction.eventName}
+                                </Typography> */}
+                            </Box>
+                            <Box color={colors.grey[100]}>
+                                {singleEntry.city}
+                            </Box>
+                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
+                            ₹{singleEntry.amount}
+                            </Box>
+                        </Box>
+                    ))}
+                    </Box>
+                </Box>
 
 
             </Box>

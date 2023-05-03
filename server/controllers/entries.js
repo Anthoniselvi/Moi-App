@@ -63,6 +63,38 @@ export const getAllEntriesByEventId = async (req, res) => {
   }
 };
 
+export const getAllEntriesByProfileId = async (req, res) => {
+  const profileId = req.params.profileId;
+  try {
+    const events = await Events.find({ profileId: profileId });
+    const eventIds = events.map((event) => Number(event.eventId));
+    const entriesList = await Entries.find({ eventId: { $in: eventIds } });
+    console.log("Matching Documents:", entriesList);
+    const totalAmount = entriesList.reduce((acc, doc) => acc + doc.amount, 0);
+    console.log("Total Amount:", totalAmount);
+    const totalGift = entriesList.filter((entry) => entry.gift !== "").length;
+    console.log("Filled Gift Count:", totalGift);
+    const maxAmountEntry = entriesList.reduce((acc, curr) =>
+      acc.amount > curr.amount ? acc : curr
+    );
+    console.log("Max Amount Entry:", maxAmountEntry);
+    const maxAmountEventList = await Events.findOne({
+      eventId: maxAmountEntry.eventId,
+    });
+    console.log("Event List:", maxAmountEventList);
+    res.status(200).json({
+      entriesList: entriesList,
+      totalAmount: totalAmount,
+      totalGift: totalGift,
+      maxAmountEntry: maxAmountEntry,
+      maxAmountEventList: maxAmountEventList,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 export const updateEntryByEntryId = (req, res) => {
   const entryId = req.params.entryId; // Extract eventId from req.params
   Entries.findOne({ entryId: entryId })

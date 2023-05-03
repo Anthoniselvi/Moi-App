@@ -7,6 +7,7 @@ import {
   updateEntryByEntryId,
   deleteEntryByEntryId,
   getTotals,
+  getAllEntriesByProfileId,
 } from "../controllers/entries.js";
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.get("/all/:eventId", getAllEntriesByEventId);
 router.put("/edit/:entryId", updateEntryByEntryId);
 router.delete("/delete/:entryId", deleteEntryByEntryId);
 router.get("/total/:profileId", getTotals);
+router.get("/allentries/:profileId", getAllEntriesByProfileId);
 
 export default router;
