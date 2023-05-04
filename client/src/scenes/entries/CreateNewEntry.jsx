@@ -67,7 +67,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
  
   return (
     <Dialog open={open}>
-      <DialogTitle textAlign="center" variant="h4">Create Event</DialogTitle>
+      <DialogTitle textAlign="center" variant="h4">Create Entry</DialogTitle>
       <DialogContent>
         <form>
           <TextField

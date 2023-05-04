@@ -129,7 +129,7 @@ const Sidebar = () => {
                            
                         />
                         <Item
-                            title="Events List"
+                            title="Events"
                             to={`/events?profile=${auth.user.uid}`}
                             icon={<ListIcon />}
                             selected={selected}

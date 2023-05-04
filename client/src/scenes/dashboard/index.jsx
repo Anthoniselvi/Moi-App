@@ -3,7 +3,7 @@ import { tokens } from "../../theme";
 import { styled } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
-
+import AddIcon from '@mui/icons-material/Add';
 import InputBase from "@mui/material/InputBase";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 
@@ -24,47 +24,6 @@ import PieForGift from "../../components/PieForGift";
 import LineChart from "../../components/LineChart";
 
 
-const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  }));
-  
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-  
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
-      },
-    },
-  }));
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -76,8 +35,9 @@ const Dashboard = () => {
     const [totalGift, setTotalGift] = useState()
     const [maxAmount, setMaxAmount] = useState({})
     const [maxAmountEvent, setMaxAmountEvent] = useState({})
-    const [inputValue, setInputValue] = useState()
+    const [inputValue, setInputValue] = useState(0)
     const [searchName, setSearchName] = useState("")
+    const [createModalOpen, setCreateModalOpen] = useState(false);
    
     const moreThanAmount = allEntries.filter(entry => entry.amount > 10000);
 
@@ -128,8 +88,23 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
         <Box m="20px">
             {/* HEADER */}
             <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-
+                <Header title="DASHBOARD"  />
+                <Box>
+                    <Button
+                        sx={{
+                            backgroundColor: colors.blueAccent[700],
+                            color: colors.grey[100],
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            padding: "10px 20px",
+                        }}
+                        onClick={() => setCreateModalOpen(true)}
+           
+                    >
+                        <AddIcon sx={{ mr: "10px" }} />
+                        New
+                    </Button>
+                </Box>
             </Box>
 
             {/* GRID & CHARTS */}
@@ -147,19 +122,22 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    paddingTop="30px"
+                    // paddingTop="30px"
+                    borderRadius="10px"
                   
                 >
                     <StatBox
-                        title={`Total Events - ${eventsList.length}`}
-                        // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
+                        title={eventsList.length}
+                        subtitle1="Events"
                         // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
                         // progress="0.75"
                         // increase="+14%"
                         icon={
+                            
                             <AllInboxIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                                sx={{ color: colors.greenAccent[600], fontSize: "24px"}}
                             />
+                           
                         }
                     />
                 </Box>
@@ -170,23 +148,24 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    paddingTop="30px"
+                    // paddingTop="30px"
+                    borderRadius="10px"
                 >
                     <StatBox
-                        title={`Total Amount - ₹ ${totalAmount}`}
+                        title={`${totalAmount}`}
                         // subtitle1={`Maximum Amount - ₹ ${maxAmount.amount}`}
-                        // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
+                        subtitle1="Amount"
                         // progress="0.75"
                         // increase="+14%"
                         icon={
                             <CurrencyRupeeIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                                sx={{ color: colors.greenAccent[600], fontSize: "24px" }}
                             />
                         }
                     />
                 </Box>
                 
-    {/* ROW 2 */}
+    
                 <Box
                     gridColumn="span 4"
                     // gridRow="span 2"
@@ -194,30 +173,35 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    paddingTop="30px"
+                    // paddingTop="30px"
+                    borderRadius="10px"
                 >
                     <StatBox
-                        title={`Total Gifts - ${totalGift}`}
+                        title={`${totalGift}`}
                         // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
-                        // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
+                        subtitle1="Gifts"
                         // progress="0.75"
                         // increase="+14%"
                         icon={
                             <CardGiftcardIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                                sx={{ color: colors.greenAccent[600], fontSize: "24px" }}
                             />
                         }
                     />
                 </Box>
-                
+                {/* ROW 2 */}
                 <Box
                    gridColumn="span 4"
                    gridRow="span 2"
                    backgroundColor={colors.primary[400]}
                    overflow="auto"
+                   borderRadius="10px"
                   
                 >
                     <Box display="flex" flexDirection="column" padding="10px">
+                    <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            Search by Name
+                        </Typography><br />
                    <TextField type="text" value={searchName} onChange={(e)=>setSearchName(e.target.value)} placeholder="Search by Name" />
                    <Box
                         display="flex"
@@ -278,6 +262,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     overflow="auto"
+                    borderRadius="10px"
                 >
 
                     <Box
@@ -290,7 +275,10 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     >
 
                         <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                            All Events - Total Amount
+                            Events
+                        </Typography>
+                        <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            Amount
                         </Typography>
                     </Box>
                     {eventsList.map((singleEvent, i) => (
@@ -324,6 +312,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     overflow="auto"
+                    borderRadius="10px"
                 >
 
                     <Box
@@ -335,8 +324,11 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                         p="15px"
                     >
 
+<Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                            Events
+                        </Typography>
                         <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                            All Events - Total Gift
+                            Gifts
                         </Typography>
                     </Box>
                     {eventsList.map((singleEvent, i) => (
@@ -371,6 +363,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     gridColumn="span 8"
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
+                    borderRadius="10px"
                 >
                     <Box
                         mt="25px"
@@ -405,11 +398,12 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                    gridRow="span 2"
                    backgroundColor={colors.primary[400]}
                    overflow="auto"
+                   borderRadius="10px"
                   
                 >
                     <Box display="flex" flexDirection="column" padding="10px">
                     <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                            Entries more than Given Amount
+                            Filter by Value
                         </Typography><br />
                   <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" />
                   <Box

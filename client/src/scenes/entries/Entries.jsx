@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, Button } from "@mui/material";
 import { tokens } from "../../theme";
 import { useState, useEffect, createContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CreateNewEntry from "./CreateNewEntry";
 import EditEntry from "./EditEntry";
 import DeleteEntry from "./DeleteEntry";
-
+import { Delete} from "@mui/icons-material";
 import EditOrDelete from "./EditOrDeleteEntry";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -48,15 +48,16 @@ const Entries = () => {
   const createEntry = () => {
    setCreateModalOpen(true)
   }
-    const handleDeleteRow = (row) => {
+    const handleDeleteEntry = (e, entryId) => {
+      e.stopPropagation();
       setDeleteModalOpen(true);
-      setSelectedRowId(row.entryId);
+      setSelectedRowId(entryId);
     };
   
-    const handleEditRow = (row) => {
-      console.log("Row inside edit button click:" + JSON.stringify(row));
+    const handleEditEntry = (entryId) => {
+  
       setEditModalOpen(true);
-      setSelectedRow(row);
+      setSelectedRowId(entryId);
     };
 
       
@@ -99,16 +100,23 @@ const Entries = () => {
     return (
         <RefreshContext.Provider value={{ updateRefreshCount }}>
         <Box  m="20px">
-            <Box  sx={{padding: "3%", paddingLeft: 0, display: "flex", alignItems: "center", gap: "3%"}}>
+        <Box display="flex" alignContent="center" justifyContent="space-between">
+            <Box  sx={{width: "100%", padding: "3%", paddingLeft: 0, display: "flex", alignItems: "center", gap: "3%"}}>
         <KeyboardBackspaceIcon onClick={navigateToEventsPage} sx={{alignItems: "center"}}/>
             <Header title={eventsList.name} sx={{alignItems: "center"}} />
             </Box>
-            <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px" >
+            <Box display="flex" alignItems="center" >
+<Fab color="secondary" aria-label="add" >
+        <AddIcon onClick={() => setCreateModalOpen(true)} />
+      </Fab>
+          </Box>
+            </Box>
+            <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px"  >
   {entries.length > 0 && (
     <>
       {entries.map((entry, index) => (
-        <Box key={index} display="flex" justifyContent="space-between" alignItems="center" gap="20px" padding="2% 4%" borderRadius="10px" sx={{ backgroundColor: colors.primary[400] }}  >
-         <Box display="flex" gap="20%">
+        <Box key={index} onClick={() => handleEditEntry(entry.entryId)} display="flex" justifyContent="space-between" alignItems="center" gap="20px" padding="2% 4%" borderRadius="10px" sx={{ backgroundColor: colors.primary[400] }}  >
+         <Box display="flex" gap="20%" onClick={() => handleEditEntry(entry.entryId)}>
          <Avatar
                       name={entry.personName}
                       size="40"
@@ -126,7 +134,7 @@ const Entries = () => {
           </Box>
           </Box>
          
-          <Box display="flex" flexDirection="column" alignItems="flex-end">
+          <Box display="flex" flexDirection="column" alignItems="flex-end" onClick={() => handleEditEntry(entry.entryId)}>
           {entry.presentType === "amount" ? (
             <Typography variant="h4" sx={{ color: colors.greenAccent[500] }}>
               {entry.amount}
@@ -136,18 +144,16 @@ const Entries = () => {
             </Typography>)}
           </Box>
           <Box>
-          <EditOrDelete entryId={entry.entryId} />
+          {/* <EditOrDelete entryId={entry.entryId} /> */}
+          <Button style={{color: "#fff"}} onClick={(e) => handleDeleteEntry(e, entry.entryId)} >   <Delete />  
+      </Button>
           </Box>
         </Box>
       ))}
     </>
   )}
 </Box>
-<Box display="flex" marginLeft="70vw" marginTop="55vh" >
-<Fab color="secondary" aria-label="add" >
-        <AddIcon onClick={() => setCreateModalOpen(true)} />
-      </Fab>
-      </Box>
+
       {createModalOpen ? (
       <CreateNewEntry
             open={createModalOpen}
@@ -156,7 +162,7 @@ const Entries = () => {
           />) : <></>}
              {editModalOpen ? (
             <EditEntry
-              row={selectedRow}
+              entryId={selectedRowId}
               open={editModalOpen}
               onClose={() => setEditModalOpen(false)}
             />
@@ -165,7 +171,7 @@ const Entries = () => {
           )}
           {deleteModalOpen ? (
             <DeleteEntry
-              entryId={selectedRowId}
+            entryId={selectedRowId}
               open={deleteModalOpen}
               onClose={() => setDeleteModalOpen(false)}
             />

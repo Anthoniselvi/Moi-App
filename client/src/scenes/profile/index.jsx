@@ -4,19 +4,21 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/material";
-import { Button } from "@mui/material";
+import { Button, useTheme } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { tokens } from "../../theme";
 
 function Profile(props) {
   const navigate = useNavigate();
     const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
-
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   const [mobile, setMobile] = useState("");
   const [age, setAge] = useState("");
@@ -88,7 +90,7 @@ function Profile(props) {
         component="form"
         onSubmit={handleSubmit}
         noValidate
-        sx={{ mt: 1 ,  width: "500px"}}
+        sx={{ mt: 1 ,  width: "500px", display: "flex", flexDirection: "column", gap: "20px"}}
         className="profile-form"
       >
         <TextField
@@ -114,7 +116,7 @@ function Profile(props) {
         />
         {/* {errors.email && <p className="error">{errors.email}</p>} */}
         {/* /> */}
-        <TextField
+        {/* <TextField
           margin="normal"
           required
           fullWidth
@@ -128,8 +130,8 @@ function Profile(props) {
           InputLabelProps={{ style: { color: '#FFF' } }}
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          // error={errors.password}
-        />
+
+        /> */}
         {/* {errors.password && <p className="error">{errors.password}</p>} */}
         {/* /> */}
        
@@ -150,7 +152,7 @@ function Profile(props) {
             <MenuItem value="others">Others</MenuItem>
           </Select>
         </FormControl>
-        <TextField
+        {/* <TextField
           margin="normal"
           required
           fullWidth
@@ -164,8 +166,8 @@ function Profile(props) {
           InputLabelProps={{ style: { color: '#FFF' } }}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          // error={errors.email}
-        />
+          
+        /> */}
         <TextField
           margin="normal"
           required
@@ -214,13 +216,19 @@ function Profile(props) {
           InputLabelProps={{ style: { color: '#FFF' } }}
           onChange={(e) => setEmail(e.target.value)}
           // error={errors.email}
-        />
+        /><br /><br />
         <Button
           // onClick={navigateToEventList}
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{
+            backgroundColor: colors.blueAccent[700],
+            color: colors.grey[100],
+            fontSize: "14px",
+            fontWeight: "bold",
+            padding: "10px 20px",
+        }}
         >
           Update
         </Button>
