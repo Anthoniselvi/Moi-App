@@ -134,19 +134,20 @@ const Entries = () => {
           </Box>
           </Box>
          
-          <Box display="flex" flexDirection="column" alignItems="flex-end" onClick={() => handleEditEntry(entry.entryId)}>
+          <Box display="flex" alignItems="center" onClick={() => handleEditEntry(entry.entryId)}>
           {entry.presentType === "amount" ? (
             <Typography variant="h4" sx={{ color: colors.greenAccent[500] }}>
-              {entry.amount}
+              ₹ {entry.amount}
             </Typography>) : (
             <Typography variant="h4" sx={{ color: colors.greenAccent[500] }}>
               {entry.gift}
             </Typography>)}
-          </Box>
+         
           <Box>
           {/* <EditOrDelete entryId={entry.entryId} /> */}
           <Button style={{color: "#fff"}} onClick={(e) => handleDeleteEntry(e, entry.entryId)} >   <Delete />  
       </Button>
+          </Box>
           </Box>
         </Box>
       ))}

@@ -16,6 +16,7 @@ import CreateEvent from "./scenes/events/CreateNewEvent";
 import EntriesList from "./scenes/entries";
 import Profile from "./scenes/profile";
 import Entries from "./scenes/entries/Entries";
+import Reports from "./scenes/reports";
 
 function App() {
   const auth = useUserAuth();
@@ -46,6 +47,7 @@ function App() {
                   <Route path="/entries" element={<EntriesList />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/entriesList" element={<Entries />} />
+                  <Route path="/reports" element={<Reports />} />
                 </>
               ) : (
                 <>

@@ -170,7 +170,7 @@ const Sidebar = () => {
                         /> */}
  <Item
                             title="Reports"
-                            to="/reports"
+                            to={`/reports?profile=${auth.user.uid}`}
                             icon={<ReceiptLongIcon />}
                             selected={selected}
                             setSelected={setSelected}

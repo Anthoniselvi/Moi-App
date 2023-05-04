@@ -69,14 +69,7 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
       <DialogTitle textAlign="center">Create Event</DialogTitle>
       <DialogContent>
         <form>
-          {/* <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="text"
-            label="Event Type"
-            variant="outlined"
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}
-          /> */}
+      
           <br />
            <FormControl sx={{ width: "300px" }}>
           <InputLabel id="demo-simple-select-label">Event Type</InputLabel>

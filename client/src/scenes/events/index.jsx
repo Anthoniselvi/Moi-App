@@ -183,23 +183,23 @@ const navigateToEntryList = (eventId) => {
                        
                             <Box display="flex" alignItems="center" gap="5%" >
                               <CurrencyRupeeIcon
-                                sx={{ fontSize: "20px", color: "#fff" }}
+                                sx={{ fontSize: "20px", color: colors.greenAccent[500] }}
                               />                            
                             <p style={{
                                 fontSize: "20px",
-                                color: "#fff" }}
+                                color: colors.greenAccent[500] }}
                             >
                               {singleEvent.totalAmount}
                             </p>
                           </Box>
                             <Box display="flex"  gap="20%" alignItems="center">
                               <CardGiftcardIcon
-                                sx={{ fontSize: "20px", color: "#fff" }}
+                                sx={{ fontSize: "20px", color: colors.greenAccent[500] }}
                               />                             
                             <p
                               style={{
                                 fontSize: "20px",
-                                color: "#fff",
+                                color: colors.greenAccent[500],
                               
                               }}
                             >

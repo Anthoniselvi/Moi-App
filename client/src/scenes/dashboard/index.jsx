@@ -12,7 +12,7 @@ import Header from "../../components/Header";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AppsIcon from '@mui/icons-material/Apps';
@@ -27,6 +27,7 @@ import LineChart from "../../components/LineChart";
 const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const navigate = useNavigate()
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
     const [eventsList, setEventsList] = useState([])
@@ -52,8 +53,13 @@ const searchResult = allEntries.filter(entry => entry.personName && entry.person
 
 console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResult));
 
+const navigateToEvents = () => {
+    navigate(`/events?profile=${profileId}`)
+}
 
-
+const navigateToEntriesList = (eventId) => {
+    navigate(`/entriesList?event=${eventId}`)
+}
 
     const fetchTotals = () => {
         axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
@@ -115,29 +121,21 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                 gap="20px"
             >
                 {/* ROW 1 */}
-                <Box
+                <Box onClick={navigateToEvents}
                     gridColumn="span 4"
-                    // gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    // paddingTop="30px"
-                    borderRadius="10px"
-                  
+                    borderRadius="10px"                  
                 >
                     <StatBox
                         title={eventsList.length}
-                        subtitle1="Events"
-                        // subtitle2={`Total Gifts - ₹ ${allTotalGift}`}
-                        // progress="0.75"
-                        // increase="+14%"
-                        icon={
-                            
+                        subtitle1="Events"                     
+                        icon={                            
                             <AllInboxIcon
                                 sx={{ color: colors.greenAccent[600], fontSize: "24px"}}
-                            />
-                           
+                            />                           
                         }
                     />
                 </Box>
@@ -152,7 +150,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     borderRadius="10px"
                 >
                     <StatBox
-                        title={`${totalAmount}`}
+                        title={`₹ ${totalAmount}`}
                         // subtitle1={`Maximum Amount - ₹ ${maxAmount.amount}`}
                         subtitle1="Amount"
                         // progress="0.75"
@@ -265,7 +263,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     borderRadius="10px"
                 >
 
-                    <Box
+                    <Box onClick={navigateToEvents}
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
@@ -282,7 +280,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                         </Typography>
                     </Box>
                     {eventsList.map((singleEvent, i) => (
-                        <Box
+                        <Box onClick={()=>navigateToEntriesList(singleEvent.eventId)}
                             key={`${singleEvent.eventId}-${i}`}
                             display="flex"
                             justifyContent="space-between"
@@ -315,7 +313,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                     borderRadius="10px"
                 >
 
-                    <Box
+                    <Box onClick={navigateToEvents}
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
@@ -332,7 +330,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                         </Typography>
                     </Box>
                     {eventsList.map((singleEvent, i) => (
-                        <Box
+                        <Box onClick={()=>navigateToEntriesList(singleEvent.eventId)}
                             key={`${singleEvent.eventId}-${i}`}
                             display="flex"
                             justifyContent="space-between"
@@ -359,7 +357,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                 </Box>
                 
  {/* ROW 3 */}
-                <Box
+                <Box onClick={navigateToEvents}
                     gridColumn="span 8"
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
@@ -367,7 +365,9 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                 >
                     <Box
                         mt="25px"
-                        p="0 30px"
+                        // p="0 30px"
+                        paddingLeft="30px"
+                        width="100%"
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
@@ -388,7 +388,7 @@ console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResu
                             </IconButton>
                         </Box> */}
                     </Box>
-                    <Box height="250px" mt="-20px">
+                    <Box height="250px" mt="-20px" width="100%">
                         <BarChart isDashboard={true} />
                     </Box>
                 </Box>
