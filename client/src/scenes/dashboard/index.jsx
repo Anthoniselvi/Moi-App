@@ -6,11 +6,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from '@mui/icons-material/Add';
 import InputBase from "@mui/material/InputBase";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-
+import Fab from "@mui/material/Fab";
 import Header from "../../components/Header";
 
 import BarChart from "../../components/BarChart";
-import StatBox from "../../components/StatBox";
+import StatBox1 from "../../components/StatBox1";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -22,6 +22,9 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import PieChart from "../../components/PieChart";
 import PieForGift from "../../components/PieForGift";
 import LineChart from "../../components/LineChart";
+import CreateNewEvent from "../events/CreateNewEvent";
+import StatBox2 from "../../components/StatBox2";
+import StatBox3 from "../../components/StatBox3";
 
 
 const Dashboard = () => {
@@ -36,7 +39,7 @@ const Dashboard = () => {
     const [totalGift, setTotalGift] = useState()
     const [maxAmount, setMaxAmount] = useState({})
     const [maxAmountEvent, setMaxAmountEvent] = useState({})
-    const [inputValue, setInputValue] = useState(0)
+    const [inputValue, setInputValue] = useState("")
     const [searchName, setSearchName] = useState("")
     const [createModalOpen, setCreateModalOpen] = useState(false);
    
@@ -95,29 +98,19 @@ const navigateToEntriesList = (eventId) => {
             {/* HEADER */}
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Header title="DASHBOARD"  />
-                <Box>
-                    <Button
-                        sx={{
-                            backgroundColor: colors.blueAccent[700],
-                            color: colors.grey[100],
-                            fontSize: "14px",
-                            fontWeight: "bold",
-                            padding: "10px 20px",
-                        }}
-                        onClick={() => setCreateModalOpen(true)}
-           
-                    >
-                        <AddIcon sx={{ mr: "10px" }} />
-                        New
-                    </Button>
-                </Box>
+                
+                <Box display="flex" alignItems="center" >
+<Fab color="secondary" aria-label="add" >
+        <AddIcon  onClick={() => setCreateModalOpen(true)} />
+      </Fab>
+          </Box>
             </Box>
 
             {/* GRID & CHARTS */}
             <Box m="20px 0px"
                 display="grid"
                 gridTemplateColumns="repeat(12, 1fr)"
-                gridAutoRows="140px"
+                gridAutoRows="90px"
                 gap="20px"
             >
                 {/* ROW 1 */}
@@ -129,19 +122,18 @@ const navigateToEntriesList = (eventId) => {
                     justifyContent="center"
                     borderRadius="10px"                  
                 >
-                    <StatBox
-                        title={eventsList.length}
+                    <StatBox1
+                        title1={eventsList.length}
                         subtitle1="Events"                     
-                        icon={                            
+                        icon1={                            
                             <AllInboxIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "24px"}}
+                                sx={{ color: "rgb(140, 141, 255)", fontSize: "24px"}}
                             />                           
                         }
                     />
                 </Box>
                 <Box
                     gridColumn="span 4"
-                    // gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
@@ -149,15 +141,15 @@ const navigateToEntriesList = (eventId) => {
                     // paddingTop="30px"
                     borderRadius="10px"
                 >
-                    <StatBox
-                        title={`₹ ${totalAmount}`}
+                    <StatBox2
+                        title2={`₹ ${totalAmount}`}
                         // subtitle1={`Maximum Amount - ₹ ${maxAmount.amount}`}
                         subtitle1="Amount"
                         // progress="0.75"
                         // increase="+14%"
-                        icon={
+                        icon2={
                             <CurrencyRupeeIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "24px" }}
+                                sx={{ color: "rgb(255, 198, 117)", fontSize: "24px" }}
                             />
                         }
                     />
@@ -166,7 +158,6 @@ const navigateToEntriesList = (eventId) => {
     
                 <Box
                     gridColumn="span 4"
-                    // gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     display="flex"
                     alignItems="center"
@@ -174,15 +165,15 @@ const navigateToEntriesList = (eventId) => {
                     // paddingTop="30px"
                     borderRadius="10px"
                 >
-                    <StatBox
-                        title={`${totalGift}`}
+                    <StatBox3
+                        title3={`${totalGift}`}
                         // subtitle1={`Total Amount - ₹ ${allTotalAmount}`}
                         subtitle1="Gifts"
                         // progress="0.75"
                         // increase="+14%"
-                        icon={
+                        icon3={
                             <CardGiftcardIcon
-                                sx={{ color: colors.greenAccent[600], fontSize: "24px" }}
+                                sx={{ color: "rgb(36, 153, 239)", fontSize: "24px" }}
                             />
                         }
                     />
@@ -190,7 +181,7 @@ const navigateToEntriesList = (eventId) => {
                 {/* ROW 2 */}
                 <Box
                    gridColumn="span 4"
-                   gridRow="span 2"
+                   gridRow="span 3"
                    backgroundColor={colors.primary[400]}
                    overflow="auto"
                    borderRadius="10px"
@@ -201,22 +192,11 @@ const navigateToEntriesList = (eventId) => {
                             Search by Name
                         </Typography><br />
                    <TextField type="text" value={searchName} onChange={(e)=>setSearchName(e.target.value)} placeholder="Search by Name" />
-                   <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        borderBottom={`4px solid ${colors.primary[500]}`}
-                        colors={colors.grey[100]}
-                        p="15px"
-                    >
-
-                        {/* <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                            Entries more than {inputValue}
-                        </Typography> */}
-                    </Box>
-                    {/* {searchName && ( */}
+                
                         <Box>
                     {searchResult.map((entry) => (
+                        <>
+                         {entry.amount > 0 ? 
                         <Box
                         key={entry.entryId}
                             display="flex"
@@ -229,17 +209,17 @@ const navigateToEntriesList = (eventId) => {
                                 <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
                                     {entry.personName}
                                 </Typography>
-                                {/* <Typography color={colors.grey[100]}>
-                                    {transaction.eventName}
-                                </Typography> */}
                             </Box>
-                            <Box color={colors.grey[100]}>
-                            {entry.city}
-                            </Box>
+                            {eventsList.map((event) => (
+                            <Box color={colors.grey[100]} key={event.eventId}>
+                                {entry.eventId === event.eventId ? event.eventName : null}
+                        
+                            </Box>))}
+                           
                             <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
                             ₹{entry.amount}
                             </Box>
-                        </Box>
+                        </Box> : null}</>
                     ))}</Box>
               </Box>
                 </Box>
@@ -257,7 +237,7 @@ const navigateToEntriesList = (eventId) => {
                 </Box> */}
                 <Box
                     gridColumn="span 4"
-                    gridRow="span 2"
+                    gridRow="span 3"
                     backgroundColor={colors.primary[400]}
                     overflow="auto"
                     borderRadius="10px"
@@ -307,7 +287,7 @@ const navigateToEntriesList = (eventId) => {
                 </Box>
                 <Box
                     gridColumn="span 4"
-                    gridRow="span 2"
+                    gridRow="span 3"
                     backgroundColor={colors.primary[400]}
                     overflow="auto"
                     borderRadius="10px"
@@ -359,7 +339,7 @@ const navigateToEntriesList = (eventId) => {
  {/* ROW 3 */}
                 <Box onClick={navigateToEvents}
                     gridColumn="span 8"
-                    gridRow="span 2"
+                    gridRow="span 3"
                     backgroundColor={colors.primary[400]}
                     borderRadius="10px"
                 >
@@ -395,7 +375,7 @@ const navigateToEntriesList = (eventId) => {
 
                 <Box
                    gridColumn="span 4"
-                   gridRow="span 2"
+                   gridRow="span 3"
                    backgroundColor={colors.primary[400]}
                    overflow="auto"
                    borderRadius="10px"
@@ -406,20 +386,10 @@ const navigateToEntriesList = (eventId) => {
                             Filter by Value
                         </Typography><br />
                   <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" />
-                  <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        borderBottom={`4px solid ${colors.primary[500]}`}
-                        colors={colors.grey[100]}
-                        p="15px"
-                    >
-
-                        {/* <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                            Entries more than {inputValue}
-                        </Typography> */}
-                    </Box>
+                
                     {filteredEntries.map((singleEntry, i) => (
+                        <>
+                        {singleEntry.amount > 0 ?
                         <Box
                             key={`${singleEntry.entryId}-${i}`}
                             display="flex"
@@ -432,23 +402,30 @@ const navigateToEntriesList = (eventId) => {
                                 <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
                                     {singleEntry.personName}
                                 </Typography>
-                                {/* <Typography color={colors.grey[100]}>
-                                    {transaction.eventName}
-                                </Typography> */}
+                              l
                             </Box>
-                            <Box color={colors.grey[100]}>
-                                {singleEntry.city}
-                            </Box>
+                            {eventsList.map((event) => (
+                            <Box color={colors.grey[100]} key={event.eventId}>
+                                {singleEntry.eventId === event.eventId ? event.eventName : null}
+                        
+                            </Box>))}
+                            
                             <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
                             ₹{singleEntry.amount}
                             </Box>
-                        </Box>
+                        </Box> : null}
+                        </>
                     ))}
                     </Box>
                 </Box>
 
 
             </Box>
+            {/* <CreateNewEvent
+            open={createModalOpen}
+            onClose={() => setCreateModalOpen(false)}
+            
+          /> */}
         </Box >
 
     );

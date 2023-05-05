@@ -18,7 +18,7 @@ const BarChart = ({ isDashboard = false }) => {
         return {
           id: event.eventName,
           totalAmount: event.totalAmount,
-          totalGift: event.totalGift
+          // totalGift: event.totalGift
         };
       });
      
@@ -40,7 +40,7 @@ const BarChart = ({ isDashboard = false }) => {
     return (
         <ResponsiveBar
         data={chartData}
-        keys={['totalAmount', 'totalGift']}
+        keys={['totalAmount']}
         indexBy='id'
         theme={{
             textColor: 'white',
@@ -74,6 +74,16 @@ const BarChart = ({ isDashboard = false }) => {
         motionDamping={15}
         enableGridY={false}
         enableGridX={false}
+        tooltip={({ id, value, color }) => (
+          <div style={{ padding: '12px' }}>
+            <div style={{ color }}>
+              <strong>{id}</strong>
+            </div>
+            <div>₹{value}
+            </div>           
+          </div>
+        )}
+       
       />
     );
 };

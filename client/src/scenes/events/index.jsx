@@ -2,6 +2,7 @@ import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useTheme} from "@mui/material";
 import { Box, Button, IconButton } from "@mui/material";
+import Fab from "@mui/material/Fab";
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import EditEvent from "./EditEvent";
@@ -77,7 +78,12 @@ const navigateToEntryList = (eventId) => {
         <Box display="flex" alignContent="center" justifyContent="space-between" margin= "2%" marginBottom= "0%">
                 <Header title="EVENTS"   />
                 {/* <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography> */}
-                <Box>
+                <Box display="flex" alignItems="center" >
+<Fab color="secondary" aria-label="add" >
+        <AddIcon  onClick={() => setCreateModalOpen(true)} />
+      </Fab>
+          </Box>
+                {/* <Box>
                     <Button
                         sx={{
                             backgroundColor: colors.blueAccent[700],
@@ -92,7 +98,7 @@ const navigateToEntryList = (eventId) => {
                         <AddIcon sx={{ mr: "10px" }} />
                         New
                     </Button>
-                </Box>
+                </Box> */}
             </Box>
         <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="2%" rowGap="8%" padding="2%" background= "colors.primary[400]">
         {eventslist.length > 0 && (

@@ -7,6 +7,8 @@ import { useSearchParams } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
+import DownloadEntries, { EntriesPdf } from "./DownloadEntries";
+import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 
 const Reports = () => {
@@ -69,39 +71,7 @@ const Reports = () => {
         <Box m="20px">
          
             <Box display="flex" flexDirection="column" gap="20vh" width="500px">
-                <Header title="REPORTS"  />
-                {/* <Box onSubmit={handleSubmit} display="flex" flexDirection="column" gap="10vh">
-    <FormControl focused={false} inputProps={{ style: { borderColor: '#FFF' } }} InputLabelProps={{ style: { color: '#FFF' } }}>
-      <InputLabel id="demo-simple-select-label">Select Event</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={eventName}
-        onChange={(e) => setEventName(e.target.value)}
-        label="Event Name"
-      >
-        <MenuItem value="">Select Event</MenuItem>
-        {eventsArray.map((singleEvent) => (
-          <MenuItem key={singleEvent.eventId} value={singleEvent.name}>
-            {singleEvent.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-
-    <Button
-      sx={{
-        backgroundColor: colors.blueAccent[700],
-        color: colors.grey[100],
-        fontSize: '14px',
-        fontWeight: 'bold',
-        padding: '10px 20px',
-      }}
-      type="submit"
-    >
-      Submit
-    </Button>
-  </Box> */}
+                <Header title="REPORTS"  />              
   <form>
       
       <br />
@@ -128,48 +98,20 @@ const Reports = () => {
     
     </form>
     <Button type="submit" color="secondary" variant="contained" onClick={() => getReports(eventName)}
-      // sx={{
-      //   backgroundColor: colors.blueAccent[700],
-      //   color: colors.grey[100],
-      //   fontSize: '14px',
-      //   fontWeight: 'bold',
-      //   padding: '10px 20px',
-      // }}
-      // type="submit"
+     
     >
       Submit
     </Button>
             </Box>
-            {selectedEntries ? (
-              <>
-            <h1>{selectedEvent.name}</h1>
-            {selectedEntries.map((singleEntry, i) => (
-                        <Box
-                            key={`${singleEntry.entryId}-${i}`}
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            borderBottom={`4px solid ${colors.primary[500]}`}
-                            p="15px"
-                        >
-                            <Box>
-                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
-                                    {singleEntry.personName}
-                                </Typography>
-                               
-                           </Box>
-                            <Box color={colors.grey[100]}>
-                                {singleEntry.city}
-                            </Box>
-                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                            ₹{singleEntry.amount}
-                            </Box>
-                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                            {singleEntry.gift}
-                            </Box>
-                        </Box>
-                    ))} 
-                    </>) : null}
+            {/* {selectedEntries ? ( <DownloadEntries selectedEntries={selectedEntries} selectedEvent={selectedEvent} />) : null} */}
+            {selectedEntries ?     <PDFDownloadLink
+        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={selectedEvent} />}
+        fileName={`${selectedEvent.name}.pdf`}
+      >
+        {({ blob, url, loading, error }) =>
+          loading ? "Generating PDF..." : "Download PDF"
+        }
+      </PDFDownloadLink> : null}
                     
         </Box >
 
@@ -177,3 +119,4 @@ const Reports = () => {
 };
 
 export default Reports;
+
