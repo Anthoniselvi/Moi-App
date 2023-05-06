@@ -156,29 +156,34 @@ MOI APP
 
       <ListItem disablePadding>
         <Link to={`/events?event=${auth.user.uid}`}>
+        <ListItemButton>
           <ListItemIcon>
             <ListIcon />
           </ListItemIcon>
           <ListItemText primary="Events" />
-       
+          </ListItemButton>
         </Link>
       </ListItem>
 
       <ListItem disablePadding>
         <Link to={`/profile?profile=${auth.user.uid}`}>
+        <ListItemButton>
           <ListItemIcon>
             <Build />
           </ListItemIcon>
           <ListItemText primary="Profile" />
+          </ListItemButton>
         </Link>
       </ListItem>
 
       <ListItem disablePadding>
         <Link to={`/reports?profile=${auth.user.uid}`}>
+        <ListItemButton>
           <ListItemIcon>
             <ReceiptLong />
           </ListItemIcon>
           <ListItemText primary="Reports" />
+          </ListItemButton>
         </Link>
       </ListItem>
 

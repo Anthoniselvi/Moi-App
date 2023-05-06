@@ -57,13 +57,13 @@ const DownloadEntries = ({ selectedEntries, selectedEvent }) => {
         document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={selectedEvent} />}
         fileName={`${selectedEvent.name}.pdf`}
       >
-        {({ blob, url, loading, error }) =>
-          loading ? "Generating PDF..." : "Download PDF"
-        }
+        {/* {({ blob, url, loading, error }) => */}
+          {!loading ? "Generating PDF..." : "Ready to Download PDF"}
+        {/* } */}
       </PDFDownloadLink>
-      {/* <button onClick={handleDownload} disabled={loading}>
+      <button onClick={handleDownload} disabled={loading}>
         Download
-      </button> */}
+      </button>
     </div>
   );
 };

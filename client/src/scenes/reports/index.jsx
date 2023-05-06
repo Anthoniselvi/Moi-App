@@ -1,4 +1,4 @@
-import { Box, Button, MenuItem, useTheme, Typography } from "@mui/material";
+import { Box, Button, MenuItem, useTheme, Typography, IconButton } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useState , useEffect} from "react";
@@ -9,6 +9,7 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import DownloadEntries, { EntriesPdf } from "./DownloadEntries";
 import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { Download } from "@mui/icons-material";
 
 
 const Reports = () => {
@@ -21,7 +22,7 @@ const Reports = () => {
     const [selectedEntries, setSelectedEntries] = useState([])
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
-
+    const [loading, setLoading] = useState(false);
    
     const getReports = (eventName) => {
       console.log("Button Clicked " + eventName)
@@ -39,6 +40,7 @@ const Reports = () => {
       const selectedEventEntries = entriesArray.filter((entry) => entry.eventId === selectedEventId);
     setSelectedEntries(selectedEventEntries)
       console.log("Entries for selected event:", selectedEntries);
+      setLoading(true)
     };
     console.log("Entries for selected event:", selectedEntries);
      
@@ -71,10 +73,10 @@ const Reports = () => {
         <Box m="20px">
          
             <Box display="flex" flexDirection="column" gap="20vh" width="500px">
-                <Header title="REPORTS"  />              
-  <form>
+                <Header title="REPORTS"  />   
+                <Box sx={{display:"flex", gap: "20px"}}>        
+  <form >
       
-      <br />
        <FormControl sx={{ width: "300px" }}>
       <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
       <Select
@@ -86,6 +88,9 @@ const Reports = () => {
         onChange={
           (e) => setEventName(e.target.value)
         }
+        autoFocus
+        inputProps={{color: "white", border: "white"}}
+        inputLabelProps={{color: "white", border: "white"}}
       >
           <MenuItem value="">Select Event</MenuItem>
         {eventsArray.map((singleEvent) => (
@@ -97,21 +102,24 @@ const Reports = () => {
     </FormControl>
     
     </form>
-    <Button type="submit" color="secondary" variant="contained" onClick={() => getReports(eventName)}
+    <Button sx={{ width: "300px" }} type="submit" color="secondary" variant="contained" onClick={() => getReports(eventName)}
      
     >
-      Submit
+      Create
     </Button>
+    </Box>   
             </Box>
             {/* {selectedEntries ? ( <DownloadEntries selectedEntries={selectedEntries} selectedEvent={selectedEvent} />) : null} */}
-            {selectedEntries ?     <PDFDownloadLink
+            {!loading ?  null : <><p style={{color: colors.greenAccent[500]}}>Ready to Download</p>
+              <PDFDownloadLink
         document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={selectedEvent} />}
         fileName={`${selectedEvent.name}.pdf`}
       >
-        {({ blob, url, loading, error }) =>
-          loading ? "Generating PDF..." : "Download PDF"
-        }
-      </PDFDownloadLink> : null}
+   
+   <IconButton> 
+    <Download sx={{color: "#fff", fontSize:35}}/>
+       </IconButton>
+      </PDFDownloadLink></>  }
                     
         </Box >
 
