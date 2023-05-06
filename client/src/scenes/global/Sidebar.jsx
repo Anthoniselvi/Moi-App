@@ -61,26 +61,28 @@ const Sidebar = () => {
         <Box
         sx={{
           "& .pro-sidebar-inner": {
-            background: `${colors.primary[400]} !important`,
-        
+            background: `${colors.primary[400]} !important`,        
           },
           "& .pro-icon-wrapper": {
             backgroundColor: "transparent !important",
             
           },
           "& .pro-inner-item": {
-            padding: "5px 20px 5px 20px !important",
+            padding: "5px !important",
+            color: `${colors.blueAccent[2000]} !important`,
           },
           "& .pro-menu-item:hover": {
-            backgroundColor: '#223141 !important',
-            // margin: '10px',
-            borderRadius: '20px'
+            backgroundColor: `${colors.blueAccent[4000]} !important`,
+            color: `${colors.blueAccent[3000]} !important`,
+            margin: '10px',
+            borderRadius: '10px',
           },
           "& .pro-menu-item.active": {
-            color: `${colors.blueAccent[2000]} !important`,
-            backgroundColor: '#223141 !important',
+            color: `${colors.primary[500]} !important`,
+            backgroundColor: `${colors.blueAccent[5000]} !important`,
+            fontWeight: 700,
             margin: '10px',
-            borderRadius: '20px'
+            borderRadius: '10px'
         },
        
        
@@ -97,7 +99,8 @@ const Sidebar = () => {
                         icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                         style={{
                             margin: "10px 0 20px 0",
-                            color: colors.grey[100],
+                            // color: colors.grey[100],
+                            color: `${colors.blueAccent[3000]} !important`,
                         }}
                     >
                         {!isCollapsed && (

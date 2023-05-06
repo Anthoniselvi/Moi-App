@@ -9,7 +9,7 @@ import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import Fab from "@mui/material/Fab";
 import Header from "../../components/Header";
 
-import BarChart from "../../components/BarChart";
+import BarrChart from "../../components/BarChart";
 import StatBox1 from "../../components/StatBox1";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -25,6 +25,10 @@ import LineChart from "../../components/LineChart";
 import CreateNewEvent from "../events/CreateNewEvent";
 import StatBox2 from "../../components/StatBox2";
 import StatBox3 from "../../components/StatBox3";
+import SearchTable from "../../components/SearchTable";
+import SearchBox from "../../components/SearchBox";
+import FilterTable from "../../components/FilterTable";
+import MyBarChart from "../../components/BarChart";
 
 
 const Dashboard = () => {
@@ -42,7 +46,11 @@ const Dashboard = () => {
     const [inputValue, setInputValue] = useState("")
     const [searchName, setSearchName] = useState("")
     const [createModalOpen, setCreateModalOpen] = useState(false);
-   
+    const [filterSearch, setFilterSearch] = useState(false);
+
+    const handleFilterClick = () => {
+      setFilterSearch(true);
+    };
     const moreThanAmount = allEntries.filter(entry => entry.amount > 10000);
 
 console.log("Amount more than 10000: " + JSON.stringify(moreThanAmount)); 
@@ -187,41 +195,17 @@ const navigateToEntriesList = (eventId) => {
                    borderRadius="10px"
                   
                 >
-                    <Box display="flex" flexDirection="column" padding="10px">
+                    <SearchBox searchName={searchName} setSearchName={setSearchName} searchResult={searchResult} eventsList={eventsList} />
+                    {/* <Box display="flex" flexDirection="column" padding="10px">
                     <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
                             Search by Name
                         </Typography><br />
                    <TextField type="text" value={searchName} onChange={(e)=>setSearchName(e.target.value)} placeholder="Search by Name" />
-                
-                        <Box>
-                    {searchResult.map((entry) => (
-                        <>
-                         {entry.amount > 0 ? 
-                        <Box
-                        key={entry.entryId}
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            borderBottom={`4px solid ${colors.primary[500]}`}
-                            p="15px"
-                        >
-                            <Box>
-                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
-                                    {entry.personName}
-                                </Typography>
-                            </Box>
-                            {eventsList.map((event) => (
-                            <Box color={colors.grey[100]} key={event.eventId}>
-                                {entry.eventId === event.eventId ? event.eventName : null}
-                        
-                            </Box>))}
-                           
-                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                            ₹{entry.amount}
-                            </Box>
-                        </Box> : null}</>
-                    ))}</Box>
-              </Box>
+           
+                <Box>
+                <SearchTable searchResult={searchResult} eventsList={eventsList} />
+                </Box>
+              </Box> */}
                 </Box>
                 {/* <Box
                     gridColumn="span 5"
@@ -269,7 +253,7 @@ const navigateToEntriesList = (eventId) => {
                             p="15px"
                         >
                             <Box>
-                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="500">
                                     {singleEvent.eventName}
                                 </Typography>
                                 {/* <Typography color={colors.grey[100]}>
@@ -279,7 +263,7 @@ const navigateToEntriesList = (eventId) => {
                             <Box color={colors.grey[100]}>
                                 {singleEvent.eventDate}
                             </Box>
-                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
+                            <Box backgroundColor="rgba(255, 255, 255, 0.08)" width="28%"  p="5px 10px"borderRadius="20px">
                             ₹{singleEvent.totalAmount}
                             </Box>
                         </Box>
@@ -319,7 +303,7 @@ const navigateToEntriesList = (eventId) => {
                             p="15px"
                         >
                             <Box>
-                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="500">
                                     {singleEvent.eventName}
                                 </Typography>
                                 {/* <Typography color={colors.grey[100]}>
@@ -329,7 +313,7 @@ const navigateToEntriesList = (eventId) => {
                             <Box color={colors.grey[100]}>
                                 {singleEvent.eventDate}
                             </Box>
-                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
+                            <Box backgroundColor="rgba(255, 255, 255, 0.08)" p="5px 10px" borderRadius="4px">
                                 {singleEvent.totalGift}
                             </Box>
                         </Box>
@@ -369,7 +353,7 @@ const navigateToEntriesList = (eventId) => {
                         </Box> */}
                     </Box>
                     <Box height="250px" mt="-20px" width="100%">
-                        <BarChart isDashboard={true} />
+                        <MyBarChart isDashboard={true} />
                     </Box>
                 </Box>
 
@@ -382,40 +366,19 @@ const navigateToEntriesList = (eventId) => {
                   
                 >
                     <Box display="flex" flexDirection="column" padding="10px">
+                        <Box display="flex" justifyContent="space-between" alignItems="center">
+                        {!filterSearch ? (
+                    <IconButton onClick={handleFilterClick}>
+        <SearchIcon />
+      </IconButton>) :  <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" />}
                     <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
                             Filter by Value
-                        </Typography><br />
-                  <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" />
-                
-                    {filteredEntries.map((singleEntry, i) => (
-                        <>
-                        {singleEntry.amount > 0 ?
-                        <Box
-                            key={`${singleEntry.entryId}-${i}`}
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            borderBottom={`4px solid ${colors.primary[500]}`}
-                            p="15px"
-                        >
-                            <Box>
-                                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
-                                    {singleEntry.personName}
-                                </Typography>
-                              l
-                            </Box>
-                            {eventsList.map((event) => (
-                            <Box color={colors.grey[100]} key={event.eventId}>
-                                {singleEntry.eventId === event.eventId ? event.eventName : null}
-                        
-                            </Box>))}
-                            
-                            <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                            ₹{singleEntry.amount}
-                            </Box>
-                        </Box> : null}
-                        </>
-                    ))}
+                        </Typography></Box>
+                  {/* <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" /> */}
+                <Box>
+                <FilterTable filteredEntries={filteredEntries} eventsList={eventsList} />
+                </Box>
+                   
                     </Box>
                 </Box>
 
