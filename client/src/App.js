@@ -17,6 +17,7 @@ import EntriesList from "./scenes/entries";
 import Profile from "./scenes/profile";
 import Entries from "./scenes/entries/Entries";
 import Reports from "./scenes/reports";
+import NewSidebar from "./scenes/global/NewSidebar";
 
 function App() {
   const auth = useUserAuth();
@@ -33,7 +34,7 @@ function App() {
         <CssBaseline />
 
         <div className="app">
-          {auth.user ? <Sidebar /> : null}
+          {auth.user ? <NewSidebar /> : null}
 
           <main className="content">
             {auth.user ? <Topbar /> : null}

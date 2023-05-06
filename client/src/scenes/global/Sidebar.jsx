@@ -60,15 +60,17 @@ const Sidebar = () => {
       
         <Box
         sx={{
+            
           "& .pro-sidebar-inner": {
-            background: `${colors.primary[400]} !important`,        
+            background: `${colors.primary[400]} !important`,
+        
           },
           "& .pro-icon-wrapper": {
             backgroundColor: "transparent !important",
             
           },
           "& .pro-inner-item": {
-            padding: "5px !important",
+            padding: "5px 20px 5px 20px !important",
             color: `${colors.blueAccent[2000]} !important`,
           },
           "& .pro-menu-item:hover": {
@@ -80,7 +82,7 @@ const Sidebar = () => {
           "& .pro-menu-item.active": {
             color: `${colors.primary[500]} !important`,
             backgroundColor: `${colors.blueAccent[5000]} !important`,
-            fontWeight: 700,
+            fontWeight: 500,
             margin: '10px',
             borderRadius: '10px'
         },
@@ -139,11 +141,7 @@ const Sidebar = () => {
                             setSelected={setSelected}
                             
                         />
-                        {/* <Typography
-                            variant='h5'
-                            color={colors.grey[100]}
-                            sx={{ m: "15px 0 15px 20px" }}
-                        >Utilities</Typography> */}
+                       
                         <Item
                             title="Profile"
                             to={`/profile?profile=${auth.user.uid}`}
@@ -152,25 +150,7 @@ const Sidebar = () => {
                             setSelected={setSelected}
                         
                         />
-
-                        {/* <Item
-                            title="Parts"
-                            to="/utility/parts"
-                            icon={<TripOriginIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                         
-                        />
-
-
-                        <Item
-                            title="Materials"
-                            to="/utility/materials"
-                            icon={<AnimationIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                           
-                        /> */}
+                     
  <Item
                             title="Reports"
                             to={`/reports?profile=${auth.user.uid}`}

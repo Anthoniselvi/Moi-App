@@ -29,6 +29,7 @@ import SearchTable from "../../components/SearchTable";
 import SearchBox from "../../components/SearchBox";
 import FilterTable from "../../components/FilterTable";
 import MyBarChart from "../../components/BarChart";
+import EventsTable from "../../components/EventsTable";
 
 
 const Dashboard = () => {
@@ -188,7 +189,7 @@ const navigateToEntriesList = (eventId) => {
                 </Box>
                 {/* ROW 2 */}
                 <Box
-                   gridColumn="span 4"
+                   gridColumn="span 6"
                    gridRow="span 3"
                    backgroundColor={colors.primary[400]}
                    overflow="auto"
@@ -220,14 +221,15 @@ const navigateToEntriesList = (eventId) => {
                     <LineChart />
                 </Box> */}
                 <Box
-                    gridColumn="span 4"
+                    gridColumn="span 6"
                     gridRow="span 3"
                     backgroundColor={colors.primary[400]}
                     overflow="auto"
                     borderRadius="10px"
+                    padding="25px 15px"
                 >
-
-                    <Box onClick={navigateToEvents}
+<EventsTable eventsList={eventsList} />
+                    {/* <Box onClick={navigateToEvents}
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
@@ -259,7 +261,7 @@ const navigateToEntriesList = (eventId) => {
                                 {/* <Typography color={colors.grey[100]}>
                                     {transaction.eventName}
                                 </Typography> */}
-                            </Box>
+                            {/* </Box>
                             <Box color={colors.grey[100]}>
                                 {singleEvent.eventDate}
                             </Box>
@@ -267,9 +269,9 @@ const navigateToEntriesList = (eventId) => {
                             ₹{singleEvent.totalAmount}
                             </Box>
                         </Box>
-                    ))}
+                    ))}  */}
                 </Box>
-                <Box
+                {/* <Box
                     gridColumn="span 4"
                     gridRow="span 3"
                     backgroundColor={colors.primary[400]}
@@ -309,7 +311,7 @@ const navigateToEntriesList = (eventId) => {
                                 {/* <Typography color={colors.grey[100]}>
                                     {transaction.eventName}
                                 </Typography> */}
-                            </Box>
+                            {/* </Box>
                             <Box color={colors.grey[100]}>
                                 {singleEvent.eventDate}
                             </Box>
@@ -318,7 +320,7 @@ const navigateToEntriesList = (eventId) => {
                             </Box>
                         </Box>
                     ))}
-                </Box>
+                </Box> */} 
                 
  {/* ROW 3 */}
                 <Box onClick={navigateToEvents}

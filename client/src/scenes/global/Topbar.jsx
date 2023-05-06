@@ -34,16 +34,9 @@ const auth = useUserAuth()
                     <SettingsOutlinedIcon />
                 </IconButton>
                 <IconButton >
-        {/* //          onMouseOver={(event) => { */}
-        {/* //   event.currentTarget.title = `Welcome ${auth.role}`; 
-        // }}
-        // onMouseLeave={(event) => { */}
-        {/* //   event.currentTarget.title = ""; 
-        // }}
-        // > */}
+     
                  <Box sx={{border: "1px solid white", display: "flex", gap: '10px', padding: "5px 10px", borderRadius: "20px"}}>  
-                 {/* <Typography>Hi, {auth.role.toUpperCase()}</Typography> */}
-
+        
 <Typography>{auth.user.displayName}</Typography>
 <PersonIcon /></Box>
                 </IconButton>
