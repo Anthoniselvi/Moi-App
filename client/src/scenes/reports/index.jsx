@@ -78,17 +78,19 @@ const Reports = () => {
   <form >
       
        <FormControl sx={{ width: "300px" }}>
-      <InputLabel id="demo-simple-select-label" sx={{color: "white"}}>Event Type</InputLabel>
-      <Select sx={{border: "1px solid white"}}
-        // labelId="demo-simple-select-label"
-        // id="demo-simple-select"
+      <InputLabel id="demo-simple-select-label" color="secondary" >Event Type</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
         required
+        variant="outlined"
+        color="secondary"
         value={eventName}
         label="Event Type"
         onChange={
           (e) => setEventName(e.target.value)
         }
-        autoFocus
+        // autoFocus
         // inputProps={{color: "white", border: "white"}}
         // inputLabelProps={{color: "white", border: "white"}}
       >

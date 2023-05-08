@@ -110,7 +110,7 @@ export default function NewSidebar() {
   return (
     <Box sx={{ display: 'flex'}}>
       <CssBaseline sx={{background: "none"}} />
-      <AppBar position="fixed" open={open} sx={{background: "none"}}>
+      <AppBar position="fixed" open={open} sx={{background: "none", boxShadow: "none"}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -309,7 +309,7 @@ MOI APP
    
       </Drawer>
       <Main open={open}>
-        {/* <DrawerHeader /> */}
+        <DrawerHeader />
       
       </Main>
     </Box>
