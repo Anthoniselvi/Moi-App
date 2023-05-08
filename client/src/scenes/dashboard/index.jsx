@@ -32,6 +32,7 @@ import MyBarChart from "../../components/BarChart";
 import EventsTable from "../../components/EventsTable";
 import { SportsRugbySharp } from "@mui/icons-material";
 import SortIcon from '@mui/icons-material/Sort';
+import NewBar from "../../components/NewBar";
 
 
 const Dashboard = () => {
@@ -369,8 +370,9 @@ const navigateToEntriesList = (eventId) => {
                             </IconButton>
                         </Box> */}
                     </Box>
-                    <Box height="250px" mt="-20px" width="100%">
-                        <MyBarChart isDashboard={true} />
+                    <Box height="250px"  sx={{padding: 3, width: "100%"}} >
+                        {/* <MyBarChart isDashboard={true} /> */}
+                        <NewBar eventsList={eventsList} />
                     </Box>
                 </Box>
 

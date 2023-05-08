@@ -74,15 +74,16 @@ const BarChart = ({ isDashboard = false }) => {
         motionDamping={15}
         enableGridY={false}
         enableGridX={false}
-        // tooltip={({ id, value, color }) => (
-        //   <div style={{ padding: '12px' }}>
-        //     <div style={{ color }}>
-        //       <strong>{id}</strong>
-        //     </div>
-        //     <div>₹{value}
-        //     </div>           
-        //   </div>
-        // )}
+        tooltip={({ id, value, color }) => (
+          <div style={{ padding: '12px' }}>
+            <div style={{ color }}>
+              <strong>{id}</strong>
+            </div>
+         
+            <div>₹{value}
+            </div>           
+          </div>
+        )}
        
       />
     );

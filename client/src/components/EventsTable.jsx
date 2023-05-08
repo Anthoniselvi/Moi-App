@@ -15,7 +15,7 @@ export default function EventsTable({eventsList}) {
     const colors = tokens(theme.palette.mode);
   return (
     <>
-      <Typography variant="h5" fontWeight="600">
+      <Typography variant="h5" fontWeight="600" >
         Totals of All Events
       </Typography>
     <TableContainer>
