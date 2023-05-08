@@ -22,6 +22,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../auth';
+import NewReports from '../reports/NewReports';
 
 
 const drawerWidth = 240;
@@ -78,7 +79,15 @@ export default function NewSidebar() {
   const auth = useUserAuth();
   const { logOut } = useUserAuth();
   const navigate = useNavigate()
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  { index=== 0 ? navigate(`/dashboard?profile=${auth.user.uid}`) : 
+  index ===1 ? navigate(`/events?profile=${auth.user.uid}`) : 
+  index===2 ? navigate(`/profile?profile=${auth.user.uid}`) : 
+  navigate(`/reports?profile=${auth.user.uid}`) }
+  };
 
   const handleLogout = async () => {
     try {
@@ -130,7 +139,7 @@ export default function NewSidebar() {
         anchor="left"
         open={open}
       >
-        <DrawerHeader sx={{background: "none", display:"flex", justifyContent:"space-between"}}>
+        <DrawerHeader sx={{background: "none", display:"flex", justifyContent:"space-between", padding: "0px 20px"}}>
           
         <Typography color={colors.grey[100]} fontSize='18.5px' fontWeight='700'>
 
@@ -142,30 +151,122 @@ MOI APP
    
         </DrawerHeader>
         {/* <Divider /> */}
-        <List>
-      <ListItem disablePadding sx={{display: "flex"}}>
+        <Box sx={{ width: '100%', }}>
+      <List  sx={{
+        color: colors.blueAccent[2000],
+        '& .MuiListItemIcon-root': {
+          color: colors.blueAccent[2000]
+        },
+    // selected and (selected + hover) states
+    '&& .Mui-selected, && .Mui-selected:hover': {
+      bgcolor: 'rgba(36, 153, 239, 0.06)',
+      '&, & .MuiListItemIcon-root': {
+        color: 'rgb(36, 153, 239)',
+       },
+    },
+    // hover states
+    '& .MuiListItemButton-root:hover': {
+      bgcolor: colors.blueAccent[4000],
+      '&, & .MuiListItemIcon-root': {
+        color: colors.blueAccent[2000],
+      },
+    },
+  }}>
+        <ListItemButton
+          selected={selectedIndex === 0}
+          onClick={(event) => handleListItemClick(event, 0)}
+        >
+          <ListItemIcon>
+          <Home />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedIndex === 1}
+          onClick={(event) => handleListItemClick(event, 1)}
+        >
+          <ListItemIcon>
+            <ListIcon />
+          </ListItemIcon>
+          <ListItemText primary="Events" />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedIndex === 2}
+          onClick={(event) => handleListItemClick(event, 2)}
+        >
+          <ListItemIcon>
+            <Build />
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedIndex === 3}
+          onClick={(event) => handleListItemClick(event, 3)}
+        >
+          <ListItemIcon>
+            <ReceiptLong />
+          </ListItemIcon>
+          <ListItemText primary="Reports" />
+        </ListItemButton>
+        
+      </List>
+      <Divider />
+      {/* <List component="nav" aria-label="secondary mailbox folder">
+        <ListItemButton
+          selected={selectedIndex === 2}
+          onClick={(event) => handleListItemClick(event, 2)}
+        >
+          <ListItemText primary="Trash" />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedIndex === 3}
+          onClick={(event) => handleListItemClick(event, 3)}
+        >
+          <ListItemText primary="Spam" />
+        </ListItemButton>
+        <Divider /> */}
+
+{auth.user ? (
+  <ListItem button onClick={handleLogout} sx={{color: colors.blueAccent[2000] , fontWeight: 'bold'}} >
+    <ListItemIcon sx={{color: colors.blueAccent[2000]}}>
+      <Logout />
+    </ListItemIcon>
+    <ListItemText primary="Logout" />
+  </ListItem>
+) : (
+  <ListItem button component={Link} to="/" sx={{color: colors.blueAccent[2000] , fontWeight: 'bold'}}>
+    <ListItemIcon sx={{color: colors.blueAccent[2000]}}>
+      <Login />
+    </ListItemIcon>
+    <ListItemText primary="Login" />
+  </ListItem>
+)}
+      {/* </List> */}
+    </Box>
+        {/* <List>
+      <ListItem  sx={{display: "flex", backgroundColor: "rgba(36, 153, 239, 0.06)"}}>
         <Link to={`/dashboard?profile=${auth.user.uid}`}>
         <ListItemButton>
           <ListItemIcon>
             <Home />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <ListItemText primary="Dashboard" sx={{color: "rgb(36, 153, 239)", fontStyle: "none"}} />
           </ListItemButton>
         </Link>
       </ListItem>
 
-      <ListItem disablePadding>
-        <Link to={`/events?event=${auth.user.uid}`}>
+      <ListItem  sx={{fontStyle: "none"}}>
+        <Link to={`/events?profile=${auth.user.uid}`}>
         <ListItemButton>
           <ListItemIcon>
             <ListIcon />
           </ListItemIcon>
-          <ListItemText primary="Events" />
+          <ListItemText primary="Events" sx={{color: "inherit", fontStyle: "none"}}/>
           </ListItemButton>
         </Link>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem >
         <Link to={`/profile?profile=${auth.user.uid}`}>
         <ListItemButton>
           <ListItemIcon>
@@ -176,9 +277,9 @@ MOI APP
         </Link>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem >
         <Link to={`/reports?profile=${auth.user.uid}`}>
-        <ListItemButton>
+        <ListItemButton >
           <ListItemIcon>
             <ReceiptLong />
           </ListItemIcon>
@@ -190,21 +291,22 @@ MOI APP
       <Divider />
 
       {auth.user ? (
-        <ListItem button onClick={handleLogout}>
+        <ListItem button onClick={handleLogout} sx={{padding: 5}}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>
       ) : (
-        <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/"  sx={{padding: 5}}>
           <ListItemIcon>
             <Login />
           </ListItemIcon>
           <ListItemText primary="Login" />
         </ListItem>
       )}
-    </List>
+    </List> */}
+   
       </Drawer>
       <Main open={open}>
         {/* <DrawerHeader /> */}

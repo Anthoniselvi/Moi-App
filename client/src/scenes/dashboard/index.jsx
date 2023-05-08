@@ -30,6 +30,8 @@ import SearchBox from "../../components/SearchBox";
 import FilterTable from "../../components/FilterTable";
 import MyBarChart from "../../components/BarChart";
 import EventsTable from "../../components/EventsTable";
+import { SportsRugbySharp } from "@mui/icons-material";
+import SortIcon from '@mui/icons-material/Sort';
 
 
 const Dashboard = () => {
@@ -48,10 +50,15 @@ const Dashboard = () => {
     const [searchName, setSearchName] = useState("")
     const [createModalOpen, setCreateModalOpen] = useState(false);
     const [filterSearch, setFilterSearch] = useState(false);
+    const [showSearch, setShowSearch] = useState(false)
 
     const handleFilterClick = () => {
       setFilterSearch(true);
     };
+
+    const handleSearchClick = () => {
+        setShowSearch(true);
+      };
     const moreThanAmount = allEntries.filter(entry => entry.amount > 10000);
 
 console.log("Amount more than 10000: " + JSON.stringify(moreThanAmount)); 
@@ -195,8 +202,16 @@ const navigateToEntriesList = (eventId) => {
                    overflow="auto"
                    borderRadius="10px"
                   
-                >
-                    <SearchBox searchName={searchName} setSearchName={setSearchName} searchResult={searchResult} eventsList={eventsList} />
+                > 
+                <Box display="flex" flexDirection="column" padding="10px">
+                {!showSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px">
+                    <Typography variant="h5" fontWeight="600">Search by Name</Typography>
+                <IconButton sx={{backgroundColor: "rgba(39, 206, 136, 0.2)"}} onClick={handleSearchClick}>
+    <SearchIcon sx={{color: "rgba(39, 206, 136)"}}/>
+  </IconButton></Box>) :
+  <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" />}
+                    <SearchTable searchResult={searchResult} eventsList={eventsList} />
+                    </Box>
                     {/* <Box display="flex" flexDirection="column" padding="10px">
                     <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
                             Search by Name
@@ -368,7 +383,12 @@ const navigateToEntriesList = (eventId) => {
                   
                 >
                     <Box display="flex" flexDirection="column" padding="10px">
-                        <Box display="flex" justifyContent="space-between" alignItems="center">
+                    {!filterSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px"><Typography variant="h5" fontWeight="600">Filter by Amount</Typography>
+                    <IconButton sx={{backgroundColor: "rgba(255, 49, 111, 0.2)"}} onClick={handleFilterClick}>
+        <SortIcon sx={{color: "rgba(255, 49, 111)"}}/>
+      </IconButton></Box>) :
+                         <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Filter by Amount" />}
+                        {/* <Box display="flex" justifyContent="space-between" alignItems="center">
                         {!filterSearch ? (
                     <IconButton onClick={handleFilterClick}>
         <SearchIcon />
@@ -376,23 +396,23 @@ const navigateToEntriesList = (eventId) => {
                     <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
                             Filter by Value
                         </Typography></Box>
-                  {/* <TextField type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="filter amount" /> */}
-                <Box>
+                 
+                <Box> */}
                 <FilterTable filteredEntries={filteredEntries} eventsList={eventsList} />
                 </Box>
                    
                     </Box>
-                </Box>
+                {/* </Box>
 
 
-            </Box>
+            </Box> */}
             {/* <CreateNewEvent
             open={createModalOpen}
             onClose={() => setCreateModalOpen(false)}
             
           /> */}
         </Box >
-
+</Box>
     );
 };
 

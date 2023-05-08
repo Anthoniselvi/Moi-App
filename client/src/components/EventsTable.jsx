@@ -23,9 +23,9 @@ export default function EventsTable({eventsList}) {
     <Table  >
       <TableHead>
         <TableRow>
-          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", borderBottomColor: colors.grey[100], fontWeight:600 }}>Name</TableCell>
-          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", borderBottomColor: colors.grey[100], fontWeight:600  }}>Event</TableCell>
-          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", borderBottomColor: colors.grey[100], fontWeight:600  }}>Amount</TableCell>
+          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", borderBottomColor: colors.grey[100], fontWeight:600 }}>Event Name</TableCell>
+          <TableCell align="center" sx={{ borderBottom: "1px solid colors.grey[100]", borderBottomColor: colors.grey[100], fontWeight:600  }}>Amount</TableCell>
+          <TableCell align="center" sx={{ borderBottom: "1px solid colors.grey[100]", borderBottomColor: colors.grey[100], fontWeight:600  }}>Gift</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -35,10 +35,10 @@ export default function EventsTable({eventsList}) {
             return (
               <TableRow key={singleEvent.eventId}>
                 <TableCell sx={{ borderBottom: "none" }}>{singleEvent.eventName}</TableCell>
-                <TableCell align="left" sx={{ borderBottom: "none", }}>
-                ₹{singleEvent.totalAmount}
+                <TableCell align="center" sx={{ borderBottom: "none",  }}>
+                <div style={{background: "rgba(255, 255, 255, 0.08)", padding: "3px 0px", borderRadius: 20}}>₹{singleEvent.totalAmount}</div>
                 </TableCell>
-                <TableCell sx={{ borderBottom: "none"}}>{singleEvent.totalGift}</TableCell>
+                <TableCell align="center" sx={{ borderBottom: "none"}}>{singleEvent.totalGift}</TableCell>
                 
               </TableRow>
             );

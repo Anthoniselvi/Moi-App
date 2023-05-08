@@ -18,6 +18,7 @@ import Profile from "./scenes/profile";
 import Entries from "./scenes/entries/Entries";
 import Reports from "./scenes/reports";
 import NewSidebar from "./scenes/global/NewSidebar";
+import NewReports from "./scenes/reports/NewReports";
 
 function App() {
   const auth = useUserAuth();
@@ -48,7 +49,7 @@ function App() {
                   <Route path="/entries" element={<EntriesList />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/entriesList" element={<Entries />} />
-                  <Route path="/reports" element={<Reports />} />
+                  <Route path="/reports" element={<NewReports />} />
                 </>
               ) : (
                 <>

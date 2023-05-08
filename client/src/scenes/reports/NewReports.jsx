@@ -75,22 +75,21 @@ const Reports = () => {
             <Box display="flex" flexDirection="column" gap="20vh" width="500px">
                 <Header title="REPORTS"  />   
                 <Box sx={{display:"flex", gap: "20px"}}>        
-  <form >
+  <form style={{background: colors.blueAccent[2000], color: colors.primary[400], padding: 10, borderRadius: 10}}>
       
-       <FormControl sx={{ width: "300px" }}>
-      <InputLabel id="demo-simple-select-label" sx={{color: "white"}}>Event Type</InputLabel>
-      <Select sx={{border: "1px solid white"}}
-        // labelId="demo-simple-select-label"
-        // id="demo-simple-select"
+       <FormControl sx={{ width: "300px", color: colors.blueAccent[3000],  }}>
+      <InputLabel id="demo-simple-select-label" sx={{color: colors.primary[400], border: colors.blueAccent[3000]}} >Event Type</InputLabel>
+      <Select sx={{color: colors.primary[400]}}
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
         required
         value={eventName}
         label="Event Type"
         onChange={
           (e) => setEventName(e.target.value)
         }
-        autoFocus
-        // inputProps={{color: "white", border: "white"}}
-        // inputLabelProps={{color: "white", border: "white"}}
+        // autoFocus
+      
       >
           <MenuItem value="">Select Event</MenuItem>
         {eventsArray.map((singleEvent) => (
