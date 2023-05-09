@@ -1,4 +1,4 @@
-import { Box, Button, MenuItem, useTheme, Typography, IconButton } from "@mui/material";
+import { Box, Button, MenuItem, useTheme, Typography, IconButton, useMediaQuery } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useState , useEffect} from "react";
@@ -23,7 +23,7 @@ const Reports = () => {
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
     const [loading, setLoading] = useState(false);
-   
+    const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const getReports = (eventName) => {
       console.log("Button Clicked " + eventName)
       // Find the event object that matches the selected event name
@@ -70,60 +70,71 @@ const Reports = () => {
     }, []);
 
     return (
-        <Box m="20px">
-         
-            <Box display="flex" flexDirection="column" gap="20vh" width="500px">
-                <Header title="REPORTS"  />   
-                <Box sx={{display:"flex", gap: "20px"}}>        
-  <form >
-      
-       <FormControl sx={{ width: "300px" }}>
-      <InputLabel id="demo-simple-select-label" color="secondary" >Event Type</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        required
-        variant="outlined"
-        color="secondary"
-        value={eventName}
-        label="Event Type"
-        onChange={
-          (e) => setEventName(e.target.value)
-        }
-        // autoFocus
-        // inputProps={{color: "white", border: "white"}}
-        // inputLabelProps={{color: "white", border: "white"}}
-      >
-          <MenuItem value="">Select Event</MenuItem>
-        {eventsArray.map((singleEvent) => (
-          <MenuItem key={singleEvent.eventId} value={singleEvent.name}>
-            {singleEvent.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-    
-    </form>
-    <Button sx={{ width: "300px", backgroundColor:"rgb(25, 107, 167)" }} type="submit"  variant="contained" onClick={() => getReports(eventName)}
-     
+      <Box m="20px">
+  <Box
+    display="flex"
+    flexDirection="column"
+    gap="20vh"
+    width={{ xs: "100%", md: "500px" }} // Increase width to 500px on non-mobile screens
+    sx={{ "& > div": { width: isNonMobile ? undefined : "200px" } }}
+  >
+    <Header title="REPORTS" />
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      gap="20px" // Decrease gap to 20px
+      alignItems="left" // Align form and button in center
     >
-      Create
-    </Button>
-    </Box>   
-            </Box>
-            {/* {selectedEntries ? ( <DownloadEntries selectedEntries={selectedEntries} selectedEvent={selectedEvent} />) : null} */}
-            {!loading ?  null : <><p style={{color: colors.greenAccent[500]}}>Ready to Download</p>
-              <PDFDownloadLink
+      <form style={{ width: "100%" }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label" color="secondary">
+            Event Type
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            required
+            variant="outlined"
+            color="secondary"
+            value={eventName}
+            label="Event Type"
+            onChange={(e) => setEventName(e.target.value)}
+          >
+            <MenuItem value="">Select Event</MenuItem>
+            {eventsArray.map((singleEvent) => (
+              <MenuItem key={singleEvent.eventId} value={singleEvent.name}>
+                {singleEvent.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </form>
+      <Button
+        sx={{ backgroundColor: "rgb(25, 107, 167)", minWidth: "120px" }} // Set a minimum width of 120px for the button
+        type="submit"
+        variant="contained"
+        onClick={() => getReports(eventName)}
+      >
+        Create
+      </Button>
+    </Box>
+  </Box>
+  {/* {selectedEntries ? ( <DownloadEntries selectedEntries={selectedEntries} selectedEvent={selectedEvent} />) : null} */}
+  {!loading ? null : (
+    <>
+      <p style={{ color: colors.greenAccent[500] }}>Ready to Download</p>
+      <PDFDownloadLink
         document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={selectedEvent} />}
         fileName={`${selectedEvent.name}.pdf`}
       >
-   
-   <IconButton> 
-    <Download sx={{color: "#fff", fontSize:35}}/>
-       </IconButton>
-      </PDFDownloadLink></>  }
-                    
-        </Box >
+        <IconButton>
+          <Download sx={{ color: "#fff", fontSize: 35 }} />
+        </IconButton>
+      </PDFDownloadLink>
+    </>
+  )}
+</Box>
+
 
     );
 };

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -16,7 +17,7 @@ import { RefreshContext } from "./Entries";
 
 export default function EditEntry({ open,  onClose,  entryId }) {
   
-
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [personName, setPersonName] = useState("");
   const [city, setCity] = useState("");
   const [amount, setAmount] = useState("");
@@ -70,11 +71,11 @@ export default function EditEntry({ open,  onClose,  entryId }) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Edit </DialogTitle>
+        <DialogTitle textAlign="center" variant="h4">Edit </DialogTitle>
         <DialogContent>
         <form>
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}
             type="text"
             label="Person Name"
             variant="outlined"
@@ -84,7 +85,7 @@ export default function EditEntry({ open,  onClose,  entryId }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="text"
             label="City"
             variant="outlined"
@@ -93,7 +94,7 @@ export default function EditEntry({ open,  onClose,  entryId }) {
           />
           <br />
           <br />
-          <FormControl sx={{ width: "300px", margin: "5px"  }}>
+          <FormControl sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}   }}>
             <FormLabel id="demo-controlled-radio-buttons-group"  style={{ width: "300px", margin: "5px", color: "#fff" }}>
               Type of Presentation :
             </FormLabel><br />
@@ -125,7 +126,7 @@ export default function EditEntry({ open,  onClose,  entryId }) {
               {presentType === "amount" ? (
                 // <div>
                   <TextField
-                  style={{ width: "300px", margin: "5px" }}
+                  sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}
                     id="outlined-amount"
                     label="Rs."
                     InputLabelProps={{
@@ -139,7 +140,7 @@ export default function EditEntry({ open,  onClose,  entryId }) {
               ) : (
                 // <div className="gift-box">
                   <TextField
-                  style={{ width: "300px", margin: "5px" }}
+                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
                     id="outlined-multiline-static"
                     label="about gift"
                     InputLabelProps={{

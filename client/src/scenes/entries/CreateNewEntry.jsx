@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
+  TextField, useMediaQuery
 } from "@mui/material";
 import "date-fns";
 import { useNavigate,useSearchParams } from "react-router-dom";
@@ -19,6 +19,7 @@ import { RefreshContext } from "./Entries";
 // import { RefreshContext } from "./index";
 
 export default function CreateNewEntry({ open, onClose, eventId }) {
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const [personName, setPersonName] = useState();
     const [city, setCity] = useState();
     const [amount, setAmount] = useState(0);
@@ -67,11 +68,11 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
  
   return (
     <Dialog open={open}>
-      <DialogTitle textAlign="center" variant="h4">Create Entry</DialogTitle>
+      <DialogTitle textAlign="center" variant="h4">Create</DialogTitle>
       <DialogContent>
-        <form>
+        <form style={{paddingTop: 2}}>
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}
             type="text"
             label="Person Name"
             variant="outlined"
@@ -84,7 +85,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="text"
             label="City"
             variant="outlined"
@@ -96,7 +97,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
           />
           <br />
           <br />
-          <FormControl sx={{ width: "300px", margin: "5px"  }}>
+          <FormControl sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}   }}>
             <FormLabel id="demo-controlled-radio-buttons-group"  style={{ width: "300px", margin: "5px", color: "#fff" }}>
               Type of Presentation :
             </FormLabel><br />
@@ -128,7 +129,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
               {presentType === "amount" ? (
                 // <div>
                   <TextField
-                  style={{ width: "300px", margin: "5px" }}
+                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
                     id="outlined-amount"
                     label="Rs."
                     InputLabelProps={{
@@ -142,7 +143,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
               ) : (
                 // <div className="gift-box">
                   <TextField
-                  style={{ width: "300px", margin: "5px" }}
+                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
                     id="outlined-multiline-static"
                     label="about gift"
                     InputLabelProps={{

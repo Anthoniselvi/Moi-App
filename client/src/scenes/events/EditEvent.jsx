@@ -10,7 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
+import { useMediaQuery } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 
 
@@ -18,11 +18,11 @@ import { RefreshContext } from "./index";
 
 export default function EditEvent({ open, onClose, eventId }) {
   
-
-  const [eventType, setEventType] = useState();
-  const [name, setName] = useState();
-  const [place, setPlace] = useState();
-  const [date, setDate] = useState();
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
+  const [eventType, setEventType] = useState("");
+  const [name, setName] = useState("");
+  const [place, setPlace] = useState("");
+  const [date, setDate] = useState("");
  
   // const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   // const navigate = useNavigate();
@@ -73,7 +73,7 @@ export default function EditEvent({ open, onClose, eventId }) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Edit Event - {name}</DialogTitle>
+        <DialogTitle textAlign="center" variant="h4">Edit</DialogTitle>
         <DialogContent>
         <form>
           {/* <TextField
@@ -85,7 +85,7 @@ export default function EditEvent({ open, onClose, eventId }) {
             onChange={(e) => setEventType(e.target.value)}
           /> */}
           <br />
-          <FormControl sx={{ width: "300px" }}>
+          <FormControl sx={{ width: "300px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}>
           <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -108,7 +108,7 @@ export default function EditEvent({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}
             type="text"
             label="Event Name"
             variant="outlined"
@@ -118,7 +118,7 @@ export default function EditEvent({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="text"
             label="Place"
             variant="outlined"
@@ -128,7 +128,7 @@ export default function EditEvent({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="date"
             label="Date"
             variant="outlined"

@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
+  TextField, useMediaQuery
 } from "@mui/material";
 import "date-fns";
 import { useNavigate,useSearchParams } from "react-router-dom";
@@ -17,6 +17,7 @@ import Select from "@mui/material/Select";
 import { RefreshContext } from "./index";
 
 export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [eventType, setEventType] = useState("");
   const [name, setName] = useState("");
   const [place, setPlace] = useState("");
@@ -65,20 +66,24 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
 
 
   return (
-    <Dialog open={open}>
-      <DialogTitle textAlign="center">Create Event</DialogTitle>
+    <Dialog open={open} >  
+   
+      <DialogTitle textAlign="center" variant="h4">Create</DialogTitle>
       <DialogContent>
         <form>
       
           <br />
-           <FormControl sx={{ width: "300px" }}>
-          <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
+           <FormControl sx={{ width: "300px" ,  
+     "& > div": { width: isNonMobile ? undefined : "250px"} 
+    }}>
+          <InputLabel color="secondary" id="demo-simple-select-label">Event Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             required
             value={eventType}
             label="Event Type"
+            color="secondary"
             onChange={
               (e) => setEventType(e.target.value)
               // (e) => setImageSource(images[e.target.value]))
@@ -94,8 +99,9 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="text"
+            color="secondary"
             label="Event Name"
             variant="outlined"
             value={name}
@@ -104,20 +110,22 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="text"
             label="Place"
             variant="outlined"
+            color="secondary"
             value={place}
             onChange={(e) => setPlace(e.target.value)}
           />
           <br />
           <br />
           <TextField
-            style={{ width: "300px", margin: "5px" }}
+            sx={{ width: "300px", margin: "5px","& > div": { width: isNonMobile ? undefined : "250px"}  }}
             type="date"
             label="Date"
             variant="outlined"
+            color="secondary"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
