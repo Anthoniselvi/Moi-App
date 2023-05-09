@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/material";
-import { Button, useTheme } from "@mui/material";
+import { Button, useTheme, useMediaQuery } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -19,7 +19,7 @@ function Profile(props) {
   const [email, setEmail] = useState("");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [mobile, setMobile] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -90,8 +90,12 @@ function Profile(props) {
         component="form"
         onSubmit={handleSubmit}
         noValidate
-        sx={{ mt: 1 ,  width: "500px", display: "flex", flexDirection: "column", gap: "20px"}}
+        sx={{ mt: 1 ,  width: "500px", display: "flex", flexDirection: "column",  gap: "20px",
+        
+          "& > div": { width: isNonMobile ? undefined : "200px" },
+        }}
         className="profile-form"
+        
       >
         <TextField
           margin="normal"
@@ -219,15 +223,17 @@ function Profile(props) {
         /><br /><br />
         <Button
           // onClick={navigateToEventList}
-          type="submit"
-          fullWidth
+          type="submit"      
+          fullWidth   
           variant="contained"
           sx={{
+            width: 200,
             backgroundColor: colors.blueAccent[700],
             color: colors.grey[100],
             fontSize: "14px",
             fontWeight: "bold",
             padding: "10px 20px",
+            "& > Button": { width: isNonMobile ? undefined : "200px" },
         }}
         >
           Update
