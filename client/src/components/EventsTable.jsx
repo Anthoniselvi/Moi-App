@@ -15,7 +15,7 @@ export default function EventsTable({eventsList}) {
     const colors = tokens(theme.palette.mode);
   return (
     <>
-      <Typography variant="h5" fontWeight="600" >
+      <Typography variant="h5" fontWeight="600" sx={{color:"rgb(140, 141, 255)", paddingBottom: 2}} >
         Totals of All Events
       </Typography>
     <TableContainer>
@@ -36,7 +36,9 @@ export default function EventsTable({eventsList}) {
               <TableRow key={singleEvent.eventId}>
                 <TableCell sx={{ borderBottom: "none" }}>{singleEvent.eventName}</TableCell>
                 <TableCell align="center" sx={{ borderBottom: "none",  }}>
-                <div style={{background: "rgba(255, 255, 255, 0.08)", padding: "3px 0px", borderRadius: 20}}>₹{singleEvent.totalAmount}</div>
+                {/* <div style={{background: "rgba(255, 255, 255, 0.08)", padding: "3px 0px", borderRadius: 20}}> */}
+                  ₹{singleEvent.totalAmount}
+                  {/* </div> */}
                 </TableCell>
                 <TableCell align="center" sx={{ borderBottom: "none"}}>{singleEvent.totalGift}</TableCell>
                 

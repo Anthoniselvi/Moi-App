@@ -17,9 +17,9 @@ export default function SearchTable({searchResult, eventsList}) {
     <Table  >
       <TableHead>
         <TableRow>
-          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600 }}>Name</TableCell>
-          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600  }}>Event</TableCell>
-          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600  }}>Amount</TableCell>
+          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600, color: "rgb(140, 163, 186)" }}>Name</TableCell>
+          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600 , color: "rgb(140, 163, 186)" }}>Event</TableCell>
+          <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600 , color: "rgb(140, 163, 186)"  }}>Amount</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

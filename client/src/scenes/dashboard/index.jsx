@@ -217,7 +217,7 @@ const navigateToEntriesList = (eventId) => {
                 > 
                 <Box display="flex" flexDirection="column" padding="10px">
                 {!showSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px">
-                    <Typography variant="h5" fontWeight="600">Search by Name</Typography>
+                    <Typography variant="h5" fontWeight="600" sx={{color: "rgba(39, 206, 136)"}}>Search by Name</Typography>
                 <IconButton sx={{backgroundColor: "rgba(39, 206, 136, 0.2)"}} onClick={handleSearchClick}>
     <SearchIcon sx={{color: "rgba(39, 206, 136)"}}/>
   </IconButton></Box>) :
@@ -366,10 +366,10 @@ const navigateToEntriesList = (eventId) => {
                         alignItems="center"
                     >
                         <Box>
-                            <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
+                            <Typography variant="h5" fontWeight="600" color="rgba(54, 162, 235)">
                                 Events Generated
                             </Typography>
-                            <Typography variant="h3" fontWeight="500" color={colors.greenAccent[500]}>
+                            <Typography variant="h3" fontWeight="500" color="rgba(255, 159, 64)">
                             {`₹ ${totalAmount}`}
                             </Typography>
                         </Box>
@@ -396,7 +396,7 @@ const navigateToEntriesList = (eventId) => {
                   
                 >
                     <Box display="flex" flexDirection="column" padding="10px">
-                    {!filterSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px"><Typography variant="h5" fontWeight="600">Filter by Amount</Typography>
+                    {!filterSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px"><Typography variant="h5" fontWeight="600" sx={{color: "rgba(255, 49, 111)"}}>Filter by Amount</Typography>
                     <IconButton sx={{backgroundColor: "rgba(255, 49, 111, 0.2)"}} onClick={handleFilterClick}>
         <SortIcon sx={{color: "rgba(255, 49, 111)"}}/>
       </IconButton></Box>) :
