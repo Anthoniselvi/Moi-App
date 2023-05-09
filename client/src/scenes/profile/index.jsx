@@ -108,13 +108,8 @@ function Profile(props) {
           autoFocus
           value={name}
           readOnly
-                   sx={{
-            '& label': {
-              color: '#fff',
-            },
-            '& .MuiOutlinedInput-root': {
-              borderColor: '#fff',
-            },}}
+          color="secondary"
+                 
           onChange={(e) => setName(e.target.value)}
           // error={errors.email}
         />
@@ -140,8 +135,7 @@ function Profile(props) {
         {/* /> */}
        
         <FormControl   focused={false}
-          inputProps={{ style: { borderColor: '#FFF' } }}
-          InputLabelProps={{ style: { color: '#FFF' } }} fullWidth>
+          color="secondary" fullWidth>
           <InputLabel id="demo-simple-select-label" >Gender</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -182,8 +176,7 @@ function Profile(props) {
           autoComplete="city"
           autoFocus
           focused={false}
-          inputProps={{ style: { borderColor: '#FFF' } }}
-          InputLabelProps={{ style: { color: '#FFF' } }}
+          color="secondary"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           // error={errors.email}
@@ -198,8 +191,7 @@ function Profile(props) {
           autoComplete="mobile"
           autoFocus
           focused={false}
-          inputProps={{ style: { borderColor: '#FFF' } }}
-          InputLabelProps={{ style: { color: '#FFF' } }}
+          color="secondary"
           value={mobile}
           onChange={(e) => setMobile(e.target.value)}
           // error={errors.email}
@@ -216,8 +208,7 @@ function Profile(props) {
           value={email}
           readOnly
           focused={false}
-          inputProps={{ style: { borderColor: '#FFF' } }}
-          InputLabelProps={{ style: { color: '#FFF' } }}
+          color="secondary"
           onChange={(e) => setEmail(e.target.value)}
           // error={errors.email}
         /><br /><br />

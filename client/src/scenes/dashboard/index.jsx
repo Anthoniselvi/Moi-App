@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, TextField, Typography, useTheme } from "@mui/material";
+import { Box, Button, IconButton, TextField, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { tokens } from "../../theme";
 import { styled } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
@@ -43,8 +43,8 @@ const Dashboard = () => {
     const profileId = searchParam.get("profile");
     const [eventsList, setEventsList] = useState([])
     const [allEntries, setAllEntries] = useState([])
-    const [totalAmount, setTotalAmount] = useState()
-    const [totalGift, setTotalGift] = useState()
+    const [totalAmount, setTotalAmount] = useState(0)
+    const [totalGift, setTotalGift] = useState(0)
     const [maxAmount, setMaxAmount] = useState({})
     const [maxAmountEvent, setMaxAmountEvent] = useState({})
     const [inputValue, setInputValue] = useState("")
@@ -52,7 +52,7 @@ const Dashboard = () => {
     const [createModalOpen, setCreateModalOpen] = useState(false);
     const [filterSearch, setFilterSearch] = useState(false);
     const [showSearch, setShowSearch] = useState(false)
-
+    const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const handleFilterClick = () => {
       setFilterSearch(true);
     };
@@ -124,12 +124,23 @@ const navigateToEntriesList = (eventId) => {
             </Box>
 
             {/* GRID & CHARTS */}
-            <Box m="20px 0px"
+            <Box
+          m="20px 0px"
+          display="grid"
+          gridTemplateColumns="repeat(12, 1fr)"
+          justifyContent="space-between"
+          gridAutoRows="90px"
+                gap="20px"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 12" },
+          }}
+        >
+            {/* <Box m="20px 0px"
                 display="grid"
                 gridTemplateColumns="repeat(12, 1fr)"
                 gridAutoRows="90px"
                 gap="20px"
-            >
+            > */}
                 {/* ROW 1 */}
                 <Box onClick={navigateToEvents}
                     gridColumn="span 4"
