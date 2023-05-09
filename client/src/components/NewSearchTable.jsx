@@ -36,7 +36,7 @@ export default function NewSearchTable({searchResult, eventsList}) {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 240 }}>
+      <TableContainer sx={{ maxHeight: 240, }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -44,18 +44,25 @@ export default function NewSearchTable({searchResult, eventsList}) {
                 <TableCell
                   key={column.entryId}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ minWidth: column.minWidth,backgroundColor: "rgb(34, 43, 54)" }}
                 >
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {searchResult.map((row) => {
+          <TableBody sx={{backgroundColor: "rgb(34, 43, 54)", borderBottom: "none"}}>
+            {searchResult.map((entry) => {
+                if (entry.amount > 0) {
+                    const event = eventsList.find((event) => event.eventId === entry.eventId);
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
+                  <TableRow hover role="checkbox" tabIndex={-1} >
+                     <TableCell sx={{ borderBottom: "none" }}>{entry.personName}</TableCell>
+                <TableCell align="left" sx={{ borderBottom: "none" }}>
+                  {event ? event.eventName : null}
+                </TableCell>
+                <TableCell sx={{ borderBottom: "none"}}>₹{entry.amount}</TableCell>
+                    {/* {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
@@ -64,10 +71,10 @@ export default function NewSearchTable({searchResult, eventsList}) {
                             : value}
                         </TableCell>
                       );
-                    })}
+                    })} */}
                   </TableRow>
-                );
-              })}
+                )}})}
+              
           </TableBody>
         </Table>
       </TableContainer>
