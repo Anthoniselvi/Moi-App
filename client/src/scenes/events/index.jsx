@@ -1,7 +1,7 @@
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useTheme} from "@mui/material";
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, useMediaQuery } from "@mui/material";
 import Fab from "@mui/material/Fab";
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
@@ -25,7 +25,7 @@ export const RefreshContext = createContext();
 const EventsList = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    
+    const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const [searchParam] = useSearchParams();
       const profileId = searchParam.get("profile");
       const [eventslist, setEventsList] = useState([])
@@ -75,7 +75,9 @@ const navigateToEntryList = (eventId) => {
     return (
         
         <RefreshContext.Provider value={{ updateRefreshCount }}>
-        <Box display="flex" alignContent="center" justifyContent="space-between" margin= "2%" marginBottom= "0%">
+        <Box display="flex" alignItems="center" justifyContent="space-between" margin= "2%" marginBottom= "0%" sx={{
+            // "& > div": { gridColumn: isNonMobile ? undefined : "span 3" },
+          }}>
                 <Header title="EVENTS"   />
                 {/* <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography> */}
                 <Box display="flex" alignItems="center" >
@@ -100,7 +102,19 @@ const navigateToEntryList = (eventId) => {
                     </Button>
                 </Box> */}
             </Box>
-        <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="2%" rowGap="8%" padding="2%" background= "colors.primary[400]">
+            <Box
+          pr="20px"
+          mt="20px"
+          display="grid"
+          gridTemplateColumns="repeat(3, minmax(0, 1fr))"
+          justifyContent="space-between"
+          rowGap="20px"
+          columnGap="1.33%"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 3" },
+          }}
+        >
+        {/* <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="2%" rowGap="8%" padding="2%" background= "colors.primary[400]"> */}
         {eventslist.length > 0 && (
           <>
             {eventslist.map((singleEvent, eventId) => (

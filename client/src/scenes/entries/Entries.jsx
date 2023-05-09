@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Button } from "@mui/material";
+import { Box, Typography, useTheme, Button, useMediaQuery } from "@mui/material";
 import { tokens } from "../../theme";
 import { useState, useEffect, createContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -21,6 +21,7 @@ export const RefreshContext = createContext({
 const Entries = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const navigate = useNavigate();
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("event");
@@ -111,7 +112,19 @@ const Entries = () => {
       </Fab>
           </Box>
             </Box>
-            <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px"  >
+            <Box
+          pr="20px"
+          mt="20px"
+          display="grid"
+          gridTemplateColumns="repeat(2, minmax(0, 1fr))"
+          justifyContent="space-between"
+          rowGap="20px"
+          columnGap="1.33%"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 2" },
+          }}
+        >
+            {/* <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px"  > */}
   {entries.length > 0 && (
     <>
       {entries.map((entry, index) => (
