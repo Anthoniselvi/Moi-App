@@ -34,6 +34,8 @@ import { SportsRugbySharp } from "@mui/icons-material";
 import SortIcon from '@mui/icons-material/Sort';
 import NewBar from "../../components/NewBar";
 import NewSearchTable from "../../components/NewSearchTable";
+import NewFilterTable from "../../components/NewFilterTable";
+import NewEventsTable from "../../components/NewEventsTable";
 
 
 const Dashboard = () => {
@@ -252,11 +254,12 @@ const navigateToEntriesList = (eventId) => {
                     gridColumn="span 6"
                     gridRow="span 3"
                     backgroundColor={colors.primary[400]}
-                    overflow="auto"
+                    // overflow="auto"
                     borderRadius="10px"
                     padding="25px 15px"
                 >
-<EventsTable eventsList={eventsList} />
+                    <Typography variant="h5" fontWeight="600" sx={{color: "rgba(39, 206, 136)", paddingBottom: 2}}>Total of All Events</Typography>
+<NewEventsTable eventsList={eventsList} />
                     {/* <Box onClick={navigateToEvents}
                         display="flex"
                         justifyContent="space-between"
@@ -392,7 +395,7 @@ const navigateToEntriesList = (eventId) => {
                    gridColumn="span 4"
                    gridRow="span 3"
                    backgroundColor={colors.primary[400]}
-                   overflow="auto"
+                //    overflow="auto"
                    borderRadius="10px"
                   
                 >
@@ -412,7 +415,7 @@ const navigateToEntriesList = (eventId) => {
                         </Typography></Box>
                  
                 <Box> */}
-                <FilterTable filteredEntries={filteredEntries} eventsList={eventsList} />
+                <NewFilterTable filteredEntries={filteredEntries} eventsList={eventsList} />
                 </Box>
                    
                     </Box>
