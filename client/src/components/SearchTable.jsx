@@ -12,9 +12,10 @@ import { tokens } from '../theme';
 export default function SearchTable({searchResult, eventsList}) {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    
   return (
-    <TableContainer>
-    <Table  >
+    <TableContainer >
+    <Table >
       <TableHead>
         <TableRow>
           <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600, color: "rgb(140, 163, 186)" }}>Name</TableCell>
@@ -22,7 +23,7 @@ export default function SearchTable({searchResult, eventsList}) {
           <TableCell sx={{ borderBottom: "1px solid colors.grey[100]", fontWeight:600 , color: "rgb(140, 163, 186)"  }}>Amount</TableCell>
         </TableRow>
       </TableHead>
-      <TableBody>
+      <TableBody >
         {searchResult.map((entry) => {
           if (entry.amount > 0) {
             const event = eventsList.find((event) => event.eventId === entry.eventId);

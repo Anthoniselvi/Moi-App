@@ -33,6 +33,7 @@ import EventsTable from "../../components/EventsTable";
 import { SportsRugbySharp } from "@mui/icons-material";
 import SortIcon from '@mui/icons-material/Sort';
 import NewBar from "../../components/NewBar";
+import NewSearchTable from "../../components/NewSearchTable";
 
 
 const Dashboard = () => {
@@ -211,7 +212,7 @@ const navigateToEntriesList = (eventId) => {
                    gridColumn="span 6"
                    gridRow="span 3"
                    backgroundColor={colors.primary[400]}
-                   overflow="auto"
+                //    overflow="auto"
                    borderRadius="10px"
                   
                 > 
@@ -222,7 +223,7 @@ const navigateToEntriesList = (eventId) => {
     <SearchIcon sx={{color: "rgba(39, 206, 136)"}}/>
   </IconButton></Box>) :
   <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" />}
-                    <SearchTable searchResult={searchResult} eventsList={eventsList} />
+                    <NewSearchTable searchResult={searchResult} eventsList={eventsList} width="100%" />
                     </Box>
                     {/* <Box display="flex" flexDirection="column" padding="10px">
                     <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
