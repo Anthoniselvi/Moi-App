@@ -75,9 +75,7 @@ const navigateToEntryList = (eventId) => {
     return (
         
         <RefreshContext.Provider value={{ updateRefreshCount }}>
-        <Box display="flex" alignItems="center" justifyContent="space-between" margin= "2%" marginBottom= "0%" sx={{
-            // "& > div": { gridColumn: isNonMobile ? undefined : "span 3" },
-          }}>
+        <Box display="flex" alignItems="center" justifyContent="space-between" margin= "2%" marginBottom= "0%" >
                 <Header title="EVENTS"   />
                 {/* <Typography sx={{fontSize: "18px"}}>{eventsList.name}</Typography> */}
                 <Box display="flex" alignItems="center" >

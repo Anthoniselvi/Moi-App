@@ -44,7 +44,7 @@ export default function NewSearchTable({searchResult, eventsList}) {
                 <TableCell
                   key={column.entryId}
                   align={column.align}
-                  style={{ minWidth: column.minWidth,backgroundColor: "rgb(34, 43, 54)" }}
+                  style={{ minWidth: column.minWidth,backgroundColor: "rgb(34, 43, 54)", color:'rgba(54, 162, 235)' }}
                 >
                   {column.label}
                 </TableCell>

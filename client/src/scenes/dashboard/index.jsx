@@ -258,7 +258,7 @@ const navigateToEntriesList = (eventId) => {
                     borderRadius="10px"
                     padding="25px 15px"
                 >
-                    <Typography variant="h5" fontWeight="600" sx={{color: "rgba(39, 206, 136)", paddingBottom: 2}}>Total of All Events</Typography>
+                    <Typography variant="h5" fontWeight="600" sx={{color: "rgb(140, 141, 255)", paddingBottom: 2}}>Total of All Events</Typography>
 <NewEventsTable eventsList={eventsList} />
                     {/* <Box onClick={navigateToEvents}
                         display="flex"

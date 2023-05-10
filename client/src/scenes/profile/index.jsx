@@ -75,7 +75,8 @@ function Profile(props) {
   }, []);
 
   return (
-    <div style={{margin: 20}}>
+    <Box m="20px">
+    {/* <div style={{margin: 20}}> */}
       <div style={{display: "flex", alignItems: "center", gap: "3%"}}>
      
         <ArrowBackIcon onClick={navigateToEventsList} style={{cursor: "pointer"}} />
@@ -90,9 +91,9 @@ function Profile(props) {
         component="form"
         onSubmit={handleSubmit}
         noValidate
-        sx={{ mt: 1 ,  width: "500px", display: "flex", flexDirection: "column",  gap: "20px",
+        sx={{ mt: 1 ,   display: "flex", flexDirection: "column",  gap: "20px",
         
-          "& > div": { width: isNonMobile ? undefined : "200px" },
+          "& > div": { width: isNonMobile ? undefined : "300px" },
         }}
         className="profile-form"
         
@@ -100,7 +101,7 @@ function Profile(props) {
         <TextField
           margin="normal"
           required
-          fullWidth
+          // fullWidth
           id="name"
           label="Name"
           name="name"
@@ -230,7 +231,8 @@ function Profile(props) {
           Update
         </Button>
       </Box>
-    </div>
+    {/* </div> */}
+    </Box>
   );
 }
 
