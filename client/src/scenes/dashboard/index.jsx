@@ -13,7 +13,7 @@ import BarrChart from "../../components/BarChart";
 import StatBox1 from "../../components/StatBox1";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import AppsIcon from '@mui/icons-material/Apps';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
@@ -36,7 +36,7 @@ import NewBar from "../../components/NewBar";
 import NewSearchTable from "../../components/NewSearchTable";
 import NewFilterTable from "../../components/NewFilterTable";
 import NewEventsTable from "../../components/NewEventsTable";
-
+import CreateNew from "./CreateNew";
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -56,6 +56,7 @@ const Dashboard = () => {
     const [filterSearch, setFilterSearch] = useState(false);
     const [showSearch, setShowSearch] = useState(false)
     const isNonMobile = useMediaQuery("(min-width: 1000px)");
+    
     const handleFilterClick = () => {
       setFilterSearch(true);
     };
@@ -423,11 +424,12 @@ const navigateToEntriesList = (eventId) => {
 
 
             </Box> */}
-            {/* <CreateNewEvent
+           { createModalOpen ? 
+            <CreateNew
             open={createModalOpen}
             onClose={() => setCreateModalOpen(false)}
             
-          /> */}
+          /> : <></>}
         </Box >
 </Box>
     );
