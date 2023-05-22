@@ -10,65 +10,34 @@ import InputLabel from "@mui/material/InputLabel";
 import DownloadEntries, { EntriesPdf } from "./DownloadEntries";
 import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { Download } from "@mui/icons-material";
+import { DownloadsPdf } from "./DownloadReports";
 
 
-const Reports = () => {
+const NewReports = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [eventName, setEventName] = useState("")
-    const [eventsArray, setEventsArray] = useState([])
-    const [entriesArray, setEntriesArray] = useState([])
+    const [date, setDate] = useState("")
+    const [reportsArray, setReportsArray] = useState([])
+
     const [selectedEvent, setSelectedEvent] = useState({})
     const [selectedEntries, setSelectedEntries] = useState([])
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
     const [loading, setLoading] = useState(false);
    
-    const getReports = (eventName) => {
-      console.log("Button Clicked " + eventName)
-      // Find the event object that matches the selected event name
-      console.log("Events Array :" + JSON.stringify(eventsArray))
-      const selectedEvent = eventsArray.find((event) => event.name === eventName);
-    setSelectedEvent(selectedEvent)
-      console.log("Selected Event :" + JSON.stringify(selectedEvent))
-      // Get the eventId of the selected event
-      const selectedEventId = selectedEvent.eventId;
-
-    console.log("Selected EventId : " + selectedEventId)
-      // Filter the entriesList to get the entries for the selected event
-      console.log("Entries Array : " + JSON.stringify(entriesArray))
-      const selectedEventEntries = entriesArray.filter((entry) => entry.eventId === selectedEventId);
-    setSelectedEntries(selectedEventEntries)
-      console.log("Entries for selected event:", selectedEntries);
-      setLoading(true)
+    const getReports = (date) => {
+      console.log("date :" + date)
+      axios.get("http://localhost:5000/results", { date:  date })
+        .then((response) => {
+          console.log("Reports : " + JSON.stringify(response.data))
+          setReportsArray(response.data)
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     };
-    console.log("Entries for selected event:", selectedEntries);
-     
-
-    const getAllEvents = () => {
-      axios.get(`http://localhost:1234/events/all/${profileId}`).then((response) => {
-        // console.log(response);
-       
-        console.log("All Events from ProfileId : " + JSON.stringify(response.data));
-       setEventsArray(response.data)
-      });
-    };
+    
    
-    const getAllEntries = () => {
-      axios.get(`http://localhost:1234/entries/allentries/${profileId}`).then((response) => {
-        // console.log(response);
-       
-        console.log("All Entries from ProfileId : " + JSON.stringify(response.data));
-       setEntriesArray(response.data.entriesList)
-       
-      });
-    };
-
-    useEffect(() => {      
-   getAllEvents()
-   getAllEntries()
-    }, []);
-
     return (
         <Box m="20px">
          
@@ -77,53 +46,29 @@ const Reports = () => {
                 <Box sx={{display:"flex", gap: "20px"}}>        
   <form style={{background: colors.blueAccent[2000], color: colors.primary[400], padding: 10, borderRadius: 10}}>
       
-       <FormControl sx={{ width: "300px", color: colors.blueAccent[3000],  }}>
-      <InputLabel id="demo-simple-select-label" sx={{color: colors.primary[400], border: colors.blueAccent[3000]}} >Event Type</InputLabel>
-      <Select sx={{color: colors.primary[400]}}
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        required
-        value={eventName}
-        label="Event Type"
-        onChange={
-          (e) => setEventName(e.target.value)
-        }
-        // autoFocus
-      
-      >
-          <MenuItem value="">Select Event</MenuItem>
-        {eventsArray.map((singleEvent) => (
-          <MenuItem key={singleEvent.eventId} value={singleEvent.name}>
-            {singleEvent.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-    
+      <input type="date" placeholder="Date" name="date" value={date} onChange={(e)=>setDate(e.target.value)} />
     </form>
-    <Button sx={{ width: "300px", backgroundColor:"rgb(25, 107, 167)" }} type="submit"  variant="contained" onClick={() => getReports(eventName)}
+    <Button sx={{ width: "300px", backgroundColor:"rgb(25, 107, 167)" }} type="submit"  variant="contained" onClick={() => getReports(date)}
      
     >
-      Create
+      Download Report
     </Button>
     </Box>   
-            </Box>
-            {/* {selectedEntries ? ( <DownloadEntries selectedEntries={selectedEntries} selectedEvent={selectedEvent} />) : null} */}
-            {!loading ?  null : <><p style={{color: colors.greenAccent[500]}}>Ready to Download</p>
-              <PDFDownloadLink
-        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={selectedEvent} />}
-        fileName={`${selectedEvent.name}.pdf`}
+    </Box>
+    {!loading ? null : (
+    <>
+      <p style={{ color: colors.greenAccent[500] }}>Ready to Download</p>
+      <PDFDownloadLink
+        document={<DownloadsPdf reportsArray={reportsArray} date={date}/>}
+        fileName={`Reports - ${date}.pdf`}
       >
-   
-   <IconButton> 
-    <Download sx={{color: "#fff", fontSize:35}}/>
-       </IconButton>
-      </PDFDownloadLink></>  }
-                    
-        </Box >
-
-    );
-};
-
-export default Reports;
+        <IconButton>
+          <Download sx={{ color: "#fff", fontSize: 35 }} />
+        </IconButton>
+      </PDFDownloadLink>
+    </>
+  )}
+            </Box>)}
+            
+export default NewReports;
 

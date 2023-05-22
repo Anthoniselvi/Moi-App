@@ -48,6 +48,7 @@ function App() {
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/entriesList" element={<Entries />} />
                   <Route path="/reports" element={<Reports />} />
+                  <Route path="/newreports" element={<NewReports />} />
                 </>
               ) : (
                 <>
