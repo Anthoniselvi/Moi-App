@@ -1,32 +1,17 @@
 import React from "react";
-import "./Navbar.css";
-import { Box } from "@mui/material";
+import { Carousel } from "@trendyol-js/react-carousel";
 
 export default function Services() {
   return (
     <div className="services-container">
-      <h1>SERVICES</h1>
-      <Box
-        sx={{
-          padding: "20px",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {/* <img src="/img/arrowl.png" alt="" layout="fill" objectFit="contain" /> */}
-        <Box sx={{ border: "1px solid red", height: "300px", width: "300px" }}>
-          Create Events
-        </Box>
-        <Box sx={{ border: "1px solid red", height: "300px", width: "300px" }}>
-          Add / Update Moi Entry
-        </Box>
-        <Box sx={{ border: "1px solid red", height: "300px", width: "300px" }}>
-          Reports for Moi Entry
-        </Box>
-      </Box>
+      <Carousel show={3.5} slide={1} swiping={true}>
+        <div style={{ backgroundColor: "#2d66c3" }}>Create Account 🌐</div>
+        <div style={{ backgroundColor: "#f44336" }}>Create Events👩🏻‍💻</div>
+
+        <div style={{ backgroundColor: "#d53f8c" }}>Create Entries</div>
+
+        <div style={{ backgroundColor: "#f27a1a" }}>View Reports</div>
+      </Carousel>
     </div>
   );
 }
