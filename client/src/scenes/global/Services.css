@@ -1,0 +1,50 @@
+.services-container {
+    text-align: center;
+  }
+  
+  .slide-container {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+  }
+  
+  .arrow-container {
+    position: relative;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    outline: none;
+  }
+  
+  .arrow-left {
+    left: 0;
+  }
+  
+  .arrow-right {
+    right: 0;
+  }
+  
+  .slide-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .slide-container div {
+    flex: 0 0 33.33%; /* Adjust the width of each slide as needed */
+  }
+  
+  /* Make the center slide larger than the others */
+  .slide-container div:nth-child(2) {
+    transform: scale(1.2);
+  }
+  

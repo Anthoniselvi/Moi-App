@@ -17,6 +17,9 @@ import Entries from "./scenes/entries/Entries";
 import Reports from "./scenes/reports";
 import NewSidebar from "./scenes/global/NewSidebar";
 import NewReports from "./scenes/reports/NewReports";
+import Navbar from "./scenes/global/Navbar";
+import Home from "./scenes/global/Home";
+import About from "./scenes/global/About";
 
 function App() {
   const auth = useUserAuth();
@@ -52,7 +55,9 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Route path="/" element={<SignIn />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/login" element={<SignIn />} />
                   <Route path="/signup" element={<SignUp />} />
                 </>
               )}

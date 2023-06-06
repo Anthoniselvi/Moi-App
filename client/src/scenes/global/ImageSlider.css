@@ -1,0 +1,63 @@
+.slider-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: calc(100vh-100px);
+    /* max-width: 800px; Adjust the maximum width as per your requirements */
+    margin: 0 auto;
+  }
+  
+  .slide-container {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .slide-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .arrow-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .arrow {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    outline: none;
+  }
+  
+  .arrow-left {
+    visibility: hidden;
+  }
+  
+  .arrow-right {
+    visibility: hidden;
+  }
+  
+  .slider-wrapper:hover .arrow-left,
+  .slider-wrapper:hover .arrow-right {
+    visibility: visible;
+  }
+  
+  .slide-container:hover .arrow-left,
+  .slide-container:hover .arrow-right {
+    visibility: hidden;
+  }
+  
+  /* Make the center image larger than the others */
+  .slide-container img:nth-child(2) {
+    transform: scale(1.2);
+  }
+  
