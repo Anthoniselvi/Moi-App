@@ -9,6 +9,9 @@ import ImageSlider from "./ImageSlider";
 import Testimonal from "./testimonal";
 import ReactSlide from "./ReactSlide";
 import Works from "./Works";
+import SubWorks from "./SubWorks";
+import Faq from "./Faq";
+import Footer from "./Footer";
 
 export default function Home() {
  
@@ -24,6 +27,9 @@ export default function Home() {
     <Testimonal />
     <ReactSlide />
     <Works />
+    <SubWorks />
+    <Faq />
+    <Footer />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-export default function Works() {
+export default function SubWorks() {
   return (
     <div
       style={{
@@ -12,7 +12,6 @@ export default function Works() {
         backgroundColor: "#fff",
       }}
     >
-      <h1>How It Works</h1>
       <Box
         sx={{
           display: "flex",
@@ -25,22 +24,6 @@ export default function Works() {
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px 50px",
-            // border: "1px solid red",
-            width: "50%",
-            height: "100%",
-            objectFit: "cover",
-            backgroundColor: "#b7e5fc",
-            borderRadius: "10px",
-          }}
-        >
-          <img src="/img/mobile.png" style={{ height: "100%" }} />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
             flexDirection: "column",
             padding: "20px",
             // border: "1px solid green",
@@ -48,9 +31,7 @@ export default function Works() {
             height: "100%",
           }}
         >
-          <h2 style={{ color: "#121212" }}>
-            Create Events & their Entries for any Occasion
-          </h2>
+          <h2 style={{ color: "#121212" }}>Easily Send Thank You Cards</h2>
 
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} /> */}
@@ -58,10 +39,7 @@ export default function Works() {
               src="/img/check.png"
               style={{ width: "20px", height: "20px" }}
             />
-            <h4 style={{ color: "#121212" }}>
-              {" "}
-              Create Events with Event Name, Place & Date
-            </h4>
+            <h4 style={{ color: "#121212" }}> Choose Thank you cards</h4>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} />  */}
@@ -70,10 +48,7 @@ export default function Works() {
               style={{ width: "20px", height: "20px" }}
             />
 
-            <h4 style={{ color: "#121212" }}>
-              {" "}
-              Create MoiEntries with Person Name, City, if amount or gift
-            </h4>
+            <h4 style={{ color: "#121212" }}> Send Cards to Seleted Names</h4>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} />  */}
@@ -96,6 +71,22 @@ export default function Works() {
           >
             Get Started
           </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px 50px",
+            // border: "1px solid red",
+            width: "50%",
+            height: "100%",
+            objectFit: "cover",
+            backgroundColor: "#b7e5fc",
+            borderRadius: "10px",
+          }}
+        >
+          <img src="/img/mobile.png" style={{ height: "100%" }} />
         </Box>
       </Box>
     </div>
