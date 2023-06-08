@@ -23,6 +23,9 @@
     background-color: #f6f6f6;
   }
    */
+   html{
+    scroll-behavior: smooth;
+   }
   nav {
     display: flex;
     align-items: center;

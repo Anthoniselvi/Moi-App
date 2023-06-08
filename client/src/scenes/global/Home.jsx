@@ -12,6 +12,8 @@ import Works from "./Works";
 import SubWorks from "./SubWorks";
 import Faq from "./Faq";
 import Footer from "./Footer";
+import NewSlide from "./NewSlide/NewSlide"
+import NewTestimonal from "./Testimonal/Testimonal";
 
 export default function Home() {
  
@@ -29,7 +31,9 @@ export default function Home() {
     <Works />
     <SubWorks />
     <Faq />
+    <NewSlide />
     <Footer />
+    <NewTestimonal />
     </div>
   );
 }
