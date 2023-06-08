@@ -20,6 +20,7 @@ import NewReports from "./scenes/reports/NewReports";
 import Navbar from "./scenes/global/Navbar";
 import Home from "./scenes/global/Home";
 import About from "./scenes/global/About";
+import ECardForm from "./scenes/ecard";
 
 function App() {
   const auth = useUserAuth();
@@ -59,6 +60,7 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/login" element={<SignIn />} />
                   <Route path="/signup" element={<SignUp />} />
+                  <Route path="/ecard" element={<ECardForm />} />
                 </>
               )}
             </Routes>

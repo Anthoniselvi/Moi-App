@@ -527,3 +527,20 @@
     position: relative;
     padding: 20px;
   }
+  .footer-button {
+    padding: 0.5rem 2rem;
+    background-color: #fff;
+    color:#101a34;  
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  .footer-button:hover {
+    background-color: #50bcd9;
+    color: #101a34;
+  }

@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="nav-logo-container">
-        <h1>CANDORBEES</h1>
+        <h1>MOI APP</h1>
       </div>
       <div className="navbar-links-container">
         <a href="/">Home</a>
