@@ -3,7 +3,7 @@ import { Carousel } from "@trendyol-js/react-carousel";
 
 export default function Services() {
   return (
-    <div className="services-container">
+    <div className="services-container" id="services">
       <Carousel show={3.5} slide={1} swiping={true}>
         <div
           style={{

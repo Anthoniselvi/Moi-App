@@ -14,6 +14,7 @@ import Faq from "./Faq";
 import Footer from "./Footer";
 import NewSlide from "./NewSlide/NewSlide"
 import NewTestimonal from "./Testimonal/Testimonal";
+import NewNavbar from "./NewNavbar";
 
 export default function Home() {
  
@@ -21,19 +22,21 @@ export default function Home() {
   return (
     <div className="home-container">
      <Navbar />
+     {/* <NewNavbar /> */}
     {/* <ImageSlider /> */}
      {/* <Slider /> */}
      <FirstPage />
     <About />
     <Services />
-    <Testimonal />
-    <ReactSlide />
+    {/* <Testimonal /> */}
+    {/* <ReactSlide />
     <Works />
     <SubWorks />
     <Faq />
-    <NewSlide />
-    <Footer />
+    <NewSlide /> */}
+ 
     <NewTestimonal />
+    <Footer /> 
     </div>
   );
 }

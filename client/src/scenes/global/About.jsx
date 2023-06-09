@@ -5,7 +5,7 @@ import "./Navbar.css";
 export default function About() {
   const phImagePath = "/img/layout.png";
   return (
-    <div className="about-container">
+    <div className="about-container" id="about">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style={{ width: "100vw" }}>
         <path style={{ width: "100vw" }}
           fill="#b7e5fc"

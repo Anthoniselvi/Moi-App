@@ -49,10 +49,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-links-container">
         <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="">Services</a>
-        <a href="">How to Works</a>
-        <a href="">Contact</a>   
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonal">How to Works</a>
+        <a href="#footer">Contact</a>   
         <button className="primary-button" onClick={navigateToLogin}>Login</button>
       </div>
      

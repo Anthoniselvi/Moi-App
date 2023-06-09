@@ -10,6 +10,7 @@ export default function Footer() {
   };
   return (
     <div
+      id="footer"
       style={{
         backgroundColor: "#22222a",
         width: "100vw",

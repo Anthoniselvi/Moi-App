@@ -21,6 +21,10 @@ import Navbar from "./scenes/global/Navbar";
 import Home from "./scenes/global/Home";
 import About from "./scenes/global/About";
 import ECardForm from "./scenes/ecard";
+import Services from "./scenes/global/Services";
+import Testimonal from "./scenes/global/testimonal";
+import NewTestimonal from "./scenes/global/Testimonal/Testimonal";
+import Footer from "./scenes/global/Footer";
 
 function App() {
   const auth = useUserAuth();
@@ -58,8 +62,9 @@ function App() {
                 <>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/about" element={<About />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/testimonials" element={<NewTestimonal />} />
+                  <Route path="/contact" element={<Footer />} />
                   <Route path="/login" element={<SignIn />} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route path="/ecard" element={<ECardForm />} />

@@ -64,7 +64,7 @@ function NewTestimonal() {
   ];
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container" id="testimonal">
       <hr className="seperator" />
       <div className="carousel-wrapper">
         <Carousel breakPoints={breakPoints}>
