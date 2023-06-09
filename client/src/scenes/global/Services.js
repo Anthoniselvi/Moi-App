@@ -4,7 +4,8 @@ import { Carousel } from "@trendyol-js/react-carousel";
 export default function Services() {
   return (
     <div className="services-container" id="services">
-      <Carousel show={3.5} slide={1} swiping={true}>
+      <h1 style={{ textAlign: "center" }}>Services</h1>
+      <Carousel show={3.5} slide={1} swiping={true} align="center">
         <div
           style={{
             backgroundColor: "#2d66c3",

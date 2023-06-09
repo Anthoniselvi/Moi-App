@@ -65,7 +65,8 @@ function NewTestimonal() {
 
   return (
     <div className="carousel-container" id="testimonal">
-      <hr className="seperator" />
+      <h1>Testimonals</h1>
+      {/* <hr className="seperator" /> */}
       <div className="carousel-wrapper">
         <Carousel breakPoints={breakPoints}>
           {cards.map((card) => {

@@ -59,7 +59,7 @@ function NewSlide() {
 
   return (
     <div className="carousel-container">
-      <hr className="seperator" />
+      {/* <hr className="seperator" /> */}
       <div className="carousel-wrapper">
         <Carousel breakPoints={breakPoints}>
           {items.map((item) => (

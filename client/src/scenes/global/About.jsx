@@ -13,6 +13,7 @@ export default function About() {
           d="M0,256L1440,128L1440,0L0,0Z"
         />
       </svg>
+      {/* <h1 style={{textAlign: "center", color: "#121212"}}>About Moi-App</h1> */}
       <div className="image-container">
         <img src={phImagePath} alt="display" />
       </div>
