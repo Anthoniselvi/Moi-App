@@ -16,19 +16,22 @@ function NewSlide() {
     {
       image: "/img/birthday.png",
       title: "Birthday",
-      description: "This is a description",
-      // clickEvent: sliderClick
-    },
-    {
-      image: "/img/engage.png",
-      title: "Engagement",
-      description: "This is a second description",
+      description:
+        "Capture and cherish every gift that comes your way on your birthday with GiftBook.",
       // clickEvent: sliderClick
     },
     {
       image: "/img/wedding.png",
       title: "Wedding",
-      description: "This is a third description",
+      description:
+        "Preserve the love and generosity of your wedding guests with GiftBook. A timeless keepsake of your cherished gifts.",
+      // clickEvent: sliderClick
+    },
+    {
+      image: "/img/house.png",
+      title: "House Warming",
+      description:
+        "Remember the love, treasure the gifts. GiftBook helps you honor the generosity of your housewarming guests",
       // clickEvent: sliderClick
     },
     {
@@ -58,7 +61,17 @@ function NewSlide() {
   ];
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container" style={{ backgroundColor: "#fff" }}>
+      <h1
+        style={{
+          color: "#101a34",
+          fontWeight: 600,
+          fontFamily: "Poppins",
+          fontSize: "30px",
+        }}
+      >
+        Giftbook for any occassion
+      </h1>
       {/* <hr className="seperator" /> */}
       <div className="carousel-wrapper">
         <Carousel breakPoints={breakPoints}>
@@ -69,19 +82,64 @@ function NewSlide() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "250px",
+                height: "400px",
                 width: "100%",
                 margin: "15px",
+                // border: "1px solid grey",
+                borderRadius: "8px",
+                boxShadow: "0 0 8px 0 rgba(8,18,53,.25)",
               }}
               key={item.title}
             >
               <img
                 src={item.image}
                 alt={item.title}
-                style={{ width: "100%", height: "70%" }}
+                style={{ width: "100%", height: "50%", overflow: "hidden" }}
               />
-              <p>{item.title}</p>
-              <p>{item.description}</p>
+              <div style={{ width: "100%", height: "35%" }}>
+                <p
+                  style={{
+                    fontFamily: "Poppins",
+                    fontWeight: 600,
+                    fontSize: "15px",
+                    color: "#101a34",
+                    textAlign: "center",
+                  }}
+                >
+                  {item.title}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "Poppins",
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    lineHeight: "20px",
+                    color: "#5e6577",
+                    textAlign: "center",
+                  }}
+                >
+                  {item.description}
+                </p>
+              </div>
+              <div style={{ width: "100%", height: "15%" }}>
+                <button
+                  style={{
+                    fontFamily: "Poppins",
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    lineHeight: "20px",
+                    color: "#5e6577",
+                    textAlign: "center",
+                    border: "1px solid #121212",
+                    borderRadius: "20px",
+                    padding: "5px 20px",
+                    width: "60%",
+                    margin: "0% 20%",
+                  }}
+                >
+                  Create Event
+                </button>
+              </div>
             </div>
           ))}
         </Carousel>

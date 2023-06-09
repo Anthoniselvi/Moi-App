@@ -31,7 +31,17 @@ export default function SubWorks() {
             height: "100%",
           }}
         >
-          <h2 style={{ color: "#121212" }}>Easily Send Thank You Cards</h2>
+          <h2
+            style={{
+              fontFamily: "Poppins",
+              fontWeight: 600,
+              fontSize: "38px",
+              lineHeight: "46px",
+              color: "#101a34",
+            }}
+          >
+            Easily track your gifts
+          </h2>
 
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} /> */}
@@ -39,34 +49,50 @@ export default function SubWorks() {
               src="/img/check.png"
               style={{ width: "20px", height: "20px" }}
             />
-            <h4 style={{ color: "#121212" }}> Choose Thank you cards</h4>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} />  */}
-            <img
-              src="/img/check.png"
-              style={{ width: "20px", height: "20px" }}
-            />
-
-            <h4 style={{ color: "#121212" }}> Send Cards to Seleted Names</h4>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} />  */}
-            <img
-              src="/img/check.png"
-              style={{ width: "20px", height: "20px" }}
-            />
-
-            <h4 style={{ color: "#121212" }}>
-              Download Reports by the Event Name
+            <h4
+              style={{
+                fontFamily: "Poppins",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "22px",
+                color: "#101a34",
+              }}
+            >
+              Track your full history of received gifts.
             </h4>
           </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} />  */}
+            <img
+              src="/img/check.png"
+              style={{ width: "20px", height: "20px" }}
+            />
+
+            <h4
+              style={{
+                fontFamily: "Poppins",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "22px",
+                color: "#101a34",
+              }}
+            >
+              Never miss someone from the giftbook.
+            </h4>
+          </div>
+
           <Button
             sx={{
               backgroundColor: "#101a34",
               color: "#fff",
-              width: "20%",
+              width: "30%",
               marginTop: "20px",
+              fontWeight: 600,
+              fontSize: "15px",
+              lineHeight: "22px",
+              fontFamily: "Poppins",
+              borderRadius: "7px",
+              border: "1px solid #101a34",
             }}
           >
             Get Started
@@ -86,7 +112,10 @@ export default function SubWorks() {
             borderRadius: "10px",
           }}
         >
-          <img src="/img/mobile.png" style={{ height: "100%" }} />
+          <img
+            src="/img/ph1.png"
+            style={{ height: "100%", marginTop: "20px" }}
+          />
         </Box>
       </Box>
     </div>

@@ -22,13 +22,14 @@ export default function Home() {
    {/* <ImageSlider /> */}
     <FirstPage />
     <About />
-    <Services />
+    <NewSlide />
+    {/* <Services /> */}
    
     <Works />
     <SubWorks />    
     <NewTestimonal />
     <Faq />
-    <NewSlide />  {/* <ReactSlide /> */}
+      {/* <ReactSlide /> */}
  
      <Footer /> 
     </div>
