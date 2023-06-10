@@ -27,7 +27,7 @@ const NewReports = () => {
    
     const getReports = (date) => {
       console.log("date :" + date)
-      axios.get("http://localhost:5000/results", { date:  date })
+      axios.get(`${process.env.REACT_APP_BASE_URL}/results`, { date:  date })
         .then((response) => {
           console.log("Reports : " + JSON.stringify(response.data))
           setReportsArray(response.data)

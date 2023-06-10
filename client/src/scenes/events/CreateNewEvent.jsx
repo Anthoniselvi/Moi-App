@@ -43,7 +43,7 @@ export default function CreateNewEvent({ open, columns, onClose, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:1234/events/add", {
+      .post(`${process.env.REACT_APP_BASE_URL}/events/add`, {
         // eventId: eventId,
         eventType: eventType,
         name: name,

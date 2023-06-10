@@ -42,7 +42,7 @@ export default function EditEvent({ open, onClose, eventId }) {
   const handleEditSave = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:1234/events/edit/${eventId}`, {
+      .put(`${process.env.REACT_APP_BASE_URL}/events/edit/${eventId}`, {
         eventType : eventType,
         name: name,
         place: place,
@@ -56,7 +56,7 @@ export default function EditEvent({ open, onClose, eventId }) {
   };
 
   const getSelectedEvent = () => {
-    axios.get(`http://localhost:1234/events/single/${eventId}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/events/single/${eventId}`).then((response) => {
       // console.log(response);
      
       console.log("Totals : " + JSON.stringify(response.data));

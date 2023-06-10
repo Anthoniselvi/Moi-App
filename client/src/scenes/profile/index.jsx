@@ -32,7 +32,7 @@ function Profile(props) {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:1234/profile/${profileId}`, {
+      .put(`${process.env.REACT_APP_BASE_URL}/profile/${profileId}`, {
       
         name: name,
         age: age,
@@ -55,7 +55,7 @@ function Profile(props) {
 
  
   const getProfile = () => {
-    axios.get(`http://localhost:1234/profile/${profileId}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/profile/${profileId}`).then((response) => {
       // console.log(response);
       console.log("get selected Profile : " + JSON.stringify(response.data));
       // setProfiles(response.data);

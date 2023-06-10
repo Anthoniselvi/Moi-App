@@ -43,7 +43,7 @@ export default function CreateNewEntry({ open, onClose, eventId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:1234/entries/add", {
+      .post(`${process.env.REACT_APP_BASE_URL}/entries/add`, {
         
         personName: personName,
         city: city,

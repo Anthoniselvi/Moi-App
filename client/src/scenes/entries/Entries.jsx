@@ -63,7 +63,7 @@ const Entries = () => {
 
       
     const navigateToEventsPage = () => {
-      axios.get(`http://localhost:1234/events/single/${eventId}`).then((response) => {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/events/single/${eventId}`).then((response) => {
       // console.log(response);
      
       console.log("Totals : " + JSON.stringify(response.data));
@@ -74,7 +74,7 @@ const Entries = () => {
     }
     const getSelectedEvent = () => {
         axios
-          .get(`http://localhost:1234/events/single/${eventId}`)
+          .get(`${process.env.REACT_APP_BASE_URL}/events/single/${eventId}`)
           .then((response) => {
             // console.log(response);
             console.log(response.data);
@@ -83,7 +83,7 @@ const Entries = () => {
       };
     
       const fetchAllEntries = () => {
-        axios.get(`http://localhost:1234/entries/all/${eventId}`).then((response) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/entries/all/${eventId}`).then((response) => {
           // console.log(response);
           // console.log("fetchAllEntries : " + JSON.stringify(response.data));
           console.log("fetchAllEntries : " + JSON.stringify(response.data.entriesList));

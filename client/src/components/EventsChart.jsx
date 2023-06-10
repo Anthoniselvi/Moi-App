@@ -17,7 +17,7 @@ const EventsChart = () => {
       
 
     const fetchTotals = () => {
-        axios.get(`http://localhost:1234/entries/total/${profileId}`).then((response) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/entries/total/${profileId}`).then((response) => {
           // console.log(response);
          
           console.log("Totals : " + JSON.stringify(response.data));

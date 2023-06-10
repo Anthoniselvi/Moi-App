@@ -46,7 +46,7 @@ const Reports = () => {
      
 
     const getAllEvents = () => {
-      axios.get(`http://localhost:1234/events/all/${profileId}`).then((response) => {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/events/all/${profileId}`).then((response) => {
         // console.log(response);
        
         console.log("All Events from ProfileId : " + JSON.stringify(response.data));
@@ -55,7 +55,7 @@ const Reports = () => {
     };
    
     const getAllEntries = () => {
-      axios.get(`http://localhost:1234/entries/allentries/${profileId}`).then((response) => {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/entries/allentries/${profileId}`).then((response) => {
         // console.log(response);
        
         console.log("All Entries from ProfileId : " + JSON.stringify(response.data));

@@ -35,7 +35,7 @@ export default function EditEntry({ open,  onClose,  entryId }) {
   const handleEditSave = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:1234/entries/edit/${entryId}`, {
+      .put(`${process.env.REACT_APP_BASE_URL}/entries/edit/${entryId}`, {
         personName: personName,
         city: city,
         presentType: presentType,
@@ -52,7 +52,7 @@ export default function EditEntry({ open,  onClose,  entryId }) {
   };
 
   const getSelectedEntry = () => {
-    axios.get(`http://localhost:1234/entries/single/${entryId}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/entries/single/${entryId}`).then((response) => {
       // console.log(response);
      
       console.log("Totals : " + JSON.stringify(response.data));

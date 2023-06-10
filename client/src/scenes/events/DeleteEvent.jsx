@@ -24,7 +24,7 @@ export default function DeleteEvent({ eventId, open, onClose }) {
   };
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:1234/events/delete/${eventId}`).then((response) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/events/delete/${eventId}`).then((response) => {
       console.log("Deleted Parts :" + JSON.stringify(response));
     });
     onClose();

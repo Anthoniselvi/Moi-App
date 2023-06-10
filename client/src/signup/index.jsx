@@ -69,7 +69,7 @@ const handleSubmitSignup = async (e) => {
       console.log("firebase signup created");
 
       // Make the POST request to your API endpoint
-      fetch("http://localhost:1234/profile/add", {
+      fetch(`${process.env.REACT_APP_BASE_URL}/profile/add`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const handleClick = async () => {
   try {
     await googleSignIn();
     axios
-      .post("http://localhost:2010/profile", {
+      .post(`${process.env.REACT_APP_BASE_URL}/profile`, {
         profileId: user.uid,
         name: user.displayName,
         email: user.email,

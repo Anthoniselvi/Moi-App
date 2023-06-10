@@ -23,7 +23,7 @@ export default function DeleteEntry({ entryId, open, onClose }) {
   };
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:1234/entries/delete/${entryId}`).then((response) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/entries/delete/${entryId}`).then((response) => {
       console.log("Deleted Parts :" + JSON.stringify(response));
     });
     onClose();
