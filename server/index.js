@@ -7,10 +7,6 @@ import profileRoutes from "./routes/profile.js";
 import eventsRoutes from "./routes/events.js";
 import entriesRoutes from "./routes/entries.js";
 
-import Profiles from "./models/Profile.js";
-import Events from "./models/Events.js";
-import Entries from "./models/Entries.js";
-
 dotenv.config();
 const app = express();
 app.use(express.json());
