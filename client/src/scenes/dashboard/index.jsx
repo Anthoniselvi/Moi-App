@@ -86,7 +86,8 @@ const navigateToEntriesList = (eventId) => {
 }
 
     const fetchTotals = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/entries/total/${profileId}`).then((response) => {
+        console.log("Process.env in dashboard : " + JSON.stringify(process.env))
+        axios.get(`${process.env.REACT_APP_BASE_URL}entries/total/${profileId}`).then((response) => {
           // console.log(response);
          
           console.log("Totals : " + JSON.stringify(response.data));
@@ -95,7 +96,7 @@ const navigateToEntriesList = (eventId) => {
         });
       };
       const fetchAllEntriesByProfileId = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/entries/allentries/${profileId}`).then((response) => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}entries/allentries/${profileId}`).then((response) => {
           // console.log(response);
          
           console.log("All Entries from ProfileId : " + JSON.stringify(response.data));
