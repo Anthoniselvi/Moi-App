@@ -33,6 +33,14 @@ const Navbar = () => {
       icon: <InfoIcon />,
     },
     {
+      text: "Services",
+      icon: <CommentRoundedIcon />,
+    },
+    {
+      text: "How To Works",
+      icon: <CommentRoundedIcon />,
+    },
+    {
       text: "Testimonials",
       icon: <CommentRoundedIcon />,
     },
@@ -48,12 +56,17 @@ const Navbar = () => {
         <h1>MOI APP</h1>
       </div>
       <div className="navbar-links-container">
+      
         <a href="/">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#testimonal">How to Works</a>
-        <a href="#footer">Contact</a>   
-        <button className="primary-button" onClick={navigateToLogin}>Login</button>
+        <a href="#works">How to Works</a>
+        <a href="#testimonal">Testimonials</a>
+        <a href="#footer">Contact</a>  
+       
+        <button className="primary1-button" onClick={navigateToLogin}>Login</button> 
+        <button className="primary-button" onClick={navigateToLogin}>Sign Up</button>
+       
       </div>
      
       <div className="navbar-menu-container">
@@ -72,11 +85,16 @@ const Navbar = () => {
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
+                  
                 </ListItemButton>
               </ListItem>
             ))}
           </List>
-          <Divider />
+          {/* <Divider /> */}
+          <div style={{display: "flex", flexDirection:"column", gap:"20px", width:"80%", alignItems: "center", margin: "0 10px" }}>
+          <button className="primary1-button" style={{width:"100%"}} onClick={navigateToLogin}>Login</button> 
+        <button className="primary-button" style={{width:"100%"}}  onClick={navigateToLogin}>Sign Up</button>
+        </div>
         </Box>
       </Drawer>
     </nav>

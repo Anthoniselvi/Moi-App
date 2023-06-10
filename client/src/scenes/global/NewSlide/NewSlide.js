@@ -61,7 +61,12 @@ function NewSlide() {
   ];
 
   return (
-    <div className="carousel-container" style={{ backgroundColor: "#fff" }}>
+    <div
+      className="carousel-container"
+      style={{
+        backgroundColor: "#fff",
+      }}
+    >
       <h1
         style={{
           color: "#101a34",

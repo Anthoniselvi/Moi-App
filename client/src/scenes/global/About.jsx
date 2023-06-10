@@ -3,16 +3,16 @@ import "./Navbar.css";
 
 
 export default function About() {
-  const phImagePath = "/img/layout.png";
+  const phImagePath = "/img/screen1.png";
   return (
     <div className="about-container" id="about">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style={{ width: "100vw" }}>
-        <path style={{ width: "100vw" }}
+      {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style={{ width: "100vw" }}>
+        <path style={{ width: "100vw", height: "100vh" }}
           fill="#b7e5fc"
           //   fill-opacity="0"
           d="M0,256L1440,128L1440,0L0,0Z"
         />
-      </svg>
+      </svg> */}
       {/* <h1 style={{textAlign: "center", color: "#121212"}}>About Moi-App</h1> */}
       <div className="image-container">
         <img src={phImagePath} alt="display" />
