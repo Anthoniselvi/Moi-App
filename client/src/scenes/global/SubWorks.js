@@ -93,6 +93,12 @@ export default function SubWorks() {
               fontFamily: "Poppins",
               borderRadius: "7px",
               border: "1px solid #101a34",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#101a34",
+                border: "1px solid #101a34",
+              },
             }}
           >
             Get Started

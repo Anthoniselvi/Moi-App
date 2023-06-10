@@ -112,7 +112,7 @@ export default function Works() {
               Share your list with your spouse and family.
             </h4>
           </div>
-        
+
           <Button
             sx={{
               backgroundColor: "#101a34",
@@ -125,6 +125,12 @@ export default function Works() {
               fontFamily: "Poppins",
               borderRadius: "7px",
               border: "1px solid #101a34",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#101a34",
+                border: "1px solid #101a34",
+              },
             }}
           >
             Get Started

@@ -67,13 +67,21 @@ function NewTestimonal() {
         Testimonials
       </h1>
       {/* <hr className="seperator" /> */}
-      <div className="carousel-wrapper">
+      <div className="carousel-wrapper" style={{ padding: "2% 10%" }}>
         <Carousel breakPoints={breakPoints}>
           {cards.map((card) => {
             return (
               <div
                 className="card swiper-slide"
-                style={{ alignItems: "center" }}
+                style={{
+                  alignItems: "center",
+                  border: "1px solid #e8ecf1",
+                  padding: "4%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
                 <div className="card__image">
                   {card.image}
@@ -82,7 +90,7 @@ function NewTestimonal() {
                 <div className="card__content">
                   <span className="card__name">{card.name}</span>
                   <p className="card__text">{card.description}</p>
-                  <button className="card__btn">View More</button>
+                  {/* <button className="card__btn">View More</button> */}
                 </div>
               </div>
             );

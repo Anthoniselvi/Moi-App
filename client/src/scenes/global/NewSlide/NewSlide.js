@@ -124,13 +124,14 @@ function NewSlide() {
               <div style={{ width: "100%", height: "15%" }}>
                 <button
                   style={{
+                    backgroundColor: "#fff",
                     fontFamily: "Poppins",
-                    fontWeight: 400,
+                    fontWeight: 600,
                     fontSize: "12px",
                     lineHeight: "20px",
-                    color: "#5e6577",
                     textAlign: "center",
-                    border: "1px solid #121212",
+                    color: "#0d5577",
+                    border: "1px solid #0d5577",
                     borderRadius: "20px",
                     padding: "5px 20px",
                     width: "60%",
