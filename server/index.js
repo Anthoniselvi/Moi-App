@@ -17,9 +17,9 @@ app.use(cors());
 // app.get("/", (req, res) => {
 //   res.send("Welcome to Moi App");
 // });
-app.use("profile", profileRoutes);
-app.use("events", eventsRoutes);
-app.use("entries", entriesRoutes);
+app.use("/profile", profileRoutes);
+app.use("/events", eventsRoutes);
+app.use("/entries", entriesRoutes);
 
 const PORT = process.env.PORT || 3000;
 mongoose
