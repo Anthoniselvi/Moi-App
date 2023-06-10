@@ -19,8 +19,6 @@ export default function Footer() {
         gap: "2%",
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
-        // alignItems: "center",
-        // justifyContent: "top",
       }}
     >
       <div>
@@ -28,22 +26,120 @@ export default function Footer() {
         <h3>Made Easy</h3>
       </div>
       <div>
-        <h2>About Moi-App</h2>
-        <h3>Events</h3>
-        <h3>Ecards</h3>
+        <h2
+          style={{
+            fontWeight: 600,
+            fontFamily: "Poppins",
+            fontSize: "20px",
+            lineHeight: "24px",
+            textAlign: "left",
+            color: "#fff",
+          }}
+        >
+          About Moi-App
+        </h2>
+        <h3
+          style={{
+            fontWeight: 400,
+            fontFamily: "Poppins",
+            fontSize: "15px",
+            lineHeight: "20px",
+            textAlign: "left",
+            color: "#fff",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = "#50bcd9";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = "#fff";
+          }}
+        >
+          Events
+        </h3>
+        <h3
+          style={{
+            fontWeight: 400,
+            fontFamily: "Poppins",
+            fontSize: "15px",
+            lineHeight: "20px",
+            textAlign: "left",
+            color: "#fff",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = "#50bcd9";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = "#fff";
+          }}
+        >
+          Ecards
+        </h3>
       </div>
       <div>
-        <h2>Help</h2>
-        <h3>Contact Us</h3>
-        <h3>FAQ</h3>
+        <h2
+          style={{
+            fontWeight: 600,
+            fontFamily: "Poppins",
+            fontSize: "20px",
+            lineHeight: "24px",
+            textAlign: "left",
+            color: "#fff",
+          }}
+        >
+          Help
+        </h2>
+        <h3
+          style={{
+            fontWeight: 400,
+            fontFamily: "Poppins",
+            fontSize: "15px",
+            lineHeight: "20px",
+            textAlign: "left",
+            color: "#fff",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = "#50bcd9";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = "#fff";
+          }}
+        >
+          Contact Us
+        </h3>
+        <h3
+          style={{
+            fontWeight: 400,
+            fontFamily: "Poppins",
+            fontSize: "15px",
+            lineHeight: "20px",
+            textAlign: "left",
+            color: "#fff",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.color = "#50bcd9";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = "#fff";
+          }}
+        >
+          FAQ
+        </h3>
       </div>
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "5%",
+          paddingTop: "5%",
+        }}
+      >
         <button className="footer-button" onClick={navigateToLogin}>
           Login
         </button>
-        {/* <button className="primary-button" onClick={navigateToLogin}>
+        <button className="footer1-button" onClick={navigateToLogin}>
           SignUp
-        </button> */}
+        </button>
       </div>
     </div>
   );
