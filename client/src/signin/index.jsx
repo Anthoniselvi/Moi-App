@@ -64,7 +64,8 @@ const SignIn = () => {
     try {
       await googleSignIn();
       axios
-        .post("http://localhost:2010/profile", {
+        // .post("http://localhost:2010/profile", {
+          .post(`${process.env.REACT_APP_BASE_URL}/profile`, {
           profileId: user.uid,
           name: user.displayName,
           email: user.email,
