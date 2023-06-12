@@ -10,15 +10,18 @@ export default function Footer() {
   };
   return (
     <div
+      className="footer-container"
       id="footer"
       style={{
         backgroundColor: "#22222a",
         width: "100vw",
-        height: "60vh",
+        // height: "60vh",
         padding: "5%",
         gap: "2%",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        // gridTemplateColumns: "1fr 1fr 1fr 1fr",
       }}
     >
       <div>
@@ -126,12 +129,13 @@ export default function Footer() {
         </h3>
       </div>
       <div
+        className="footer-outer-button"
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           gap: "5%",
-          paddingTop: "5%",
+          paddingTop: "1%",
         }}
       >
         <button className="footer-button" onClick={navigateToLogin}>

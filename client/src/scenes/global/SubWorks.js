@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import "./Navbar.css";
 
 export default function SubWorks() {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ export default function SubWorks() {
       }}
     >
       <Box
+        className="subworks-inner-box"
         sx={{
           display: "flex",
           padding: "20px",
@@ -28,12 +29,13 @@ export default function SubWorks() {
         }}
       >
         <Box
+          className="subworks-text-box"
           sx={{
             display: "flex",
             flexDirection: "column",
             padding: "20px",
             // border: "1px solid green",
-            width: "50%",
+            // width: "50%",
             height: "100%",
           }}
         >
@@ -112,6 +114,7 @@ export default function SubWorks() {
           </Button>
         </Box>
         <Box
+          className="subworks-img-box"
           sx={{
             display: "flex",
             alignItems: "center",

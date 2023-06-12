@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import "./Navbar.css";
 
 export default function Works() {
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ export default function Works() {
         How It Works
       </h1>
       <Box
+        className="works-inner-box"
         sx={{
           display: "flex",
           padding: "20px",
@@ -41,18 +42,19 @@ export default function Works() {
         }}
       >
         <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px 50px",
-            // border: "1px solid red",
-            width: "50%",
-            height: "100%",
-            objectFit: "cover",
-            backgroundColor: "#b7e5fc",
-            borderRadius: "10px",
-          }}
+          className="works-img-box"
+          // sx={{
+          //   display: "flex",
+          //   alignItems: "center",
+          //   justifyContent: "center",
+          //   padding: "20px 50px",
+          //   // border: "1px solid red",
+          //   width: "50%",
+          //   height: "100%",
+          //   objectFit: "cover",
+          //   backgroundColor: "#b7e5fc",
+          //   borderRadius: "10px",
+          // }}
         >
           <img
             src="/img/ph1.png"
@@ -60,6 +62,7 @@ export default function Works() {
           />
         </Box>
         <Box
+          className="works-text-box"
           sx={{
             display: "flex",
             flexDirection: "column",
