@@ -1,8 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 export default function SubWorks() {
+  const navigate = useNavigate();
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
   return (
     <div
       style={{
@@ -82,6 +88,7 @@ export default function SubWorks() {
           </div>
 
           <Button
+            onClick={navigateToLogin}
             sx={{
               backgroundColor: "#101a34",
               color: "#fff",

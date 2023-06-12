@@ -1,7 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Navbar.css"
 
 export default function FirstPage() {
+  const navigate = useNavigate()
+
+  const navigateToLogin = () => {
+    navigate("/login")
+  }
   return (
     <div className="firstpage-container">       
     <div className="home-text-section">
@@ -9,7 +15,7 @@ export default function FirstPage() {
       <p className="primary-text">
       GiftBook is the easiest way to record all the gifts you receive for your birthday, wedding, housewarming, and more.
       </p>
-      <button className="secondary-button">Get Started</button>
+      <button onClick={navigateToLogin} className="secondary-button">Get Started</button>
     </div>
   </div>
   )
