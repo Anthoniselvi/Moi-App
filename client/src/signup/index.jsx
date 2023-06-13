@@ -117,11 +117,11 @@ const handleClick = async () => {
   }
 };
   return (
-    <>
-     
-        <Box display="flex" width="100%" height="100%" marginTop="5%" flexDirection="column" alignItems="center" justifyContent="center">
-             
-          <Avatar sx={{ m: 1, backgroundColor: "#2499ef" }}>
+    < div style={{display: "flex", alignItems: "center", justifyContent: "center", margin: "2% auto"}}>
+
+        <Box backgroundColor="#F8E367" color="colors.grey[100]" display="flex" padding="2%" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px"
+        >   
+          <Avatar sx={{ m: 1, backgroundColor: colors.blueAccent[700], }}>
             <LockOutlinedIcon />
           </Avatar>
           <br />
@@ -140,51 +140,51 @@ const handleClick = async () => {
                 }}
               >
                  <TextField fullWidth
-                 InputProps={{
-                  style: { fontSize: "16px" },
-                }}
-                InputLabelProps={{ style: { fontSize: 18 } }}
+                  InputProps={{
+                    style: { fontSize: "15px", color: "#180a91" },
+                  }}
+                  InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
                   id="outlined-basic-name"
                   label="Name"
                   variant="outlined"
                   value={signupData.name}
                   onChange={updateHandleChange}
                   name="name"
-                  sx={{ gridColumn: "span 10" }}
+                  sx={{ gridColumn: "span 10", color: "#180a91" }}
                   autoComplete="off"
                   color="secondary"
                   // required
                   type="text"
                 />
                 <TextField fullWidth
-                 InputProps={{
-                  style: { fontSize: "16px" },
-                }}
-                InputLabelProps={{ style: { fontSize: 18 } }}
+                  InputProps={{
+                    style: { fontSize: "15px", color: "#180a91" },
+                  }}
+                  InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
                   id="outlined-basic-mobile"
                   label="Mobile Number"
                   variant="outlined"
                   value={signupData.mobile}
                   onChange={updateHandleChange}
                   name="mobile"
-                  sx={{ gridColumn: "span 10" }}
+                  sx={{ gridColumn: "span 10", color: "#180a91" }}
                   autoComplete="off"
                   color="secondary"
                   // required
                   type="text"
                 />
               <TextField fullWidth
-                 InputProps={{
-                  style: { fontSize: "16px" },
-                }}
-                InputLabelProps={{ style: { fontSize: 18 } }}
+                  InputProps={{
+                    style: { fontSize: "15px", color: "#180a91" },
+                  }}
+                  InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
                   id="outlined-basic-email"
                   label="Email"
                   variant="outlined"
                   value={signupData.email}
                   onChange={updateHandleChange}
                   name="email"
-                  sx={{ gridColumn: "span 10" }}
+                  sx={{ gridColumn: "span 10" , color: "#180a91"}}
                   autoComplete="off"
                   color="secondary"
                   // required
@@ -194,16 +194,16 @@ const handleClick = async () => {
                 {/* <br /> */}
                 <TextField fullWidth
                  InputProps={{
-                  style: { fontSize: "16px" },
+                  style: { fontSize: "15px", color: "#180a91" },
                 }}
-                InputLabelProps={{ style: { fontSize: 18 } }}
+                InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
                   id="outlined-basic-password"
                   label="Password"
                   variant="outlined"
                   value={signupData.password}
                   onChange={updateHandleChange}
                   name="password"
-                  sx={{ gridColumn: "span 10" }}
+                  sx={{ gridColumn: "span 10", color: "#180a91" }}
                   color="secondary"
                   // required
                   type="password"
@@ -218,7 +218,7 @@ const handleClick = async () => {
               )}
              
 
-          <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
+          <Box display="flex" justifyContent="center" mt="10px" sx={{ gridColumn: "span 10" }}>
           <Button type="submit" 
                         sx={{
                             backgroundColor: colors.blueAccent[700],
@@ -252,7 +252,7 @@ const handleClick = async () => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Link href="/" to="/" sx={{color: "white"}} >
+                <Link href="/login" to="/login" sx={{color: "colors.blueAccent[700]"}} >
                 Already have an account? Sign in
                 </Link>
       
@@ -283,7 +283,7 @@ const handleClick = async () => {
   </Box>
   
 
-  </>
+  </div>
 )
 
 }

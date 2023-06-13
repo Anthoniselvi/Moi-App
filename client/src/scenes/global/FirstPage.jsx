@@ -5,8 +5,8 @@ import "./Navbar.css"
 export default function FirstPage() {
   const navigate = useNavigate()
 
-  const navigateToLogin = () => {
-    navigate("/login")
+  const navigateToSignUp = () => {
+    navigate("/signup")
   }
   return (
     <div className="firstpage-container">       
@@ -15,7 +15,7 @@ export default function FirstPage() {
       <p className="primary-text">
       GiftBook is the easiest way to record all the gifts you receive for your birthday, wedding, housewarming, and more.
       </p>
-      <button onClick={navigateToLogin} className="secondary-button">Get Started</button>
+      <button onClick={navigateToSignUp} className="secondary-button">Get Started</button>
     </div>
   </div>
   )

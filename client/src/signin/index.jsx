@@ -82,11 +82,12 @@ const SignIn = () => {
     }
   };
   return (
-    <>
+    < div style={{display: "flex", alignItems: "center", justifyContent: "center", margin: "5% auto"}}>
       {/* {isLoggedIn === false ? ( */}
-        <Box display="flex" width="100%" height="100%" marginTop="-5%" flexDirection="column" alignItems="center" justifyContent="center">
+        <Box backgroundColor="#F8E367" color="colors.grey[100]" display="flex" padding="2%" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px"
+        >
              
-          <Avatar sx={{ m: 1, backgroundColor: "#2499ef" }}>
+          <Avatar sx={{ m: 1, backgroundColor: colors.blueAccent[700],}}>
             <LockOutlinedIcon />
           </Avatar>
           <br />
@@ -106,16 +107,16 @@ const SignIn = () => {
               >
               <TextField fullWidth
                  InputProps={{
-                  style: { fontSize: "16px" },
+                  style: { fontSize: "15px", color: "#180a91" },
                 }}
-                InputLabelProps={{ style: { fontSize: 18 } }}
+                InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
                   id="outlined-basic-email"
                   label="Email"
                   variant="outlined"
                   onChange={handleChange}
                   value={signinData.email}
                   name="email"
-                  sx={{ gridColumn: "span 10" }}
+                  sx={{ gridColumn: "span 10" , color: "#180a91", borderColor: "#180a91"}}
                   autoComplete="off"
                   color="secondary"
                   // required
@@ -125,16 +126,16 @@ const SignIn = () => {
                 {/* <br /> */}
                 <TextField fullWidth
                  InputProps={{
-                  style: { fontSize: "16px" },
+                  style: { fontSize: "16px", color: "#180a91", borderColor: "#180a91" },
                 }}
-                InputLabelProps={{ style: { fontSize: 18 } }}
+                InputLabelProps={{ style: { fontSize: 18 , color: "#180a91", borderColor: "#180a91"} }}
                   id="outlined-basic-password"
                   label="Password"
                   variant="outlined"
                   onChange={handleChange}
                   value={signinData.password}
                   name="password"
-                  sx={{ gridColumn: "span 10" }}
+                  sx={{ gridColumn: "span 10", borderColor: "#180a91" }}
                   color="secondary"
                   // required
                   type="password"
@@ -177,7 +178,7 @@ const SignIn = () => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Link href="signup" to="/signup" sx={{color: "white"}} >
+                <Link href="signup" to="/signup" sx={{color: "colors.blueAccent[700]"}} >
                   Don't have an account? Sign Up
                 </Link>
       
@@ -208,7 +209,7 @@ const SignIn = () => {
   </Box>
    {/* ) : {logout}} */}
 
-  </>
+  </div>
 )
 
 }

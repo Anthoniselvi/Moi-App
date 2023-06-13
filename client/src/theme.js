@@ -6,7 +6,8 @@ export const tokens = (mode) => ({
   ...(mode === "dark"
     ? {
         grey: {
-          100: "#e0e0e0",
+          // 100: "#e0e0e0",
+          100: "#f9f9ff",
           200: "#c2c2c2",
           300: "#a3a3a3",
           400: "#858585",
@@ -22,8 +23,8 @@ export const tokens = (mode) => ({
           300: "#727681",
           // 400: "#1F2A40",
           400: "rgb(34, 43, 54)",
-          // 500: "#141b2d",
-          500: "rgb(23, 28, 36)",
+          500: "#34c1ff",
+          // 500: "rgb(23, 28, 36)",
           600: "#101624",
           700: "#0c101b",
           800: "#080b12",
@@ -65,7 +66,8 @@ export const tokens = (mode) => ({
           500: "#6870fa",
           600: "#535ac8",
           // 700: "#3e4396",
-          700: "#288cd7",
+          700: "#180a91",
+          // 700: "#288cd7",
           800: "#2a2d64",
           900: "#151632",
         },
@@ -143,7 +145,7 @@ export const themeSettings = (mode) => {
             },
             secondary: {
               // main: colors.greenAccent[500],
-              main: colors.blueAccent[2000],
+              main: colors.blueAccent[700],
             },
             neutral: {
               dark: colors.grey[700],

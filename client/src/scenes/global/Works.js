@@ -6,8 +6,8 @@ import "./Navbar.css";
 export default function Works() {
   const navigate = useNavigate();
 
-  const navigateToLogin = () => {
-    navigate("/login");
+  const navigateToSignUp = () => {
+    navigate("/signup");
   };
   return (
     <div
@@ -105,7 +105,7 @@ export default function Works() {
           </div>
 
           <Button
-            onClick={navigateToLogin}
+            onClick={navigateToSignUp}
             sx={{
               backgroundColor: "#101a34",
               color: "#fff",

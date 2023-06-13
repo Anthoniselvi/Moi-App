@@ -23,30 +23,39 @@ const Navbar = () => {
   const navigateToLogin = () => {
     navigate("/login")
   }
+  const navigateToSignUp = () => {
+    navigate("/singup")
+  }
   const menuOptions = [
     {
       text: "Home",
       icon: <HomeIcon />,
+      link: "/"
     },
     {
       text: "About",
       icon: <InfoIcon />,
+      link: "#about"
     },
     {
       text: "Services",
       icon: <CommentRoundedIcon />,
+      link: "#services"
     },
     {
       text: "How To Works",
       icon: <CommentRoundedIcon />,
+      link: "#works"
     },
     {
       text: "Testimonials",
       icon: <CommentRoundedIcon />,
+      link: "#testimonal"
     },
     {
       text: "Contact",
       icon: <PhoneRoundedIcon />,
+      link: "#footer"
     },
   
   ];
@@ -65,7 +74,7 @@ const Navbar = () => {
         <a href="#footer">Contact</a>  
        
         <button className="primary1-button" onClick={navigateToLogin}>Login</button> 
-        <button className="primary-button" onClick={navigateToLogin}>Sign Up</button>
+        <button className="primary-button" onClick={navigateToSignUp}>Sign Up</button>
        
       </div>
      
@@ -82,7 +91,7 @@ const Navbar = () => {
           <List>
             {menuOptions.map((item) => (
               <ListItem key={item.text} disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={item.link}>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
                   
@@ -93,7 +102,7 @@ const Navbar = () => {
           {/* <Divider /> */}
           <div style={{display: "flex", flexDirection:"column", gap:"20px", width:"80%", alignItems: "center", margin: "0 10px" }}>
           <button className="primary1-button" style={{width:"100%"}} onClick={navigateToLogin}>Login</button> 
-        <button className="primary-button" style={{width:"100%"}}  onClick={navigateToLogin}>Sign Up</button>
+        <button className="primary-button" style={{width:"100%"}}  onClick={navigateToSignUp}>Sign Up</button>
         </div>
         </Box>
       </Drawer>
