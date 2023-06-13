@@ -15,63 +15,45 @@ export default function Works() {
       style={{
         width: "100vw",
         height: "100vh",
-        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
         backgroundColor: "#fff",
+        // border: "1px solid pink",
       }}
     >
-      <h1
+      <div
         style={{
-          color: "#101a34",
-          fontWeight: 600,
-          fontFamily: "Poppins",
-          fontSize: "38px",
-          lineHeight: "46px",
-          textAlign: "center",
-        }}
-      >
-        How It Works
-      </h1>
-      <Box
-        className="works-inner-box"
-        sx={{
+          width: "100%",
+          height: "10%",
+          // border: "1px solid green",
           display: "flex",
-          padding: "20px",
-          gap: "5%",
-          width: "95%",
-          height: "80%",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Box
-          className="works-img-box"
-          // sx={{
-          //   display: "flex",
-          //   alignItems: "center",
-          //   justifyContent: "center",
-          //   padding: "20px 50px",
-          //   // border: "1px solid red",
-          //   width: "50%",
-          //   height: "100%",
-          //   objectFit: "cover",
-          //   backgroundColor: "#b7e5fc",
-          //   borderRadius: "10px",
-          // }}
-        >
-          <img
-            src="/img/ph1.png"
-            style={{ height: "100%", marginTop: "20px" }}
-          />
-        </Box>
-        <Box
-          className="works-text-box"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "20px",
-            // border: "1px solid green",
-            width: "50%",
-            height: "100%",
+        {" "}
+        <h1
+          style={{
+            color: "#101a34",
+            fontWeight: 600,
+            fontFamily: "Poppins",
+            fontSize: "38px",
+            lineHeight: "46px",
+            textAlign: "center",
           }}
         >
+          How It Works
+        </h1>
+      </div>
+
+      <Box className="works-inner-box">
+        <Box className="works-img-box">
+          <img
+            src="/img/ph1.png"
+            style={{ height: "80%", marginTop: "20px" }}
+          />
+        </Box>
+        <Box className="works-text-box">
           <h2
             style={{
               fontFamily: "Poppins",
@@ -85,7 +67,6 @@ export default function Works() {
           </h2>
 
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} /> */}
             <img
               src="/img/check.png"
               style={{ width: "20px", height: "20px" }}

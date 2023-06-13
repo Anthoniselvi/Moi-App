@@ -66,6 +66,7 @@ function NewSlide() {
       className="carousel-container"
       style={{
         backgroundColor: "#fff",
+        width: "100vw",
       }}
     >
       <h1

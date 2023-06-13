@@ -54,7 +54,7 @@ function NewTestimonal() {
     <div
       className="carousel-container"
       id="testimonal"
-      style={{ backgroundColor: "#fff" }}
+      style={{ backgroundColor: "#fff", width: "100vw", height: "100vh" }}
     >
       <h1
         style={{

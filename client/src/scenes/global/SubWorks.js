@@ -14,31 +14,14 @@ export default function SubWorks() {
       style={{
         width: "100vw",
         height: "100vh",
-        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
         backgroundColor: "#fff",
+        // border: "1px solid pink",
       }}
     >
-      <Box
-        className="subworks-inner-box"
-        sx={{
-          display: "flex",
-          padding: "20px",
-          gap: "5%",
-          width: "95%",
-          height: "80%",
-        }}
-      >
-        <Box
-          className="subworks-text-box"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "20px",
-            // border: "1px solid green",
-            // width: "50%",
-            height: "100%",
-          }}
-        >
+      <Box className="subworks-inner-box">
+        <Box className="subworks-text-box">
           <h2
             style={{
               fontFamily: "Poppins",
@@ -52,7 +35,6 @@ export default function SubWorks() {
           </h2>
 
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            {/* <CheckCircleOutlineIcon sx={{ color: "#50bcd9" }} /> */}
             <img
               src="/img/check.png"
               style={{ width: "20px", height: "20px" }}
@@ -113,24 +95,10 @@ export default function SubWorks() {
             Get Started
           </Button>
         </Box>
-        <Box
-          className="subworks-img-box"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px 50px",
-            // border: "1px solid red",
-            width: "50%",
-            height: "100%",
-            objectFit: "cover",
-            backgroundColor: "#b7e5fc",
-            borderRadius: "10px",
-          }}
-        >
+        <Box className="subworks-img-box">
           <img
             src="/img/ph1.png"
-            style={{ height: "100%", marginTop: "20px" }}
+            style={{ height: "80%", marginTop: "20px" }}
           />
         </Box>
       </Box>
