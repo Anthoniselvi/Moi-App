@@ -508,9 +508,13 @@ border: 1px solid #101a34;
   }
   
   @media screen and (max-width: 1100px) {
-    .image-container{
-      /* width: 50%; */
+    /* .image-container{
+      padding:0% 10%;
     }
+    .image-container img{
+   width:100%;
+      
+    } */
   .works-inner-box, .subworks-inner-box{
     display: flex;
     flex-direction: column;
@@ -556,7 +560,14 @@ border: 1px solid #101a34;
       margin-top: 10%;
       /* height:50vh; */
     }
-   
+   .image-container{
+    border: 1px solid red;
+    padding: 0;
+
+   }
+   .image-container img{
+    /* width:80%; */
+   }
   }
   @media (max-width: 800px) {
     .footer-container{
