@@ -20,7 +20,7 @@ const auth = useUserAuth()
     return (
        
             <Box display="flex" justifyContent="right">
-                <IconButton onClick={colorMode.toggleColorMode}>
+                {/* <IconButton onClick={colorMode.toggleColorMode}>
                     {theme.palette.mode === 'dark' ? (
                         <DarkModeOutlinedIcon />
                     ) : (
@@ -32,7 +32,7 @@ const auth = useUserAuth()
                 </IconButton>
                 <IconButton>
                     <SettingsOutlinedIcon />
-                </IconButton>
+                </IconButton> */}
                 <IconButton >
      
                  <Box sx={{border: "1px solid white", display: "flex", gap: '10px', padding: "5px 10px", borderRadius: "20px"}}>  

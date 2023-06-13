@@ -62,7 +62,7 @@ const Sidebar = () => {
         sx={{
             
           "& .pro-sidebar-inner": {
-            background: `${colors.primary[400]} !important`,
+            background: "`${colors.primary[400]} !important`",
         
           },
           "& .pro-icon-wrapper": {
@@ -103,6 +103,7 @@ const Sidebar = () => {
                             margin: "10px 0 20px 0",
                             // color: colors.grey[100],
                             color: `${colors.blueAccent[3000]} !important`,
+                            
                         }}
                     >
                         {!isCollapsed && (
@@ -111,6 +112,7 @@ const Sidebar = () => {
                                 justifyContent="space-between"
                                 alignItems="center"
                                 ml="5px"
+                              
                             >
                                 <Typography color={colors.grey[100]} fontSize='18.5px' fontWeight='700'>
 
