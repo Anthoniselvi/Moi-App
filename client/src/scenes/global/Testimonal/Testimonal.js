@@ -54,7 +54,7 @@ function NewTestimonal() {
     <div
       className="carousel-container"
       id="testimonal"
-      style={{ backgroundColor: "#fff", width: "100vw", height: "100vh" }}
+      style={{ backgroundColor: "#fff", width: "100vw" }}
     >
       <h1
         style={{
@@ -62,6 +62,7 @@ function NewTestimonal() {
           fontWeight: 600,
           fontFamily: "Poppins",
           fontSize: "30px",
+          paddingTop: "10px",
         }}
       >
         Testimonials
