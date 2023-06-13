@@ -517,6 +517,7 @@ border: 1px solid #101a34;
     padding:0 10%;
   }
   .works-text-box, .subworks-text-box{
+  
     margin-bottom: 10% ;
     padding-top: 0;
     order: 1;
@@ -524,6 +525,7 @@ border: 1px solid #101a34;
     width: 100%;
   }
   .works-img-box, .subworks-img-box{
+    margin-top: 40%;
     order: 2;
     height: 80%;
     width: 100%;
@@ -531,6 +533,12 @@ border: 1px solid #101a34;
     align-items: center;
     justify-content: center;
     padding:0;
+  }
+  .subworks-text-box{
+    margin-top: 50%;
+  }
+  .subworks-img-box{
+    /* margin-bottom: 50%; */
   }
   .works-img-box img,
   .subworks-img-box img{
