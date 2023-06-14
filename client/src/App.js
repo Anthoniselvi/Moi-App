@@ -24,6 +24,8 @@ import ECardForm from "./scenes/ecard";
 import Services from "./scenes/global/Services";
 import NewTestimonal from "./scenes/global/Testimonal/Testimonal";
 import Footer from "./scenes/global/Footer";
+import NewHomePage from "./newdashboard/home";
+import NewEvents from "./newdashboard/events";
 
 function App() {
   const auth = useUserAuth();
@@ -56,6 +58,8 @@ function App() {
                   <Route path="/entriesList" element={<Entries />} />
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/newreports" element={<NewReports />} />
+                  <Route path="/newhome" element={<NewHomePage />} />
+                  <Route path="/newevent" element={<NewEvents />} />
                 </>
               ) : (
                 <>
