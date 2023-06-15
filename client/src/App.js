@@ -26,6 +26,7 @@ import NewTestimonal from "./scenes/global/Testimonal/Testimonal";
 import Footer from "./scenes/global/Footer";
 import NewHomePage from "./newdashboard/home";
 import NewEvents from "./newdashboard/events";
+import NewEventPage from "./newdashboard/events/EventPage";
 
 function App() {
   const auth = useUserAuth();
@@ -60,6 +61,7 @@ function App() {
                   <Route path="/newreports" element={<NewReports />} />
                   <Route path="/newhome" element={<NewHomePage />} />
                   <Route path="/newevent" element={<NewEvents />} />
+                  <Route path="/eventpage" element={<NewEventPage />} />
                 </>
               ) : (
                 <>

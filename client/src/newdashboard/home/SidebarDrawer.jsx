@@ -47,7 +47,7 @@ export default function SidebarDrawer() {
     fontSize: "32px"}}>MOI<span style={{fontWeight: 400}}>LIST</span> </Typography>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Dashboard', 'Events', 'Profile', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
