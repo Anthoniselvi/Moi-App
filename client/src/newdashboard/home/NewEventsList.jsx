@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -46,13 +46,17 @@ function a11yProps(index) {
 
 export default function NewEventsList({eventslist}) {
   const [value, setValue] = React.useState(0);
-
+const navigate = useNavigate()
+const [searchParam] = useSearchParams();
+const profileId = searchParam.get("profile");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
+const navigateToCreateEvent = () => {
+  navigate(`/newevent?profile=${profileId}`)
+}
 
   return (
     <Box sx={{ width: '100%', height: '100%' }}>
@@ -93,7 +97,7 @@ export default function NewEventsList({eventslist}) {
             // backgroundColor: '#fff',
           }}
         >
-          <Box
+          <Box onClick={navigateToCreateEvent}
             sx={{
               height: '200px',
               width: '200px',

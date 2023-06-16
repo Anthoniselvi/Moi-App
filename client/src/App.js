@@ -25,7 +25,7 @@ import Services from "./scenes/global/Services";
 import NewTestimonal from "./scenes/global/Testimonal/Testimonal";
 import Footer from "./scenes/global/Footer";
 import NewHomePage from "./newdashboard/home";
-import NewEvents from "./newdashboard/events";
+import NewCreateEvent from "./newdashboard/events";
 import NewEventPage from "./newdashboard/events/EventPage";
 import NewProfile from "./newdashboard/profile";
 import NewEventsList from "./newdashboard/home/NewEventsList";
@@ -63,7 +63,7 @@ function App() {
                   <Route path="/newreports" element={<NewReports />} />
                   <Route path="/newhome" element={<NewHomePage />} />
                   {/* <Route path="/neweventslist" element={<NewEventsList />} /> */}
-                  <Route path="/newevent" element={<NewEvents />} />
+                  <Route path="/newevent" element={<NewCreateEvent />} />
                   <Route path="/eventpage" element={<NewEventPage />} />
                   <Route path="/newprofile" element={<NewProfile />} />
                 </>

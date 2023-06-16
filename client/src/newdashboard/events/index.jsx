@@ -12,7 +12,7 @@ import "./styles.css";
 import { useNavigate , useSearchParams} from 'react-router-dom';
 import axios from 'axios';
 
-export default function NewEvents() {
+export default function NewCreateEvent() {
   const navigate = useNavigate()
   const [eventType, setEventType] = useState("");
   const [name, setName] = useState("");
@@ -35,7 +35,7 @@ export default function NewEvents() {
       })
       .then((response) => {
         console.log(response);
-        // navigate(`/events?profile=${profileId}`);
+        navigate(`/newhome?profile=${profileId}`);
       });
     setEventType("");
     setName("");
