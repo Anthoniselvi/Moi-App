@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import NewEditEntry from './NewEditEntry';
+import DeleteEntry from '../../scenes/entries/DeleteEntry';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -25,6 +27,7 @@ const rows = [
 
 export default function NewEntriesList() {
     const [editModalOpen, setEditModalOpen] = useState(false); 
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false); 
     const [selectedRowId, setSelectedRowId] = useState()
 
     const handleEditEntry = (entryId) => {
@@ -32,7 +35,14 @@ export default function NewEntriesList() {
         setEditModalOpen(true);
         setSelectedRowId(entryId);
       };
+
+      const handleDeleteEntry = (entryId) => {
+        // setAnchorEl(null)
+        setDeleteModalOpen(true);
+        setSelectedRowId(entryId);
+      };
   return (
+    <>
     <TableContainer component={Paper} sx={{ backgroundColor: '#fff' }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead >
@@ -57,13 +67,32 @@ export default function NewEntriesList() {
               <TableCell align="left" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.fat}</TableCell>
               {/* <TableCell align="right" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.carbs}</TableCell> */}
               <TableCell align="left" sx={{ display: "flex", gap: "20px", color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>
-              <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600}}><DeleteOutlinedIcon />Delete </div>
-                <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600}} onClick={()=>handleEditEntry}><BorderColorOutlinedIcon />Edit </div>
+              <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600}} onClick={()=>handleDeleteEntry()}><DeleteOutlinedIcon />Delete </div>
+                <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600}} onClick={()=>handleEditEntry()}><BorderColorOutlinedIcon />Edit </div>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    {editModalOpen ? (
+      <NewEditEntry
+        // entryId={entryId}
+        open={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+      />
+    ) : (
+      <></>
+    )}
+    {deleteModalOpen ? (
+            <DeleteEntry
+            // entryId={entryId}
+              open={deleteModalOpen}
+              onClose={() => setDeleteModalOpen(false)}
+            />
+          ) : (
+            <></>
+          )}
+    </>
   );
 }

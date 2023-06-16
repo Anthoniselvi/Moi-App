@@ -27,6 +27,8 @@ import Footer from "./scenes/global/Footer";
 import NewHomePage from "./newdashboard/home";
 import NewEvents from "./newdashboard/events";
 import NewEventPage from "./newdashboard/events/EventPage";
+import NewProfile from "./newdashboard/profile";
+import NewEventsList from "./newdashboard/home/NewEventsList";
 
 function App() {
   const auth = useUserAuth();
@@ -60,8 +62,10 @@ function App() {
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/newreports" element={<NewReports />} />
                   <Route path="/newhome" element={<NewHomePage />} />
+                  <Route path="/neweventslist" element={<NewEventsList />} />
                   <Route path="/newevent" element={<NewEvents />} />
                   <Route path="/eventpage" element={<NewEventPage />} />
+                  <Route path="/newprofile" element={<NewProfile />} />
                 </>
               ) : (
                 <>

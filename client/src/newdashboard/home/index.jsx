@@ -15,17 +15,36 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import SidebarDrawer from './SidebarDrawer';
+import NewEventsList from './NewEventsList';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const drawerWidth = 240;
 
 export default function NewHomePage() {
     const navigate = useNavigate()
-
+    const [eventslist, setEventsList] = useState([])
+    const [searchParam] = useSearchParams();
+    const profileId = searchParam.get("profile");
     const navigateToNewEvent = () => {
         navigate("/newEvent")
     }
+
+    const fetchTotals = () => {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/entries/total/${profileId}`).then((response) => {
+        // console.log(response);
+       
+        console.log("Totals : " + JSON.stringify(response.data));
+       setEventsList(response.data)
+  
+      });
+    };
+    useEffect(() => {
+  
+      fetchTotals()
+    }, []);
   return (
     <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa" }}>
       <CssBaseline />
@@ -41,7 +60,7 @@ export default function NewHomePage() {
           Events
         </Typography>
       <Box sx={{width: "100%", height:  "80vh", borderRadius: "10px", border: "1px solid #cad3dd"}}>
-     <Box sx={{height: "10%", width: "100%", borderBottom: "1px solid #cad3dd", display: "flex", alignItems: "center" }}><Typography sx={{color: "#101a34"}}>Upcoming</Typography></Box>
+     {/* <Box sx={{height: "10%", width: "100%", borderBottom: "1px solid #cad3dd", display: "flex", alignItems: "center" }}><Typography sx={{color: "#101a34"}}>Upcoming</Typography></Box>
      
      <Box sx={{padding: "5%",height: "80%", width:"90%", display: "flex", flexWrap: "wrap", gap: "20px"}}>
      <Box onClick={navigateToNewEvent}
@@ -82,7 +101,10 @@ export default function NewHomePage() {
 </Box>
 
 
-        </Box> </Box>
+        </Box>  */}
+        <NewEventsList eventslist={eventslist}/>
+        </Box>
+        
     </Box>
     </Box>
   );
