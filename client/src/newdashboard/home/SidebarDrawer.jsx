@@ -15,16 +15,29 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 export default function SidebarDrawer() {
-    const navigate = useNavigate()
-
-    const navigateToNewEvent = () => {
-        navigate("/newEvent")
-    }
+  const navigate = useNavigate();
+  const [searchParam] = useSearchParams();
+    const profileId = searchParam.get("profile");
+  const navigateToNewEvent = () => {
+    navigate("/newEvent");
+  };
+  const navigateToDashboard = () => {
+    navigate(`/newhome?profile=${profileId}`);
+    // navigate("/newhome");
+  };
+  const navigateToEvents = () => {
+    // navigate("/neweventslist");
+    navigate(`/eventPage?profile=${profileId}`);
+  };
+  const navigateToProfile= () => {
+    // navigate("/newprofile");
+    navigate(`/newprofile?profile=${profileId}`);
+  };
   return (
     <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa" }}>
       <CssBaseline />
@@ -43,36 +56,41 @@ export default function SidebarDrawer() {
         anchor="left"
       >
        <Typography sx={{color: "#101a34",fontWeight: 600, textAlign: "center",
-    fontFamily: 'Poppins',
-    fontSize: "32px"}}>MOI<span style={{fontWeight: 400}}>LIST</span> </Typography>
+          fontFamily: 'Poppins',
+          fontSize: "32px"}}>
+          MOI<span style={{fontWeight: 400,}}>LIST</span>
+       </Typography>
         <Divider />
-        <List>
-          {['Dashboard', 'Events', 'Profile', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+        <List sx={{color: "black"}}>
+          {[
+            { text: 'Dashboard', icon: <InboxIcon />, onClick: navigateToDashboard },
+            { text: 'Events', icon: <MailIcon />, onClick: navigateToEvents },
+            { text: 'Profile', icon: <InboxIcon />, onClick: navigateToProfile },
+            // { text: 'Drafts', icon: <MailIcon />, onClick: navigateToDrafts },
+          ].map((item, index) => (
+            <ListItem key={item.text} disablePadding>
+              <Button fullWidth onClick={item.onClick}>
+                <ListItemButton>
+                <ListItemIcon
+                    sx={{
+                      color: "black",
+                      '&:hover': {
+                        // Define the hover styles here
+                        color: "blue",
+                        // Add other styles as needed
+                      },
+                    }}
+                    // onMouseOver={handleIconHover}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} sx={{color: "black"}} />
+                </ListItemButton>
+              </Button>
             </ListItem>
           ))}
         </List>
       </Drawer>
-     
     </Box>
   );
 }

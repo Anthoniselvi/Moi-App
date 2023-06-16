@@ -50,8 +50,9 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, signinData.email, signinData.password)
       .then(async (res) => {
         console.log(res);
-    navigate(`/dashboard?profile=${res.user.uid}`);
-       
+    // navigate(`/dashboard?profile=${res.user.uid}`);
+    
+    navigate(`/newhome?profile=${res.user.uid}`);
       })
       .catch((err) => {
         setError(err.message);

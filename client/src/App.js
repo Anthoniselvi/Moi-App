@@ -62,7 +62,7 @@ function App() {
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/newreports" element={<NewReports />} />
                   <Route path="/newhome" element={<NewHomePage />} />
-                  <Route path="/neweventslist" element={<NewEventsList />} />
+                  {/* <Route path="/neweventslist" element={<NewEventsList />} /> */}
                   <Route path="/newevent" element={<NewEvents />} />
                   <Route path="/eventpage" element={<NewEventPage />} />
                   <Route path="/newprofile" element={<NewProfile />} />
