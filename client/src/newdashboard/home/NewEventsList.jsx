@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import axios from 'axios';
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,31 +57,32 @@ export default function NewEventsList({eventslist}) {
   return (
     <Box sx={{ width: '100%', height: '100%' }}>
       <Box sx={{ bcolor: 'black' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          sx={{
-            '& .MuiButtonBase-root': {
-              color: '#101a34',
-              fontFamily: 'Poppins',
-              fontWeight: 600,
-              fontSize: '17px',
-            },
-            '& .Mui-selected': {
-              borderBottom: '2px solid #FE956F', 
-              color: '#101a34',
-            },
-            '& .MuiTabs-indicator': {
-              backgroundColor: 'transparent',
-            },
-          }}
-        >
-          <Tab label="Upcoming" {...a11yProps(0)} />
-          <Tab label="Past" {...a11yProps(1)} />
-        </Tabs>
+      <Tabs
+  value={value}
+  onChange={handleChange}
+  aria-label="basic tabs example"
+  sx={{
+    '& .MuiButtonBase-root': {
+      color: '#101a34',
+      fontFamily: 'Poppins',
+      fontWeight: 600,
+      fontSize: '17px',
+    },
+    '& .Mui-selected': {
+      borderBottom: '2px solid #FE956F',
+      color: 'black', // Modify the color to black
+    },
+    '& .MuiTabs-indicator': {
+      backgroundColor: 'transparent',
+    },
+  }}
+>
+  <Tab label="Upcoming (0)" {...a11yProps(0)} />
+  <Tab label={`Past (${eventslist.length})`} {...a11yProps(1)} />
+</Tabs>
+
       </Box>
-      <TabPanel value={value} index={0} sx={{ color: 'black', backgroundColor: 'lightgray' }}>
+      <TabPanel value={value} index={0} sx={{ color: 'black', backgroundColor: '#fff'  }}>
         <Box
           sx={{
             height: '100%',
@@ -87,7 +90,7 @@ export default function NewEventsList({eventslist}) {
             display: 'flex',
             flexWrap: 'wrap',
             gap: '20px',
-            backgroundColor: '#fff',
+            // backgroundColor: '#fff',
           }}
         >
           <Box
@@ -125,7 +128,7 @@ export default function NewEventsList({eventslist}) {
           </Box>
         </Box>
       </TabPanel>
-      <TabPanel value={value} index={1} sx={{ color: 'black', backgroundColor: 'lightgray' }}>
+      <TabPanel value={value} index={1} sx={{ color: 'black', backgroundColor: '#fff' }}>
       
       <Box
           sx={{
@@ -133,8 +136,7 @@ export default function NewEventsList({eventslist}) {
             width: '100%',
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '20px',
-            backgroundColor: '#fff',
+            gap: '5%',
           }}
         >
           {eventslist.map((singleEvent, eventId) => (
@@ -143,12 +145,12 @@ export default function NewEventsList({eventslist}) {
              
           <Box
             sx={{
-              height: '200px',
-              width: '200px',
+              height: '300px',
+              width: '30%',
               border: '1px solid #cad3dd',
               borderRadius: '10px',
               display: 'flex',
-              gap: '5%',
+              marginBottom: '5%',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
@@ -161,41 +163,62 @@ export default function NewEventsList({eventslist}) {
               },
             }}
           >
-            <Box>image</Box>
-            <Box>
+          {/* <Box sx={{ width: '100%', height: '65%' }}> */}
+  <div style={{ overflow: 'hidden', width: '100%',
+        height: '65%',
+        backgroundImage: `url(${singleEvent.eventImage})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover', borderTopLeftRadius: "10px", borderTopRightRadius: "10px" }}>
+   
+  </div>
+{/* </Box> */}
+
+
+
+            <Box padding="0% 5%" width="100%" height="35%" display="flex" flexDirection="column" gap="20%" alignItems="left" justifyContent="center" >
+               
             <Typography
               sx={{
                 fontWeight: 600,
-                fontSize: '17px',
-                lineHeight: '22px',
+                fontSize: '15px',
+                lineHeight: '20px',
                 fontFamily: 'Poppins',
                 color: '#101a34',
+                
               }}
             >
                 {singleEvent.eventName}
             </Typography>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Box display="flex" alignItems="center" gap="5px">
+            <CurrencyRupeeIcon sx={{ fontSize: "20px", color:'#d3133b',  }} />  
             <Typography
               sx={{
                 fontWeight: 600,
                 fontSize: '17px',
                 lineHeight: '22px',
                 fontFamily: 'Poppins',
-                color: '#101a34',
+                // color: '#101a34',
+                color: "#d3133b"
               }}
             >
                {singleEvent.totalAmount}
-            </Typography>
+            </Typography></Box>
+            <Box display="flex" alignItems="center" gap="5px">
+            <CardGiftcardIcon sx={{ fontSize: "20px", color: '#d3133b',}} /> 
             <Typography
               sx={{
                 fontWeight: 600,
                 fontSize: '17px',
                 lineHeight: '22px',
                 fontFamily: 'Poppins',
-                color: '#101a34',
+                // color: '#101a34',
+                color: "#d3133b"
               }}
             >
                {singleEvent.totalGift}
-            </Typography>
+            </Typography></Box>
+            </Box>
             </Box>
   </Box>
        

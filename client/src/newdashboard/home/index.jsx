@@ -59,7 +59,7 @@ export default function NewHomePage() {
     fontSize: "32px", lineHeight: "34px", marginTop: "-50px"}}>
           Events
         </Typography>
-      <Box sx={{width: "100%", height:  "80vh", borderRadius: "10px", border: "1px solid #cad3dd"}}>
+      <Box sx={{width: "100%", height:  "80vh", borderRadius: "10px", border: "1px solid #cad3dd", marginTop: "5%"}}>
      {/* <Box sx={{height: "10%", width: "100%", borderBottom: "1px solid #cad3dd", display: "flex", alignItems: "center" }}><Typography sx={{color: "#101a34"}}>Upcoming</Typography></Box>
      
      <Box sx={{padding: "5%",height: "80%", width:"90%", display: "flex", flexWrap: "wrap", gap: "20px"}}>
