@@ -14,12 +14,12 @@ import { tokens } from "../../theme";
 
 function Profile(props) {
   const navigate = useNavigate();
-    const [name, setName] = useState("");
-
-  const [email, setEmail] = useState("");
+   
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -141,9 +141,8 @@ function Profile(props) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            
-            value={gender}
             label="Gender"
+            value={gender}         
             onChange={(e) => setGender(e.target.value)}
           >
             <MenuItem value="male">Male</MenuItem>
