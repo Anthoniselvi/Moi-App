@@ -65,7 +65,7 @@ export default function NewEditEntry({ open, onClose, entryId }) {
   };
   useEffect(() => {
     getSelectedEntry();
-  }, [refreshCount]);
+  }, []);
 
   return (
     <div>

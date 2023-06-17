@@ -54,6 +54,9 @@ const profileId = searchParam.get("profile");
     setValue(newValue);
   };
 
+  const navigateToSingleEventPage = (eventId) => {
+    navigate(`/eventpage?event=${eventId}`)
+  }
 const navigateToCreateEvent = () => {
   navigate(`/newevent?profile=${profileId}`)
 }
@@ -74,7 +77,7 @@ const navigateToCreateEvent = () => {
     },
     '& .Mui-selected': {
       borderBottom: '2px solid #FE956F',
-      color: 'black', // Modify the color to black
+      color: '#101a34', // Modify the color to black
     },
     '& .MuiTabs-indicator': {
       backgroundColor: 'transparent',
@@ -147,7 +150,7 @@ const navigateToCreateEvent = () => {
             <>
       {eventslist.length > 0 && (
              
-          <Box
+          <Box  onClick= {()=>navigateToSingleEventPage(singleEvent.eventId)}
             sx={{
               height: '300px',
               width: '30%',
@@ -179,7 +182,7 @@ const navigateToCreateEvent = () => {
 
 
 
-            <Box padding="0% 5%" width="100%" height="35%" display="flex" flexDirection="column" gap="20%" alignItems="left" justifyContent="center" >
+            <Box  onClick= {()=>navigateToSingleEventPage(singleEvent.eventId)} padding="0% 5%" width="100%" height="35%" display="flex" flexDirection="column" gap="20%" alignItems="left" justifyContent="center" >
                
             <Typography
               sx={{

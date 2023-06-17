@@ -35,13 +35,13 @@ export default function NewCreateEvent() {
       })
       .then((response) => {
         console.log(response);
-        navigate(`/newhome?profile=${profileId}`);
+        // navigate(`/newhome?profile=${profileId}`);
       });
     setEventType("");
     setName("");
     setPlace("");
     setDate("");  
-  
+    navigate(`/newhome?profile=${profileId}`);
     // refreshPage();
   };
   return (
@@ -65,7 +65,7 @@ export default function NewCreateEvent() {
         Let's create your Event!</Typography> 
    </Box>
 
-   <form style={{margin: "5% 0%", width: "100%", display: "flex", flexDirection: "column", gap: "20px"}}>
+   <form onSubmit={handleSubmit} style={{margin: "5% 0%", width: "100%", display: "flex", flexDirection: "column", gap: "20px"}}>
     <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
   <label for="eventType" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Event Type:</label>
  <select style={{background: "#fff", borderRadius: "7px",
@@ -120,7 +120,7 @@ export default function NewCreateEvent() {
     value={date}
             onChange={(e) => setDate(e.target.value)} />
     </div>
-    <button onSubmit={handleSubmit}
+    <button type='submit'
     style={{
   marginTop: "10px",
   backgroundColor: "#50bcd9",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,7 +12,9 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import NewEditEntry from './NewEditEntry';
 import DeleteEntry from '../../scenes/entries/DeleteEntry';
-
+import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
+import NewDeleteEntry from './NewDeleteEntry';
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -25,10 +27,13 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function NewEntriesList() {
+export default function NewEntriesList({entries, eventsList, totalAmount, totalGift}) {
+  console.log("entries in table column: " + JSON.stringify(entries))
     const [editModalOpen, setEditModalOpen] = useState(false); 
     const [deleteModalOpen, setDeleteModalOpen] = useState(false); 
     const [selectedRowId, setSelectedRowId] = useState()
+   
+
 
     const handleEditEntry = (entryId) => {
   
@@ -41,6 +46,7 @@ export default function NewEntriesList() {
         setDeleteModalOpen(true);
         setSelectedRowId(entryId);
       };
+     
   return (
     <>
     <TableContainer component={Paper} sx={{ backgroundColor: '#fff' }}>
@@ -49,26 +55,26 @@ export default function NewEntriesList() {
           <TableRow >
             <TableCell sx={{ color: '#101a34', fontFamily: "Poppins", fontSize: "11px", fontWeight: 600 }}>Person Name</TableCell>
             <TableCell align="left" sx={{ color: '#121212', fontFamily: "Poppins", fontSize: "11px", fontWeight: 600  }}>City</TableCell>
-            <TableCell align="left" sx={{ color: '#121212' , fontFamily: "Poppins", fontSize: "11px", fontWeight: 600 }}>Amount / Gift</TableCell>
+            <TableCell align="left" sx={{ color: '#121212' , fontFamily: "Poppins", fontSize: "11px", fontWeight: 600 }}>Amount</TableCell>
+            <TableCell align="left" sx={{ color: '#121212', fontFamily: "Poppins", fontSize: "11px", fontWeight: 600  }}>Gift</TableCell>
             <TableCell align="left" sx={{ color: '#121212', fontFamily: "Poppins", fontSize: "11px", fontWeight: 600  }}>Actions</TableCell>
-            {/* <TableCell align="right" sx={{ color: '#121212', fontFamily: "Poppins", fontSize: "11px", fontWeight: 600  }}>Protein&nbsp;(g)</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {entries.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.entryId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 },  borderBottom: "1px solid #e8ecf1" }}
             >
               <TableCell component="th" scope="row" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>
-                {row.name}
+                {row.personName}
               </TableCell>
-              <TableCell align="left" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.calories}</TableCell>
-              <TableCell align="left" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.fat}</TableCell>
-              {/* <TableCell align="right" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.carbs}</TableCell> */}
+              <TableCell align="left" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.city}</TableCell>
+              <TableCell align="left" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.amount}</TableCell>
+              <TableCell align="left" sx={{ color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>{row.gift}</TableCell>
               <TableCell align="left" sx={{ display: "flex", gap: "20px", color: '#101a34', fontSize: "15px", fontFamily: "Poppins"}}>
-              <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600}} onClick={()=>handleDeleteEntry()}><DeleteOutlinedIcon />Delete </div>
-                <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600}} onClick={()=>handleEditEntry()}><BorderColorOutlinedIcon />Edit </div>
+              <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600, cursor: "pointer"}} onClick={()=>handleDeleteEntry(row.entryId)}><DeleteOutlinedIcon />Delete </div>
+                <div style={{display: "flex", alignItems: "center", gap: "5px",color: "#50bcd9", fontFamily: "Poppins", fontSize: "13px", fontFamily: 600, cursor: "pointer"}} onClick={() => handleEditEntry(row.entryId)}><BorderColorOutlinedIcon />Edit </div>
               </TableCell>
             </TableRow>
           ))}
@@ -76,17 +82,17 @@ export default function NewEntriesList() {
       </Table>
     </TableContainer>
     {editModalOpen ? (
-      <NewEditEntry
-        // entryId={entryId}
-        open={editModalOpen}
-        onClose={() => setEditModalOpen(false)}
-      />
-    ) : (
-      <></>
-    )}
-    {deleteModalOpen ? (
-            <DeleteEntry
-            // entryId={entryId}
+            <NewEditEntry
+              entryId={selectedRowId}
+              open={editModalOpen}
+              onClose={() => setEditModalOpen(false)}
+            />
+          ) : (
+            <></>
+          )}
+          {deleteModalOpen ? (
+            <NewDeleteEntry
+            entryId={selectedRowId}
               open={deleteModalOpen}
               onClose={() => setDeleteModalOpen(false)}
             />

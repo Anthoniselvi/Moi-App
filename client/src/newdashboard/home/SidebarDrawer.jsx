@@ -64,12 +64,20 @@ export default function SidebarDrawer() {
         <List sx={{color: "black"}}>
           {[
             { text: 'Dashboard', icon: <InboxIcon />, onClick: navigateToDashboard },
-            { text: 'Events', icon: <MailIcon />, onClick: navigateToEvents },
+            // { text: 'Events', icon: <MailIcon />, onClick: navigateToEvents },
             { text: 'Profile', icon: <InboxIcon />, onClick: navigateToProfile },
             // { text: 'Drafts', icon: <MailIcon />, onClick: navigateToDrafts },
           ].map((item, index) => (
             <ListItem key={item.text} disablePadding>
-              <Button fullWidth onClick={item.onClick}>
+              <Button fullWidth onClick={item.onClick} sx={{
+                      color: "black",
+                      '&:hover': {
+                        // Define the hover styles here
+                        color: "blue",
+                        backgroundColor: "#f5f7fa"
+                        // Add other styles as needed
+                      },
+                    }}>
                 <ListItemButton>
                 <ListItemIcon
                     sx={{
@@ -77,6 +85,8 @@ export default function SidebarDrawer() {
                       '&:hover': {
                         // Define the hover styles here
                         color: "blue",
+                       
+                        backgroundColor: "#f5f7fa"
                         // Add other styles as needed
                       },
                     }}
