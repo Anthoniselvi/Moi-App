@@ -45,7 +45,7 @@ function App() {
         <CssBaseline />
 
         <div className="app">
-          {/* {auth.user ? <NewSidebar /> : null} */}
+          {auth.user ? <NewSidebar /> : null}
 
           <main className="content">
             {/* {auth.user ? <Topbar /> : null} */}
