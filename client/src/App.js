@@ -29,6 +29,7 @@ import NewCreateEvent from "./newdashboard/events";
 import NewEventPage from "./newdashboard/events/EventPage";
 import NewProfile from "./newdashboard/profile";
 import NewEventsList from "./newdashboard/home/NewEventsList";
+import NewDashboard from "./newdashboard/home/NewDashboard";
 
 function App() {
   const auth = useUserAuth();
@@ -62,7 +63,7 @@ function App() {
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/newreports" element={<NewReports />} />
                   <Route path="/newhome" element={<NewHomePage />} />
-                  {/* <Route path="/neweventslist" element={<NewEventsList />} /> */}
+                  <Route path="/newdashboard" element={<NewDashboard />} />
                   <Route path="/newevent" element={<NewCreateEvent />} />
                   <Route path="/eventpage" element={<NewEventPage />} />
                   <Route path="/newprofile" element={<NewProfile />} />

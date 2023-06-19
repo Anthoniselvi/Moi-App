@@ -27,12 +27,12 @@ export default function SidebarDrawer() {
     navigate("/newEvent");
   };
   const navigateToDashboard = () => {
-    navigate(`/newhome?profile=${profileId}`);
+    navigate(`/newdashboard?profile=${profileId}`);
     // navigate("/newhome");
   };
   const navigateToEvents = () => {
     // navigate("/neweventslist");
-    navigate(`/eventPage?profile=${profileId}`);
+    navigate(`/newhome?profile=${profileId}`);
   };
   const navigateToProfile= () => {
     // navigate("/newprofile");
@@ -64,7 +64,7 @@ export default function SidebarDrawer() {
         <List sx={{color: "black"}}>
           {[
             { text: 'Dashboard', icon: <InboxIcon />, onClick: navigateToDashboard },
-            // { text: 'Events', icon: <MailIcon />, onClick: navigateToEvents },
+            { text: 'Events', icon: <MailIcon />, onClick: navigateToEvents },
             { text: 'Profile', icon: <InboxIcon />, onClick: navigateToProfile },
             // { text: 'Drafts', icon: <MailIcon />, onClick: navigateToDrafts },
           ].map((item, index) => (

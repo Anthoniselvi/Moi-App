@@ -63,7 +63,7 @@ const navigateToCreateEvent = () => {
 
   return (
     <Box sx={{ width: '100%', height: '100%' }}>
-      <Box sx={{ bcolor: 'black' }}>
+      <Box >
       <Tabs
   value={value}
   onChange={handleChange}
@@ -77,7 +77,13 @@ const navigateToCreateEvent = () => {
     },
     '& .Mui-selected': {
       borderBottom: '2px solid #FE956F',
-      color: '#101a34', // Modify the color to black
+      color: '#101a34', 
+      // textDecoration: "underline",
+      // textDecorationColor: "#FE956F",
+    },
+    '& .MuiButtonBase-root-MuiTab-root.Mui-selected' :{
+      color: "#101a34",
+    
     },
     '& .MuiTabs-indicator': {
       backgroundColor: 'transparent',
