@@ -77,6 +77,7 @@ export default function NewCreateEvent() {
     fontFamily: "Poppins"}} 
     value={eventType}
     onChange={(e) => setEventType(e.target.value)}>
+       <option >Select Event Type</option>
   <option value="wedding">Wedding</option>
   <option value="birthday">Birthday</option>
   <option value="baby">Baby Shower</option>

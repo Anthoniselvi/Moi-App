@@ -78,7 +78,8 @@ const SignIn = () => {
           console.log(response);
           console.log(response.data);
           console.log(response.data.profileId);
-          navigate(`/dashboard?profile=${user.uid}`);
+          // navigate(`/dashboard?profile=${user.uid}`);
+          navigate(`/newhome?profile=${user.uid}`);
         });
        
   

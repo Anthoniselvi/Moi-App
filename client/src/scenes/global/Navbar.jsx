@@ -24,7 +24,7 @@ const Navbar = () => {
     navigate("/login")
   }
   const navigateToSignUp = () => {
-    navigate("/singup")
+    navigate("/signup")
   }
   const menuOptions = [
     {

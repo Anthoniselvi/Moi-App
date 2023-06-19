@@ -15,6 +15,10 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { useUserAuth } from '../auth';
+import Navbar from '../scenes/global/Navbar';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import Footer from '../scenes/global/Footer';
 const SignUp = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
     // const {role, setRole, isLoggedIn, setIsLoggedIn, logout} = useAuthContext()
@@ -117,108 +121,129 @@ const handleClick = async () => {
   }
 };
   return (
-    < div style={{display: "flex", alignItems: "center", justifyContent: "center", margin: "2% auto"}}>
-
-        <Box backgroundColor="#F8E367" color="colors.grey[100]" display="flex" padding="2%" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px"
-        >   
-          <Avatar sx={{ m: 1, backgroundColor: colors.blueAccent[700], }}>
+    <div style={{width: "100vw", height: "100vh", overflow: "auto" , background: "linear-gradient(117.16deg,#cbedf9 26.56%,#a8dfff 83.56%)"}}>
+    <Navbar/>
+  
+    < div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", 
+    background: "#fff",  padding: "24px 20px", margin: "2% 25%", border: "1px solid #cad3dd", 
+    borderRadius: "10px" }}>
+      {/* {isLoggedIn === false ? ( */}
+        {/* <Box backgroundColor="#F8E367" color="colors.grey[100]" display="flex" padding="2%" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px"
+        > */}
+             
+          {/* <Avatar sx={{ m: 1, backgroundColor: colors.blueAccent[700],}}>
             <LockOutlinedIcon />
           </Avatar>
-          <br />
+          <br /> */}
         
-            <Header title="SIGN UP" />
+            <Header title="Sign up for Moi-List" />
+            <Typography sx={{color: "black"}}>It’s quick and easy.</Typography>
             <br />
-            <form onSubmit={handleSubmitSignup}>
-             
-              <Box
-                display="grid"
-                alignItems="center"                
-                gap="30px"
-                gridTemplateColumns="repeat(10, minmax(0, 1fr))"
-                sx={{
-                  "& > div": { gridColumn: isNonMobile ? undefined : "span 10" },
-                }}
-              >
-                 <TextField fullWidth
-                  InputProps={{
-                    style: { fontSize: "15px", color: "#180a91" },
-                  }}
-                  InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
-                  id="outlined-basic-name"
-                  label="Name"
-                  variant="outlined"
-                  value={signupData.name}
+            <Box display="flex" justifyContent="space-between" mt="20px" width="100%">
+            <Button
+            onClick={handleClick} 
+            type="submit"
+          
+            // variant="contained"
+            sx={{
+              background: "#fff",
+    border: "1px solid #50bcd9",
+    borderRadius: "4px",
+    padding: "10px 17px",
+    // margin: "0 4px",
+    fontWeight: 500,
+    fontSize: "14px",
+    display: "flex",
+width:"49%",
+    alignItems: "center",
+    color: "#292929"
+          }}>
+           <GoogleIcon /> Login with Google
+          </Button>
+          <Button
+            onClick={handleClick}
+            type="submit"
+          
+            // variant="contained"
+            sx={{
+              background: "#fff",
+    border: "1px solid #50bcd9",
+    borderRadius: "4px",
+    padding: "10px 17px",
+    // margin: "0 4px",
+    width:"49%",
+    fontWeight: 500,
+    fontSize: "14px",
+    display: "flex",
+    alignItems: "center",
+    color: "#292929"
+          }}>
+           <FacebookIcon />Login with Facebook
+          </Button>
+  {/* </Box> */}
+  </Box>
+  <Box sx={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+    {/* <Box sx={{borderBottom: "1px solid black", width: "48%"}}/> */}
+    <p style={{color: "black", textAlign: "bottom"}}>OR</p>
+    {/* <Box sx={{borderBottom: "1px solid black", width: "48%"}}/> */}
+  </Box>
+  <form onSubmit={handleSubmitSignup} style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px"}}>
+   
+  <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+  <label for="name" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Name:</label>
+  <input type="text" id="name" name="name"  style={{background: "#fff", borderRadius: "7px",
+    width: "100%",       height:"44px",
+    padding: "8px 15px", fontWeight: 400,
+    fontSize: "16px", lineHeight: "20px",
+     color: "#101a34",
+    border: "1px solid #cad3dd",
+    fontFamily: "Poppins"}}  
+    value={signupData.name}
                   onChange={updateHandleChange}
-                  name="name"
-                  sx={{ gridColumn: "span 10", color: "#180a91" }}
-                  autoComplete="off"
-                  color="secondary"
-                  // required
-                  type="text"
-                />
-                <TextField fullWidth
-                  InputProps={{
-                    style: { fontSize: "15px", color: "#180a91" },
-                  }}
-                  InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
-                  id="outlined-basic-mobile"
-                  label="Mobile Number"
-                  variant="outlined"
-                  value={signupData.mobile}
+                  placeholder='Enter your Name' />
+    </div>     
+    <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+  <label for="mobile" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Mobile Number:</label>
+  <input type="text" id="mobile" name="mobile"  style={{background: "#fff", borderRadius: "7px",
+    width: "100%",       height:"44px",
+    padding: "8px 15px", fontWeight: 400,
+    fontSize: "16px", lineHeight: "20px",
+     color: "#101a34",
+    border: "1px solid #cad3dd",
+    fontFamily: "Poppins"}}  
+    value={signupData.mobile}
+    onChange={updateHandleChange}
+                  placeholder='Enter your Mobile Number' />
+    </div>  
+    <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+  <label for="email" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Email:</label>
+  <input type="text" id="email" name="email"  style={{background: "#fff", borderRadius: "7px",
+    width: "100%",       height:"44px",
+    padding: "8px 15px", fontWeight: 400,
+    fontSize: "16px", lineHeight: "20px",
+     color: "#101a34",
+    border: "1px solid #cad3dd",
+    fontFamily: "Poppins"}}  
+    value={signupData.email}
                   onChange={updateHandleChange}
-                  name="mobile"
-                  sx={{ gridColumn: "span 10", color: "#180a91" }}
-                  autoComplete="off"
-                  color="secondary"
-                  // required
-                  type="text"
-                />
-              <TextField fullWidth
-                  InputProps={{
-                    style: { fontSize: "15px", color: "#180a91" },
-                  }}
-                  InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
-                  id="outlined-basic-email"
-                  label="Email"
-                  variant="outlined"
-                  value={signupData.email}
+                  placeholder='Enter your Email' />
+    </div>         
+    <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+  <label for="password" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Password:</label>
+  <input type="password" id="password" name="password"  style={{background: "#fff", borderRadius: "7px",
+    width: "100%",       height:"44px",
+    padding: "8px 15px", fontWeight: 400,
+    fontSize: "16px", lineHeight: "20px",
+     color: "#101a34",
+    border: "1px solid #cad3dd",
+    fontFamily: "Poppins"}}  
+    value={signupData.password}
                   onChange={updateHandleChange}
-                  name="email"
-                  sx={{ gridColumn: "span 10" , color: "#180a91"}}
-                  autoComplete="off"
-                  color="secondary"
-                  // required
-                  type="email"
-                />
+                  placeholder='Enter your Password' />
+    </div>  
+           
 
-                {/* <br /> */}
-                <TextField fullWidth
-                 InputProps={{
-                  style: { fontSize: "15px", color: "#180a91" },
-                }}
-                InputLabelProps={{ style: { fontSize: 16, color: "#180a91" } }}
-                  id="outlined-basic-password"
-                  label="Password"
-                  variant="outlined"
-                  value={signupData.password}
-                  onChange={updateHandleChange}
-                  name="password"
-                  sx={{ gridColumn: "span 10", color: "#180a91" }}
-                  color="secondary"
-                  // required
-                  type="password"
-                />
-              </Box>
-         
-                 <br />
-                 {error && (
-                <Typography sx={{color: "red", paddingBottom: 2}}>
-                  {error}
-                </Typography>
-              )}
-             
-
-          <Box display="flex" justifyContent="center" mt="10px" sx={{ gridColumn: "span 10" }}>
+          {/* <Box display="flex" justifyContent="center" mt="10px" sx={{ gridColumn: "span 10" }}> */}
           <Button type="submit" 
                         sx={{
                             backgroundColor: colors.blueAccent[700],
@@ -241,7 +266,7 @@ const handleClick = async () => {
                 </Link>
               </Grid>
             </Grid> */}
-          </Box>
+          {/* </Box> */}
           
       </form>
       <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
@@ -252,14 +277,14 @@ const handleClick = async () => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Link href="/login" to="/login" sx={{color: "colors.blueAccent[700]"}} >
-                Already have an account? Sign in
+                <Link href="/login" to="/login" sx={{color: "black"}} >
+                Already have an account? Login
                 </Link>
       
               </Grid>
             </Grid>
             </Box>
-            <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
+            {/* <Box display="flex" justifyContent="center" mt="20px" sx={{ gridColumn: "span 10" }}>
             <Button
             onClick={handleClick}
             type="submit"
@@ -279,10 +304,9 @@ const handleClick = async () => {
           }}>
             Sign Up with Google
           </Button>
-  </Box>
-  </Box>
-  
-
+  </Box> */}
+  </div>
+  <Footer />
   </div>
 )
 
