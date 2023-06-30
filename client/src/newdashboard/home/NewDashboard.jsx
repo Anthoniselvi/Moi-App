@@ -16,10 +16,13 @@ import NewBar from '../../components/NewBar';
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import NewFilterTable from '../../components/NewFilterTable';
+import { useUserAuth } from '../../auth';
+import image from "../../img/bg1.png"
 
 const drawerWidth = 240;
 
 export default function NewDashboard() {
+    const auth = useUserAuth()
     const navigate = useNavigate()
     const [searchParam] = useSearchParams();
     const profileId = searchParam.get("profile");
@@ -91,23 +94,24 @@ const navigateToEvents = () => {
         fetchAllEntriesByProfileId()
       }, []);
   return (
-    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa" }}>
+    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa", height: "100%", width: "100%",marginLeft: "-20px",right: "-20px" }}>
       {/* <CssBaseline /> */}
-      <SidebarDrawer />
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: '#f5f7fa', p: 3, width: `calc(100% - ${drawerWidth}px)`, }}
+      <SidebarDrawer sx={{width: "20%"}}/>
+      <Box sx={{ bgcolor: '#f5f7fa',width: "80%" }}
       >
-        {/* <Toolbar /> */}
-        <Typography sx={{color: "#101a34",  
+        <Box sx={{width: "100%", height: "40vh", marginTop: "-20px", background: `url(${image})`, backgroundSize: "cover",backgroundRepeat: "no-repeat", backgroundPosition: "center", display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <h1>Welcome {auth.user.displayName} !</h1>
+        </Box>
+        {/* <Box sx={{padding: "20px",}}> */}
+        {/* <Typography sx={{color: "#101a34",  
     fontFamily: 'Poppins',   fontWeight: 600,
     fontSize: "32px", lineHeight: "34px", }}>
           Dashboard
-        </Typography>
-      <Box sx={{width: "100%", minHeight:  "80vh", borderRadius: "10px", overflow: "hidden", marginTop: "5%"}}>
+        </Typography> */}
+      {/* <Box sx={{width: "100%", minHeight:  "80vh", borderRadius: "10px", overflow: "hidden", }}> */}
       {/* border: "1px solid #cad3dd", */}
       <Box
-      bgcolor="#fff"
+    //   bgcolor="#fff"
           p="20px"
           display="grid"
           gridTemplateColumns="repeat(12, 1fr)"
@@ -125,11 +129,12 @@ const navigateToEvents = () => {
                 {/* ROW 1 */}
                 <Box onClick={navigateToEvents}
                     gridColumn="span 4"
-                    backgroundColor="black"
+                    bgcolor="#fff"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    borderRadius="10px"                  
+                    borderRadius="10px"      
+                    border= "1px solid #e8ecf1"            
                 >
                     <StatBox1
                         title1={eventsList.length}
@@ -143,12 +148,13 @@ const navigateToEvents = () => {
                 </Box>
                 <Box
                     gridColumn="span 4"
-                    backgroundColor="black"
+                    bgcolor="#fff"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                     // paddingTop="30px"
                     borderRadius="10px"
+                    border= "1px solid #e8ecf1"  
                 >
                     <StatBox2
                         title2={`₹ ${totalAmount}`}
@@ -167,12 +173,13 @@ const navigateToEvents = () => {
     
                 <Box
                     gridColumn="span 4"
-                    backgroundColor="black"
+                    bgcolor="#fff"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                     // paddingTop="30px"
                     borderRadius="10px"
+                    border= "1px solid #e8ecf1"  
                 >
                     <StatBox3
                         title3={`${totalGift}`}
@@ -191,8 +198,9 @@ const navigateToEvents = () => {
                 <Box onClick={navigateToEvents}
                     gridColumn="span 12"
                     gridRow="span 3"
-                    backgroundColor="black"
+                    bgcolor="#fff"
                     borderRadius="10px"
+                    border= "1px solid #e8ecf1"  
                 >
                     <Box
                         mt="25px"
@@ -221,9 +229,10 @@ const navigateToEvents = () => {
                 <Box
                    gridColumn="span 6"
                    gridRow="span 3"
-                   backgroundColor="black"
+                   backgroundColor="#fff"
                 //    overflow="auto"
                    borderRadius="10px"
+                   border= "1px solid #e8ecf1"  
                   
                 > 
                 <Box display="flex" flexDirection="column" padding="10px">
@@ -244,8 +253,8 @@ const navigateToEvents = () => {
             
           /> : <></>} */}
         </Box >
-        </Box>
-        
+        {/* </Box> */}
+        {/* </Box> */}
     </Box>
     </Box>
   )

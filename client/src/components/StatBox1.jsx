@@ -31,7 +31,7 @@ const StatBox1 = ({ title1, subtitle1, subtitle2, icon1, progress, increase }) =
 </Box>
 
                     <Box display="flex" flexDirection="column" padding="10px">
-                    <Typography variant="h5"   fontWeight="bold" sx={{ color:colors.grey[100]  }}>
+                    <Typography variant="h5"   fontWeight="bold" sx={{ color:"rgb(140, 141, 255)"  }}>
                     {subtitle1}
                 </Typography>
                     <Typography

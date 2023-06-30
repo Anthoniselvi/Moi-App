@@ -48,20 +48,20 @@ function App() {
         <div className="app">
           {auth.user ? <NewSidebar /> : null}
 
-          <main className="content">
+          <div className="content">
             {/* {auth.user ? <Topbar /> : null} */}
 
             <Routes>
               {auth.user ? (
                 <>
-                  <Route path="/dashboard" element={<Dashboard />} />
+                  {/* <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/events" element={<EventsList />} />
                   <Route path="/events/new" element={<CreateEvent />} />
                   <Route path="/entries" element={<EntriesList />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/entriesList" element={<Entries />} />
                   <Route path="/reports" element={<Reports />} />
-                  <Route path="/newreports" element={<NewReports />} />
+                  <Route path="/newreports" element={<NewReports />} /> */}
                   <Route path="/newhome" element={<NewHomePage />} />
                   <Route path="/newdashboard" element={<NewDashboard />} />
                   <Route path="/newevent" element={<NewCreateEvent />} />
@@ -77,7 +77,7 @@ function App() {
                 </>
               )}
             </Routes>
-          </main>
+          </div>
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>

@@ -28,3 +28,7 @@
     text-decoration: none;
     color: inherit
   }
+  .canvas-width {
+    width: 600px;
+  }
+  

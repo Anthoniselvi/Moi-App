@@ -12,9 +12,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import PersonIcon from '@mui/icons-material/Person';
 import MailIcon from '@mui/icons-material/Mail';
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -39,7 +39,7 @@ export default function SidebarDrawer() {
     navigate(`/newprofile?profile=${profileId}`);
   };
   return (
-    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa" }}>
+    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa",  }}>
       <CssBaseline />
   
       <Drawer
@@ -51,6 +51,9 @@ export default function SidebarDrawer() {
             boxSizing: 'border-box', 
             backgroundColor: "#ffffff" , color: "#101a34"
           },
+          '& .MuiButtonBase-root-MuiButton-root' : {
+            padding: 0
+          }
         }}
         variant="permanent"
         anchor="left"
@@ -63,9 +66,9 @@ export default function SidebarDrawer() {
         <Divider />
         <List sx={{color: "black"}}>
           {[
-            { text: 'Dashboard', icon: <InboxIcon />, onClick: navigateToDashboard },
+            { text: 'Dashboard', icon: <HomeIcon />, onClick: navigateToDashboard },
             { text: 'Events', icon: <MailIcon />, onClick: navigateToEvents },
-            { text: 'Profile', icon: <InboxIcon />, onClick: navigateToProfile },
+            { text: 'Profile', icon: <PersonIcon />, onClick: navigateToProfile },
             // { text: 'Drafts', icon: <MailIcon />, onClick: navigateToDrafts },
           ].map((item, index) => (
             <ListItem key={item.text} disablePadding>

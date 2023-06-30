@@ -61,11 +61,11 @@ export default function NewEventPage() {
         component="main"
         sx={{ flexGrow: 1, bgcolor: '#f5f7fa', p: 3, width: `calc(100% - ${drawerWidth}px)`, paddingTop:1 }}
       >
-        <Typography sx={{color: "#101a34",  
+        {/* <Typography sx={{color: "#101a34",  
     fontFamily: 'Poppins',   fontWeight: 600,
     fontSize: "32px", lineHeight: "34px",  }}>
           Moi Entries
-        </Typography>
+        </Typography> */}
       <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", height: "10%", width: "100%", paddingTop: "5%"}}>
         
         <Typography sx={{color: "#101a34",  

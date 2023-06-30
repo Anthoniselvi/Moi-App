@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
+import "../App.css"
 
 const NewBar = ({ eventsList }) => {
   const chartRef = useRef(null);
@@ -62,7 +63,8 @@ const NewBar = ({ eventsList }) => {
     });
   }, [eventsList]);
 
-  return <canvas ref={chartRef} style={{width: "100%"}} />;
+  // return <canvas ref={chartRef} sx={{'& .canvas': {width: "600px"}}} />;
+  return <canvas ref={chartRef} className="canvas-width" />;
 };
 
 export default NewBar;
