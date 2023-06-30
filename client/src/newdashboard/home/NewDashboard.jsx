@@ -232,16 +232,16 @@ const navigateToEvents = () => {
                    backgroundColor="#fff"
                 //    overflow="auto"
                    borderRadius="10px"
-                   border= "1px solid #e8ecf1"  
+                    border= "1px solid #e8ecf1"  
                   
                 > 
                 <Box display="flex" flexDirection="column" padding="10px">
                 {!showSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px">
-                    <Typography variant="h5" fontWeight="600" sx={{color: "rgba(39, 206, 136)"}}>Search by Name</Typography>
+                    <Typography variant="h5" fontWeight="600" sx={{color: "rgba(39, 206, 136)", cursor: "pointer"}}>Search by Name</Typography>
                 <IconButton sx={{backgroundColor: "rgba(39, 206, 136, 0.2)"}} onClick={handleSearchClick}>
     <SearchIcon sx={{color: "rgba(39, 206, 136)"}}/>
   </IconButton></Box>) :
-  <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" />}
+  <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" color='secondary'/>}
                     <NewSearchTable searchResult={searchResult} eventsList={eventsList} width="100%" />
                     </Box>
                                  </Box>

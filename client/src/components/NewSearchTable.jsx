@@ -22,17 +22,7 @@ const columns = [
 
 
 export default function NewSearchTable({searchResult, eventsList}) {
-//   const [page, setPage] = React.useState(0);
-//   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-//   const handleChangePage = (event, newPage) => {
-//     setPage(newPage);
-//   };
-
-//   const handleChangeRowsPerPage = (event) => {
-//     setRowsPerPage(+event.target.value);
-//     setPage(0);
-//   };
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -44,24 +34,24 @@ export default function NewSearchTable({searchResult, eventsList}) {
                 <TableCell
                   key={column.entryId}
                   align={column.align}
-                  style={{ minWidth: column.minWidth,backgroundColor: "rgb(34, 43, 54)", color:'rgba(54, 162, 235)' }}
+                  style={{ minWidth: column.minWidth,backgroundColor: "rgb(36, 153, 239)", color:'black' }}
                 >
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody sx={{backgroundColor: "rgb(34, 43, 54)", borderBottom: "none"}}>
+          <TableBody sx={{backgroundColor: "#f5f7fa", color: "black", borderBottom: "none"}}>
             {searchResult.map((entry) => {
                 if (entry.amount > 0) {
                     const event = eventsList.find((event) => event.eventId === entry.eventId);
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} >
-                     <TableCell sx={{ borderBottom: "none" }}>{entry.personName}</TableCell>
-                <TableCell align="left" sx={{ borderBottom: "none" }}>
+                     <TableCell sx={{ borderBottom: "none", color: "black" }}>{entry.personName}</TableCell>
+                <TableCell align="left" sx={{ borderBottom: "none", color: "black" }}>
                   {event ? event.eventName : null}
                 </TableCell>
-                <TableCell sx={{ borderBottom: "none"}}>₹{entry.amount}</TableCell>
+                <TableCell sx={{ borderBottom: "none", color: "black"}}>₹{entry.amount}</TableCell>
                     {/* {columns.map((column) => {
                       const value = row[column.id];
                       return (
