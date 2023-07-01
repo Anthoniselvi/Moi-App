@@ -18,6 +18,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import NewFilterTable from '../../components/NewFilterTable';
 import { useUserAuth } from '../../auth';
 import image from "../../img/bg1.png"
+import NewSearch from '../../components/NewSearch';
 
 const drawerWidth = 240;
 
@@ -201,16 +202,10 @@ const navigateToEvents = () => {
                     bgcolor="#fff"
                     borderRadius="10px"
                     border= "1px solid #e8ecf1"  
+                    width="100%"
+                    padding="20px"
                 >
-                    <Box
-                        mt="25px"
-                        // p="0 30px"
-                        paddingLeft="30px"
-                        width="100%"
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                    >
+                  
                         <Box>
                             <Typography variant="h5" fontWeight="600" color="rgba(54, 162, 235)">
                                 Events Generated
@@ -219,17 +214,16 @@ const navigateToEvents = () => {
                             {`₹ ${totalAmount}`}
                             </Typography>
                         </Box>
-                
+                <Box sx={{width: "100%", height: "80%"}}>
+                    
+                    <NewBar eventsList={eventsList} sx={{width: "100%"}} />
                     </Box>
-                    <Box height="250px" width="100%"  sx={{padding: 3, width: "100%"}} >
-                        {/* <MyBarChart isDashboard={true} /> */}
-                        <NewBar eventsList={eventsList} sx={{width: "100%"}} />
-                    </Box>
+
                 </Box>
                 <Box
                    gridColumn="span 6"
                    gridRow="span 3"
-                   backgroundColor="#fff"
+                //    backgroundColor="#fff"
                 //    overflow="auto"
                    borderRadius="10px"
                     border= "1px solid #e8ecf1"  
@@ -241,8 +235,29 @@ const navigateToEvents = () => {
                 <IconButton sx={{backgroundColor: "rgba(39, 206, 136, 0.2)"}} onClick={handleSearchClick}>
     <SearchIcon sx={{color: "rgba(39, 206, 136)"}}/>
   </IconButton></Box>) :
-  <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" color='secondary'/>}
+  <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" sx={{color: "black"}}/>}
                     <NewSearchTable searchResult={searchResult} eventsList={eventsList} width="100%" />
+                    {/* <NewSearch searchResult={searchResult} /> */}
+                    </Box>
+                                 </Box>
+                                 <Box
+                   gridColumn="span 6"
+                   gridRow="span 3"
+                   backgroundColor="#fff"
+                //    overflow="auto"
+                   borderRadius="10px"
+                    border= "1px solid #e8ecf1"  
+                  
+                > 
+                <Box display="flex" flexDirection="column" padding="10px">
+                {/* {!showSearch ? (<Box display="flex" justifyContent="space-between" alignItems="center" padding= "10px">
+                    <Typography variant="h5" fontWeight="600" sx={{color: "rgba(39, 206, 136)", cursor: "pointer"}}>Search by Name</Typography>
+                <IconButton sx={{backgroundColor: "rgba(39, 206, 136, 0.2)"}} onClick={handleSearchClick}>
+    <SearchIcon sx={{color: "rgba(39, 206, 136)"}}/>
+  </IconButton></Box>) :
+  <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" sx={{color: "black"}}/>} */}
+                    {/* <NewSearchTable searchResult={searchResult} eventsList={eventsList} width="100%" /> */}
+                    <NewSearch searchResult={searchResult} />
                     </Box>
                                  </Box>
                              
