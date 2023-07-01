@@ -17,7 +17,7 @@ export default function NewSearch({searchResult}) {
   return (
     <Box 
     sx={{
-      height: 400, width: 1 , 
+      height: 300, width: 1 , 
       "& .MuiDataGrid-root": {
         border: "none",
       },

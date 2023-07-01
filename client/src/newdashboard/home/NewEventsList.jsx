@@ -10,6 +10,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import axios from 'axios';
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import EditIcon from '@mui/icons-material/Edit';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,6 +50,7 @@ export default function NewEventsList({eventslist}) {
 const navigate = useNavigate()
 const [searchParam] = useSearchParams();
 const profileId = searchParam.get("profile");
+const [isHovered, setIsHovered] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -155,8 +157,10 @@ const navigateToCreateEvent = () => {
           {eventslist.map((singleEvent, eventId) => (
             <>
       {eventslist.length > 0 && (
-             
+             <>
           <Box  onClick= {()=>navigateToSingleEventPage(singleEvent.eventId)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
             sx={{
               height: '300px',
               width: '30%',
@@ -176,7 +180,7 @@ const navigateToCreateEvent = () => {
               },
             }}
           >
-          {/* <Box sx={{ width: '100%', height: '65%' }}> */}
+       
   <div style={{ overflow: 'hidden', width: '100%',
         height: '65%',
         backgroundImage: `url(${singleEvent.eventImage})`,
@@ -184,9 +188,6 @@ const navigateToCreateEvent = () => {
         backgroundSize: 'cover', borderTopLeftRadius: "10px", borderTopRightRadius: "10px" }}>
    
   </div>
-{/* </Box> */}
-
-
 
             <Box  onClick= {()=>navigateToSingleEventPage(singleEvent.eventId)} padding="0% 5%" width="100%" height="35%" display="flex" flexDirection="column" gap="20%" alignItems="left" justifyContent="center" >
                
@@ -233,8 +234,21 @@ const navigateToCreateEvent = () => {
             </Typography></Box>
             </Box>
             </Box>
+          
   </Box>
-       
+         {isHovered && (
+          <EditIcon
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 1,
+              // Add any additional styles for the edit icon
+            }}
+          />
+        )}
+        </>
         )}</>))}
         </Box>
        

@@ -169,9 +169,7 @@ const navigateToEvents = () => {
                             />
                         }
                     />
-                </Box>
-                
-    
+                </Box>   
                 <Box
                     gridColumn="span 4"
                     bgcolor="#fff"

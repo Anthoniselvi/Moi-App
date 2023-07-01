@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -13,8 +14,22 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-// import { RefreshContext } from "./Entries";
+import { createTheme } from '@mui/material/styles';
 
+import { ThemeProvider } from '@mui/styles';
+
+// import { RefreshContext } from "./Entries";
+const theme = createTheme({
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#red',
+        },
+      },
+    },
+  },
+});
 export default function NewEditEntry({ open, onClose, entryId }) {
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [personName, setPersonName] = useState("");
@@ -66,10 +81,12 @@ export default function NewEditEntry({ open, onClose, entryId }) {
   useEffect(() => {
     getSelectedEntry();
   }, []);
-
+  
   return (
-    <div>
-      <Dialog open={open} onClose={onClose}>
+    <ThemeProvider theme={theme}>
+    <Box >
+      <Dialog open={open} onClose={onClose} >
+      {/* PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}> */}
         <DialogTitle textAlign="center" variant="h4">
           Edit{" "}
         </DialogTitle>
@@ -206,6 +223,7 @@ export default function NewEditEntry({ open, onClose, entryId }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
+    </ThemeProvider>
   );
 }

@@ -56,7 +56,7 @@ const SignIn = () => {
         console.log(res);
     // navigate(`/dashboard?profile=${res.user.uid}`);
     
-    navigate(`/newhome?profile=${res.user.uid}`);
+    navigate(`/newdashboard?profile=${res.user.uid}`);
       })
       .catch((err) => {
         setError(err.message);
