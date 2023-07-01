@@ -45,11 +45,9 @@ export default function NewCreateEvent() {
     // refreshPage();
   };
   return (
-    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa" }}>
-    {/* <CssBaseline /> */}
-    <SidebarDrawer />
-   <Box 
-   sx={{minHeight: "80vh", width: "80%", padding:" 2% 20%",     
+
+   <Box m="20px" p="20px"
+   sx={{minHeight: "80vh",    
    backgroundColor: "#fff",
     border: "1px solid #e8ecf1", borderRadius: "10px", 
     display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -65,7 +63,7 @@ export default function NewCreateEvent() {
         Let's create your Event!</Typography> 
    </Box>
 
-   <form onSubmit={handleSubmit} style={{margin: "5% 0%", width: "100%", display: "flex", flexDirection: "column", gap: "20px"}}>
+   <form onSubmit={handleSubmit} style={{margin: "5% 0%", width: "60%", display: "flex", flexDirection: "column", gap: "20px"}}>
     <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
   <label for="eventType" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Event Type:</label>
  <select style={{background: "#fff", borderRadius: "7px",
@@ -153,7 +151,7 @@ export default function NewCreateEvent() {
 </form>
 
 </Box>
-   </Box>
+  //  </Box>
 
   )
 }

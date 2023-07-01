@@ -87,6 +87,10 @@ const navigateToCreateEvent = () => {
       color: "#101a34",
     
     },
+    '& .MuiTab-root.Mui-selected' :{
+      color: "#101a34",
+    
+    },
     '& .MuiTabs-indicator': {
       backgroundColor: 'transparent',
     },

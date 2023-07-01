@@ -69,13 +69,7 @@ export default function NewProfile() {
     getProfile();
   }, []);
   return (
-    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa" }}>
-    <CssBaseline />
-    <SidebarDrawer />
-    <Box
-      component="main"
-      sx={{ flexGrow: 1, bgcolor: '#f5f7fa', p: 3, width: `calc(100% - ${drawerWidth}px)`, }}
-    >
+       <Box margin="20px">
       {/* <Toolbar /> */}
       <Typography sx={{color: "#101a34",  
   fontFamily: 'Poppins',   fontWeight: 600,
@@ -186,98 +180,7 @@ export default function NewProfile() {
 
 
 </form>
-{/* <form>      
-      <br />
-       <FormControl sx={{ width: "100%" , background: "#fff", borderRadius: "7px",
-    // width: "100%",       height:"44px", padding: "8px 15px", 
-    fontWeight: 400,
-    fontSize: "16px", lineHeight: "20px",
-     color: "#101a34",
-    border: "1px solid #cad3dd",
-    fontFamily: "Poppins" 
-//  "& > div": { width: isNonMobile ? undefined : "250px"} 
-}}>
-      <InputLabel color="secondary" id="demo-simple-select-label">Event Type</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        required
-        // value={eventType}
-        label="Event Type"
-        color="secondary"
-        // onChange={
-        //   (e) => setEventType(e.target.value)
-        // }
-      >
-        <MenuItem value="wedding">Wedding</MenuItem>
-        <MenuItem value="birthday">Birthday</MenuItem>
-        <MenuItem value="baby">Baby Shower</MenuItem>
-        <MenuItem value="house">House Warming</MenuItem>
-        <MenuItem value="others">Others</MenuItem>
-      </Select>
-    </FormControl>
-      <br />
-      <br />
-      <TextField
-        sx={{ width: "100%" , background: "#fff", borderRadius: "7px",
-        // width: "100%",       height:"44px", padding: "8px 15px", 
-        fontWeight: 400,
-        fontSize: "16px", lineHeight: "20px",
-         color: "#101a34",
-        border: "1px solid #cad3dd",
-        fontFamily: "Poppins" 
-        // "& > div": { width: isNonMobile ? undefined : "250px"} 
-       }}
-        type="text"
-        color="secondary"
-        label="Event Name"
-        variant="outlined"
-        // value={name}
-        // onChange={(e) => setName(e.target.value)}
-      />
-      <br />
-      <br />
-      <TextField
-        sx={{ width: "100%" , background: "#fff", borderRadius: "7px",
-        // width: "100%",       height:"44px", padding: "8px 15px", 
-        fontWeight: 400,
-        fontSize: "16px", lineHeight: "20px",
-         color: "#101a34",
-        border: "1px solid #cad3dd",
-        fontFamily: "Poppins" 
-        // "& > div": { width: isNonMobile ? undefined : "250px"} 
-       }}
-        type="text"
-        label="Place"
-        variant="outlined"
-        color="secondary"
-        // value={place}
-        // onChange={(e) => setPlace(e.target.value)}
-      />
-      <br />
-      <br />
-      <TextField
-        sx={{ width: "100%" , background: "#fff", borderRadius: "7px",
-        // width: "100%",       height:"44px", padding: "8px 15px", 
-        fontWeight: 400,
-        fontSize: "16px", lineHeight: "20px",
-         color: "#101a34",
-        border: "1px solid #cad3dd",
-        fontFamily: "Poppins" 
-        // "& > div": { width: isNonMobile ? undefined : "250px"} 
-       }}
-        type="date"
-        label="Date"
-        variant="outlined"
-        color="secondary"
-        // value={date}
-        // onChange={(e) => setDate(e.target.value)}
-      />
-      <br />
-      <br />
-    </form> */}
 </Box>
-   </Box>
 
   )
 }

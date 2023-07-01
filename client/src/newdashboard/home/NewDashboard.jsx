@@ -60,7 +60,7 @@ const searchResult = allEntries.filter(entry => entry.personName && entry.person
 console.log("Searched by Name - " + searchName + ":" + JSON.stringify(searchResult));
 
 const navigateToEvents = () => {
-    navigate(`/events?profile=${profileId}`)
+    navigate(`/newhome?profile=${profileId}`)
 }
 
 
@@ -95,22 +95,13 @@ const navigateToEvents = () => {
         fetchAllEntriesByProfileId()
       }, []);
   return (
-    <Box sx={{ display: 'flex', backgroundColor: "#f5f7fa", height: "100%", width: "100%",marginLeft: "-20px",right: "-20px" }}>
-      {/* <CssBaseline /> */}
-      <SidebarDrawer sx={{width: "20%"}}/>
-      <Box sx={{ bgcolor: '#f5f7fa',width: "80%" }}
-      >
+
+      <Box margin="0px">
+      
         <Box sx={{width: "100%", height: "40vh", marginTop: "-20px", background: `url(${image})`, backgroundSize: "cover",backgroundRepeat: "no-repeat", backgroundPosition: "center", display: "flex", alignItems: "center", justifyContent: "center"}}>
             <h1>Welcome {auth.user.displayName} !</h1>
         </Box>
-        {/* <Box sx={{padding: "20px",}}> */}
-        {/* <Typography sx={{color: "#101a34",  
-    fontFamily: 'Poppins',   fontWeight: 600,
-    fontSize: "32px", lineHeight: "34px", }}>
-          Dashboard
-        </Typography> */}
-      {/* <Box sx={{width: "100%", minHeight:  "80vh", borderRadius: "10px", overflow: "hidden", }}> */}
-      {/* border: "1px solid #cad3dd", */}
+      
       <Box
     //   bgcolor="#fff"
           p="20px"
@@ -221,7 +212,7 @@ const navigateToEvents = () => {
                 <Box
                    gridColumn="span 6"
                    gridRow="span 3"
-                //    backgroundColor="#fff"
+                   backgroundColor="#fff"
                 //    overflow="auto"
                    borderRadius="10px"
                     border= "1px solid #e8ecf1"  
@@ -258,17 +249,10 @@ const navigateToEvents = () => {
                     <NewSearch searchResult={searchResult} />
                     </Box>
                                  </Box>
-                             
-    {/* { createModalOpen ? 
-            <CreateNew
-            open={createModalOpen}
-            onClose={() => setCreateModalOpen(false)}
-            
-          /> : <></>} */}
+
         </Box >
-        {/* </Box> */}
-        {/* </Box> */}
+       
     </Box>
-    </Box>
+    // </Box>
   )
 }
