@@ -203,13 +203,13 @@ const navigateToEvents = () => {
                             {`₹ ${totalAmount}`}
                             </Typography>
                         </Box>
-                <Box sx={{width: "100%", height: "80%"}}>
+                <Box sx={{width: "100%", height: "80%", display: "flex", alignItems: "center", justifyContent: "center"}}>
                     
                     <NewBar eventsList={eventsList} sx={{width: "100%"}} />
                     </Box>
 
                 </Box>
-                <Box
+                {/* <Box
                    gridColumn="span 6"
                    gridRow="span 3"
                    backgroundColor="#fff"
@@ -226,9 +226,9 @@ const navigateToEvents = () => {
   </IconButton></Box>) :
   <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" sx={{color: "black"}}/>}
                     <NewSearchTable searchResult={searchResult} eventsList={eventsList} width="100%" />
-                    {/* <NewSearch searchResult={searchResult} /> */}
+                    {/* <NewSearch searchResult={searchResult} /> 
                     </Box>
-                                 </Box>
+                                 </Box> */}
                                  <Box
                    gridColumn="span 6"
                    gridRow="span 3"
@@ -246,7 +246,7 @@ const navigateToEvents = () => {
   </IconButton></Box>) :
   <TextField type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by Name" sx={{color: "black"}}/>} */}
                     {/* <NewSearchTable searchResult={searchResult} eventsList={eventsList} width="100%" /> */}
-                    <NewSearch searchResult={searchResult} />
+                    <NewSearch searchResult={searchResult} eventsList={eventsList}/>
                     </Box>
                                  </Box>
 

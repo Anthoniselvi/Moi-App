@@ -1,18 +1,42 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 
-export default function NewSearch({searchResult}) {
-  // console.log("eventsList in NewSearch : " + JSON.stringify(eventsList))
+function QuickSearchToolbar() {
+  return (
+    <Box
+      sx={{
+        p: 0.5,
+        pb: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "right",
+      }}
+    >
+      <GridToolbarQuickFilter />
+    </Box>
+  );
+}
+
+export default function NewSearch({searchResult, eventsList}) {
+  console.log("eventsList in NewSearch : " + JSON.stringify(eventsList))
   console.log("searchResult in NewSearch : " + JSON.stringify(searchResult))
   const columns = [
     // { field: "_id", headerName: "ID", flex: 0.25 },
-    { field: 'personName', headerName: 'Name' },
-    // { field: 'name', headerName: 'EventName' },
-    { field: 'amount', headerName: 'Amount' },
+    { field: 'personName', headerName: 'Name', flex: 0.25 },
+    { field: 'eventName', headerName: 'EventName', flex: 0.5 },
+    { field: 'amount', headerName: 'Amount', flex: 0.25 },
+    { field: 'gift', headerName: 'Gift', flex: 0.25 },
  
   ];
-  const rows = searchResult.map((row) => ({ ...row, id: row._id }));
+  // const rows = searchResult.map((row) => ({ ...row, id: row._id }));
+
+  const rows = searchResult.map((row) => ({
+    ...row,
+    id: row._id,
+    eventName: eventsList.find((event) => event.eventId === row.eventId)?.eventName || ''
+  }));
+  
 
   return (
     <Box 
@@ -66,8 +90,7 @@ export default function NewSearch({searchResult}) {
         disableColumnFilter
         disableColumnSelector
         disableDensitySelector
-       
-        slots={{ toolbar: GridToolbar }}
+        slots={{ toolbar: QuickSearchToolbar }}
         slotProps={{
           toolbar: {
             showQuickFilter: true,
