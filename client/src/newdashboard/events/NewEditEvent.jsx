@@ -85,22 +85,20 @@ export default function NewEditEvent({ open, onClose, eventId }) {
   }, []);
   return (
     <div>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} onClose={onClose} PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}>
         <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "5%"}}>
         <DialogTitle variant="h4">Edit</DialogTitle>
         <DeleteOutlineOutlined onClick={() => handleDeleteEvent(eventId)} /></Box>
         <DialogContent>
         <form>
-          {/* <TextField
-            style={{ width: "300px", margin: "5px" }}
-            type="text"
-            label="Event Type"
-            variant="outlined"
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}
-          /> */}
-          <br />
-          <FormControl sx={{ width: "300px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}>
+          
+          <FormControl sx={{ width: "300px" , "& > div": { width: isNonMobile ? undefined : "250px"},
+         "& .MuiFormLabel-root": {
+          color: "#121212",
+        },
+        "& .MuiRadio-root": {
+          color: "#121212",
+        }, }}>
           <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -110,7 +108,6 @@ export default function NewEditEvent({ open, onClose, eventId }) {
             label="Event Type"
             onChange={
               (e) => setEventType(e.target.value)
-              // (e) => setImageSource(images[e.target.value]))
             }
           >
             <MenuItem value="wedding">Wedding</MenuItem>
@@ -123,7 +120,20 @@ export default function NewEditEvent({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}
+            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"},
+            "& .MuiInputLabel-root": { color: "#121212", },
+            "& .MuiInputBase-input": {
+              color: "#121212", 
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "green",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "blue",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "purple",
+            }, }}
             type="text"
             label="Event Name"
             variant="outlined"
@@ -133,7 +143,20 @@ export default function NewEditEvent({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"},
+            "& .MuiInputLabel-root": { color: "#121212", },
+            "& .MuiInputBase-input": {
+              color: "#121212", 
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "green",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "blue",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "purple",
+            },  }}
             type="text"
             label="Place"
             variant="outlined"
@@ -143,7 +166,20 @@ export default function NewEditEvent({ open, onClose, eventId }) {
           <br />
           <br />
           <TextField
-            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"} ,
+            "& .MuiInputLabel-root": { color: "#121212", },
+            "& .MuiInputBase-input": {
+              color: "#121212", 
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "green",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "blue",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "purple",
+            }, }}
             type="date"
             label="Date"
             variant="outlined"

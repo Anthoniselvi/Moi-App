@@ -24,7 +24,7 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: '#red',
+          backgroundColor: 'red',
         },
       },
     },
@@ -84,9 +84,9 @@ export default function NewEditEntry({ open, onClose, entryId }) {
   
   return (
     <ThemeProvider theme={theme}>
-    <Box >
-      <Dialog open={open} onClose={onClose} >
-      {/* PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}> */}
+    <Box  >
+      <Dialog open={open} onClose={onClose}
+      PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}>
         <DialogTitle textAlign="center" variant="h4">
           Edit{" "}
         </DialogTitle>
@@ -95,8 +95,21 @@ export default function NewEditEntry({ open, onClose, entryId }) {
             <TextField
               sx={{
                 width: "300px",
-                margin: "5px",
+                margin: "5px",color: "#121212",
                 "& > div": { width: isNonMobile ? undefined : "250px" },
+                "& .MuiInputLabel-root": { color: "#121212", },
+                "& .MuiInputBase-input": {
+                  color: "#121212", 
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "green",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "blue",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "purple",
+                },
               }}
               type="text"
               label="Person Name"
@@ -111,6 +124,19 @@ export default function NewEditEntry({ open, onClose, entryId }) {
                 width: "300px",
                 margin: "5px",
                 "& > div": { width: isNonMobile ? undefined : "250px" },
+                "& .MuiInputLabel-root": { color: "#121212", },
+                "& .MuiInputBase-input": {
+                  color: "#121212", 
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "green",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "blue",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "purple",
+                },
               }}
               type="text"
               label="City"
@@ -125,11 +151,18 @@ export default function NewEditEntry({ open, onClose, entryId }) {
                 width: "300px",
                 margin: "5px",
                 "& > div": { width: isNonMobile ? undefined : "250px" },
+                "& .MuiFormLabel-root": {
+                  color: "#121212",
+                },
+                "& .MuiRadio-root": {
+                  color: "#121212",
+                },
               }}
             >
               <FormLabel
                 id="demo-controlled-radio-buttons-group"
-                style={{ width: "300px", margin: "5px", color: "#fff" }}
+                sx={{ width: "300px", margin: "5px", color: "#fff",
+               }}
               >
                 Type of Presentation :
               </FormLabel>
@@ -138,26 +171,20 @@ export default function NewEditEntry({ open, onClose, entryId }) {
                 value={presentType}
                 onChange={(e) => setPresentType(e.target.value)}
               >
-                {/* <div className="radio-button"> */}
                 <FormControlLabel
                   control={<Radio />}
                   label="Amount"
                   value="amount"
 
-                  // defaultChecked={selected === "amount"}
-                  // onChange={(e) => setSelected(e.target.value)}
                 />
                 <FormControlLabel
                   control={<Radio />}
                   label="Gift"
                   value="gift"
 
-                  // defaultChecked={selected === 0}
-                  // onChange={(e) => setSelected(e.target.value)}
                 />
                 <br />
 
-                {/* </div> */}
                 {presentType === "amount" ? (
                   // <div>
                   <TextField
@@ -165,12 +192,23 @@ export default function NewEditEntry({ open, onClose, entryId }) {
                       width: "300px",
                       margin: "5px",
                       "& > div": { width: isNonMobile ? undefined : "250px" },
+                      "& .MuiInputLabel-root": { color: "#121212", },
+                      "& .MuiInputBase-input": {
+                        color: "#121212", 
+                      },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "green",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "blue",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "purple",
+                      },
                     }}
                     id="outlined-amount"
                     label="Rs."
-                    InputLabelProps={{
-                      style: { color: "#fff" },
-                    }}
+                    
                     onChange={(e) => setAmount(e.target.value)}
                     value={amount}
                     // sx={{ width: "300px", marginBottom: "5%" }}
@@ -183,19 +221,26 @@ export default function NewEditEntry({ open, onClose, entryId }) {
                       width: "300px",
                       margin: "5px",
                       "& > div": { width: isNonMobile ? undefined : "250px" },
+                      "& .MuiInputLabel-root": { color: "#121212", },
+                      "& .MuiInputBase-input": {
+                        color: "#121212", 
+                      },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "green",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "blue",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "purple",
+                      },
                     }}
                     id="outlined-multiline-static"
                     label="about gift"
-                    InputLabelProps={{
-                      style: { color: "#fff" },
-                    }}
-                    multiline
-                    // rows={4}
-                    // sx={{ width: "300px", marginBottom: "5%" }}
-                    onChange={(e) => setGift(e.target.value)}
+                     multiline
+                     onChange={(e) => setGift(e.target.value)}
                     value={gift}
                   />
-                  // </div>
                 )}
               </RadioGroup>
             </FormControl>
@@ -204,8 +249,8 @@ export default function NewEditEntry({ open, onClose, entryId }) {
             <br />
           </form>
         </DialogContent>
-        <DialogActions>
-          <Button
+        <DialogActions sx={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>
+          <Button sx={{backgroundColor: "rgb(80, 188, 217)"}}
             type="submit"
             color="secondary"
             variant="contained"
@@ -213,7 +258,7 @@ export default function NewEditEntry({ open, onClose, entryId }) {
           >
             CANCEL
           </Button>
-          <Button
+          <Button sx={{backgroundColor: "rgb(80, 188, 217)"}}
             type="submit"
             color="secondary"
             variant="contained"

@@ -69,10 +69,7 @@ export default function NewEventPage() {
     fetchAllEntries();
   }, []);
   return (
-<PDFDownloadLink
-        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
-        fileName={`${eventsList.name}.pdf`}
-      >
+
     <Box m="20px" >
       <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", height: "10%", width: "100%", paddingTop: "5%"}}>
         <Box sx={{display: "flex", gap:"10px", alignItems: "center", }}>
@@ -81,10 +78,18 @@ export default function NewEventPage() {
     fontSize: "25px", lineHeight: "34px", }}>
           {eventsList.name}
         </Typography>
+        <PDFDownloadLink
+        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
+        fileName={`${eventsList.name}.pdf`}
+      >
         <DownloadForOfflineIcon onClick={() => getReports(eventsList.name)} sx={{color: "#101a34",   fontSize: "25px", cursor: "pointer"}} />
+        </PDFDownloadLink>
         </Box>
-        <div style={{    color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
-    fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} onClick={() => handleEditEvent(eventId)}><BorderColorOutlinedIcon />Edit </div>
+        <Box sx={{color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
+    fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} 
+    onClick={() => handleEditEvent(eventId)}>
+      <BorderColorOutlinedIcon />Edit 
+      </Box>
       
 </Box>
       <Box sx={{width: "100%", height:  "80vh", borderRadius: "10px", border: "1px solid #cad3dd", marginTop: "4%"}}>
@@ -119,6 +124,5 @@ export default function NewEventPage() {
             <></>
           )}
         </Box>
-        </PDFDownloadLink>
   )
 }
