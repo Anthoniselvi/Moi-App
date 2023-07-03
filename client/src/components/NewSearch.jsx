@@ -6,14 +6,16 @@ function QuickSearchToolbar() {
   return (
     <Box
       sx={{
+
         p: 0.5,
-        pb: 0,
+        pb: 1,
         display: "flex",
         alignItems: "center",
-        justifyContent: "right",
+        justifyContent: "space-between",
       }}
     >
-      <GridToolbarQuickFilter />
+      <h3 style={{color: "rgba(255, 198, 117)"}}>Search by Name</h3>
+      <GridToolbarQuickFilter  sx={{color: "rgba(255, 198, 117)"}}/>
     </Box>
   );
 }
@@ -22,14 +24,12 @@ export default function NewSearch({searchResult, eventsList}) {
   console.log("eventsList in NewSearch : " + JSON.stringify(eventsList))
   console.log("searchResult in NewSearch : " + JSON.stringify(searchResult))
   const columns = [
-    // { field: "_id", headerName: "ID", flex: 0.25 },
     { field: 'personName', headerName: 'Name', flex: 0.25 },
-    { field: 'eventName', headerName: 'EventName', flex: 0.5 },
+    { field: 'eventName', headerName: 'EventName', flex: 0.4 },
     { field: 'amount', headerName: 'Amount', flex: 0.25 },
-    { field: 'gift', headerName: 'Gift', flex: 0.25 },
+    { field: 'gift', headerName: 'Gift', flex: 0.3 },
  
   ];
-  // const rows = searchResult.map((row) => ({ ...row, id: row._id }));
 
   const rows = searchResult.map((row) => ({
     ...row,
@@ -41,7 +41,7 @@ export default function NewSearch({searchResult, eventsList}) {
   return (
     <Box 
     sx={{
-      height: 300, width: 1 , 
+      height: 400, width: 1 , 
       "& .MuiDataGrid-root": {
         border: "none",
       },
@@ -52,7 +52,7 @@ export default function NewSearch({searchResult, eventsList}) {
         color: "red",
       },
       "& .MuiDataGrid-columnHeaders": {
-        backgroundColor: "lightblue",
+        backgroundColor: "rgb(140, 141, 255)",
         color: "#121212",
         borderBottom: "none",
         fontWeight: 700,
@@ -82,6 +82,10 @@ export default function NewSearch({searchResult, eventsList}) {
       },
       "& .MuiCheckbox-root": {
         color: "black",
+      },
+      "& .MuiDataGrid-row:hover": {
+        backgroundColor: "#e0e0e0", // change the background color to your desired value
+        cursor: "pointer",
       },
     }}>
       <DataGrid

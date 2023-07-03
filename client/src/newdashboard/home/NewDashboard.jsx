@@ -231,7 +231,7 @@ const navigateToEvents = () => {
                                  </Box> */}
                                  <Box
                    gridColumn="span 6"
-                   gridRow="span 3"
+                   gridRow="span 4"
                    backgroundColor="#fff"
                 //    overflow="auto"
                    borderRadius="10px"

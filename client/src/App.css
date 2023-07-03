@@ -20,7 +20,7 @@
   }
   
   ::-webkit-scrollbar-thumb{
-  background: skyblue;
+  background: rgb(140, 141, 255);
   border-radius: 1ex;
   }
 
