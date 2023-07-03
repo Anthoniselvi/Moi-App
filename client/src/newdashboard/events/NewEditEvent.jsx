@@ -93,12 +93,27 @@ export default function NewEditEvent({ open, onClose, eventId }) {
         <form>
           
           <FormControl sx={{ width: "300px" , "& > div": { width: isNonMobile ? undefined : "250px"},
-         "& .MuiFormLabel-root": {
-          color: "#121212",
-        },
-        "& .MuiRadio-root": {
-          color: "#121212",
-        }, }}>
+          "& .MuiFormLabel-root": {
+            color: "#121212",
+          },
+          "& .MuiInputBase-root": {
+            color: "#121212",
+          },
+          "& .MuiInput-underline:before": {
+            borderBottomColor: "#121212",
+          },
+          "& .MuiInput-underline:hover:before": {
+            borderBottomColor: "#121212",
+          },
+          "& .MuiInput-underline:after": {
+            borderBottomColor: "#121212",
+          },
+          "& .MuiInput-underline.Mui-error:after": {
+            borderBottomColor: "#121212",
+          },
+          "& .MuiSelect-icon": {
+            color: "#121212",
+          }, }}>
           <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"
