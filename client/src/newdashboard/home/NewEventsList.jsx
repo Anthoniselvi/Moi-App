@@ -101,13 +101,13 @@ const navigateToCreateEvent = () => {
 </Tabs>
 
       </Box>
-      <TabPanel value={value} index={0} sx={{ color: 'black', backgroundColor: '#fff'  }}>
+      <TabPanel value={value} index={0} sx={{ color: 'black', backgroundColor: '#fff', }}>
         <Box
           sx={{
             height: '100%',
             width: '100%',
-            display: 'flex',
-            flexWrap: 'wrap',
+            // display: 'flex',
+            // flexWrap: 'wrap',
             gap: '20px',
             // backgroundColor: '#fff',
           }}
@@ -124,7 +124,8 @@ const navigateToCreateEvent = () => {
               alignItems: 'center',
               justifyContent: 'center',
               '&:hover': {
-                bgcolor: '#FE956F',
+                // bgcolor: '#FE956F',
+                backgroundColor: "rgb(140, 141, 255)",
                 color: '#ffffff',
                 '& .MuiTypography-root, & .MuiSvgIcon-root': {
                   color: '#ffffff',
@@ -132,7 +133,8 @@ const navigateToCreateEvent = () => {
               },
             }}
           >
-            <ControlPointIcon sx={{ fontSize: '40px', color: '#FE956F' }} />
+            <ControlPointIcon sx={{ fontSize: '40px',color: "rgb(140, 141, 255)" }} />
+            {/* color: '#FE956F',  */}
             <Typography
               sx={{
                 fontWeight: 600,
@@ -176,7 +178,8 @@ const navigateToCreateEvent = () => {
               alignItems: 'center',
               justifyContent: 'center',
               '&:hover': {
-                bgcolor: '#FE956F',
+                // bgcolor: '#FE956F',
+                backgroundColor: "rgb(140, 141, 255)",
                 color: '#ffffff',
                 '& .MuiTypography-root, & .MuiSvgIcon-root': {
                   color: '#ffffff',
