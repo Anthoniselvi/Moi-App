@@ -8,6 +8,10 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import NewCreateEntry from '../entries/NewCreateEntry'
 import NewEditEvent from './NewEditEvent'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import { EntriesPdf } from '../../scenes/reports/DownloadEntries'
+import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+
 const drawerWidth = 240;
 export default function NewEventPage() {
   const [entries, setEntries] = useState([]);
@@ -16,22 +20,37 @@ export default function NewEventPage() {
   const [totalGift, setTotalGift] = useState(0)
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [selectedRow, setSelectedRow] = React.useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false); 
-  // const [deleteModalOpen, setDeleteModalOpen] = useState(false);
- 
   const [selectedRowId, setSelectedRowId] = useState();
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("event");
+  const selectedEvent = eventsList;
+    const [selectedEntries, setSelectedEntries] = useState([])
+    const [loading, setLoading] = useState(false);
+    const getReports = (eventName) => {
+      console.log("eventName :" + eventName);
+      console.log("eventsList :", eventsList);
+    
+      const selectedEvent = eventsList;
+      const selectedEventEntries = entries.filter(
+        (entry) => entry.eventId === selectedEvent.eventId
+      );
+      console.log("selectedEventEntries :" + JSON.stringify(selectedEventEntries))
+      setSelectedEntries(selectedEventEntries);
+      console.log("SelectedEntries: ", selectedEntries);
+      setLoading(true);
+    };
+    
+
   const getSelectedEvent = () => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/events/single/${eventId}`)
       .then((response) => {
-        // console.log(response);
         console.log(response.data);
         setEventsList(response.data);
       });
   };
+  
 
   const handleEditEvent = (eventId) => {
     setAnchorEl(null)
@@ -40,10 +59,6 @@ export default function NewEventPage() {
     };
   const fetchAllEntries = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/entries/all/${eventId}`).then((response) => {
-      // console.log(response);
-      // console.log("fetchAllEntries : " + JSON.stringify(response.data));
-      console.log("fetchAllEntries : " + JSON.stringify(response.data.entriesList));
-      console.log("totalAmount : " + JSON.stringify(response.data.totalAmount));
       setEntries(response.data.entriesList);
       setTotalAmount(response.data.totalAmount)
       setTotalGift(response.data.totalGift)
@@ -54,15 +69,20 @@ export default function NewEventPage() {
     fetchAllEntries();
   }, []);
   return (
-
+<PDFDownloadLink
+        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
+        fileName={`${eventsList.name}.pdf`}
+      >
     <Box m="20px" >
       <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", height: "10%", width: "100%", paddingTop: "5%"}}>
-        
+        <Box sx={{display: "flex", gap:"10px", alignItems: "center", }}>
         <Typography sx={{color: "#101a34",  
-    fontFamily: 'Poppins',   fontWeight: 600,
+    fontFamily: 'Poppins',   fontWeight: 600, 
     fontSize: "25px", lineHeight: "34px", }}>
           {eventsList.name}
         </Typography>
+        <DownloadForOfflineIcon onClick={() => getReports(eventsList.name)} sx={{color: "#101a34",   fontSize: "25px", cursor: "pointer"}} />
+        </Box>
         <div style={{    color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
     fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} onClick={() => handleEditEvent(eventId)}><BorderColorOutlinedIcon />Edit </div>
       
@@ -99,5 +119,6 @@ export default function NewEventPage() {
             <></>
           )}
         </Box>
+        </PDFDownloadLink>
   )
 }

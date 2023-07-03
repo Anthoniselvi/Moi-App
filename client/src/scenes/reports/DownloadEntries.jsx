@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import React from "react";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   page: {
@@ -27,45 +27,24 @@ const styles = StyleSheet.create({
 });
 
 export const EntriesPdf = ({ selectedEntries, selectedEvent }) => {
+  console.log("selectedEntries in PDF : "+ JSON.stringify(selectedEntries))
+  console.log("selectedEvent in PDF : "+ selectedEvent)
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Text style={styles.header}>{selectedEvent.name}</Text>
+        <Text style={styles.header}>{selectedEvent}</Text>
         {selectedEntries.map((singleEntry, i) => (
+          <>
+         { console.log("singleEntry in PDF :" + singleEntry)}
           <View key={`${singleEntry.entryId}-${i}`} style={styles.entry}>
             <Text style={styles.entryText}>{singleEntry.personName}</Text>
             <Text>{singleEntry.city}</Text>
             <Text>₹{singleEntry.amount}</Text>
             <Text>{singleEntry.gift}</Text>
           </View>
+          </>
         ))}
       </Page>
     </Document>
   );
 };
-
-const DownloadEntries = ({ selectedEntries, selectedEvent }) => {
-  const [loading, setLoading] = useState(false);
-
-  const handleDownload = () => {
-    setLoading(true);
-  };
-
-  return (
-    <div>
-      <PDFDownloadLink
-        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={selectedEvent} />}
-        fileName={`${selectedEvent.name}.pdf`}
-      >
-        {/* {({ blob, url, loading, error }) => */}
-          {!loading ? "Generating PDF..." : "Ready to Download PDF"}
-        {/* } */}
-      </PDFDownloadLink>
-      <button onClick={handleDownload} disabled={loading}>
-        Download
-      </button>
-    </div>
-  );
-};
-
-export default DownloadEntries;
