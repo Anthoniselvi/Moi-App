@@ -80,13 +80,14 @@ export default function NewSidebar() {
   const auth = useUserAuth();
   const { logOut } = useUserAuth();
   const navigate = useNavigate()
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   { index=== 0 ? navigate(`/newdashboard?profile=${auth.user.uid}`) : 
   index ===1 ? navigate(`/newhome?profile=${auth.user.uid}`) : 
   index===2 ? navigate(`/newprofile?profile=${auth.user.uid}`) : 
+  index===3 ? handleLogout() :
   navigate("/login") }
   };
 
@@ -201,24 +202,27 @@ MOI APP
           <ListItemText primary="Profile" />
         </ListItemButton>
               
-      </List>
-      <Divider />
+      
+      {/* <Divider /> */}
 
 {auth.user ? (
-  <ListItem button onClick={handleLogout} sx={{color:"#101a34" , fontWeight: 'bold'}} >
+  <ListItemButton onClick={(event) => handleListItemClick(event, 3)}
+  // onClick={handleLogout} 
+  sx={{color:"#101a34" , fontWeight: 'bold'}} >
     <ListItemIcon sx={{color: "#101a34" }}>
       <Logout />
     </ListItemIcon>
     <ListItemText primary="Logout" />
-  </ListItem>
+  </ListItemButton>
 ) : (
-  <ListItem button component={Link} to="/" sx={{color: "#101a34"  , fontWeight: 'bold'}}>
+  <ListItemButton component={Link} to="/" sx={{color: "#101a34"  , fontWeight: 'bold'}}>
     <ListItemIcon sx={{color: "#101a34" }}>
       <Login />
     </ListItemIcon>
     <ListItemText primary="Login" />
-  </ListItem>
+  </ListItemButton>
 )}
+</List>
     </Box>
      
       </Drawer>
