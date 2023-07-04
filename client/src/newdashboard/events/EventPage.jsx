@@ -67,24 +67,31 @@ export default function NewEventPage() {
   useEffect(() => {
     getSelectedEvent();
     fetchAllEntries();
-  }, []);
+      setLoading(true);
+      setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
+      setLoading(false);
+    }, [entries, selectedEvent]);
+
   return (
 
     <Box m="20px" >
       <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", height: "10%", width: "100%", paddingTop: "5%"}}>
-        <Box sx={{display: "flex", gap:"10px", alignItems: "center", }}>
-        <Typography sx={{color: "#101a34",  
-    fontFamily: 'Poppins',   fontWeight: 600, 
-    fontSize: "25px", lineHeight: "34px", }}>
+      <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <Typography sx={{ color: '#101a34', fontFamily: 'Poppins', fontWeight: 600, fontSize: '25px', lineHeight: '34px' }}>
           {eventsList.name}
         </Typography>
-        <PDFDownloadLink
-        document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
-        fileName={`${eventsList.name}.pdf`}
-      >
-        <DownloadForOfflineIcon onClick={() => getReports(eventsList.name)} sx={{color: "#101a34",   fontSize: "25px", cursor: "pointer"}} />
-        </PDFDownloadLink>
-        </Box>
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
+          <PDFDownloadLink
+            document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
+            fileName={`${eventsList.name}.pdf`}
+          >
+            <DownloadForOfflineIcon sx={{ color: '#101a34', fontSize: '25px', cursor: 'pointer' }} />
+          </PDFDownloadLink>
+        )}
+      </Box>
+
         <Box sx={{color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
     fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} 
     onClick={() => handleEditEvent(eventId)}>
