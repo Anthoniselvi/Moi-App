@@ -26,7 +26,7 @@ const SignIn = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
-  const { googleSignIn, user , auth} = useUserAuth();
+  const { googleSignIn, user } = useUserAuth();
 
   const [signinData, setSigninData] = useState({
     email: "",
@@ -66,12 +66,10 @@ const SignIn = () => {
   
   const handleClick = async (e) => {
     e.preventDefault();
-    
     try {
       await googleSignIn();
-      console.log("profileId, name, email :" + user.uid, user.displayName, user.email)
       axios
-          .post(`${process.env.REACT_APP_BASE_URL}/profile/add`, {
+          .post(`${process.env.REACT_APP_BASE_URL}/profile`, {
           profileId: user.uid,
           name: user.displayName,
           email: user.email,
@@ -80,7 +78,8 @@ const SignIn = () => {
           console.log(response);
           console.log(response.data);
           console.log(response.data.profileId);
-          navigate(`/newdashboard?profile=${user.uid}`);
+          // navigate(`/dashboard?profile=${user.uid}`);
+          navigate(`/newhome?profile=${user.uid}`);
         });
        
   
