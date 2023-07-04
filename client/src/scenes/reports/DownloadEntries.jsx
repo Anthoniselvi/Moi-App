@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
@@ -55,12 +55,12 @@ export const EntriesPdf = ({ selectedEntries, selectedEvent }) => {
         </View>
 
         {selectedEntries.map((singleEntry, i) => (
-          <View key={`${singleEntry.entryId}-${i}`} style={styles.entry}>
+          <Fragment key={`${singleEntry.entryId}-${i}`} style={styles.entry}>
             <Text style={styles.entryText}>{singleEntry.personName}</Text>
             <Text style={styles.entryText}>{singleEntry.city}</Text>
             <Text style={styles.entryText}>₹{singleEntry.amount}</Text>
             <Text style={styles.entryText}>{singleEntry.gift}</Text>
-          </View>
+          </Fragment>
         ))}
       </Page>
     </Document>

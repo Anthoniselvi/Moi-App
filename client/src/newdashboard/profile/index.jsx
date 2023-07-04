@@ -49,6 +49,7 @@ export default function NewProfile() {
         // navigate(`/events?profile=${profileId}`);
       });
   };
+  
   const getProfile = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/profile/${profileId}`).then((response) => {
       // console.log(response);
@@ -79,8 +80,8 @@ export default function NewProfile() {
    <Box display="flex" gap="50px" padding="2% 0%" borderBottom="1px solid #cad3dd">
    <Box display="flex" alignItems="center" justifyContent="center" height="90px" width="90px" borderRadius="50%"  backgroundColor= "#50bcd9" color="#fff" fontFamily="Poppins" fontSize="35px">A</Box>
   <Box display="flex" flexDirection="column" gap="10px" alignItems="left" justifyContent="center">
-    <Typography sx={{fontFamily: "Poppins", fontSize: "17px", lineHeight: "22px", color: "#101a34", fontWeight: 600}}>Anthoni Selvi</Typography> 
-    <Typography sx={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "16px", color: "#5e6577"}}>anthoniselvi33@gmail.com</Typography>
+    <Typography sx={{fontFamily: "Poppins", fontSize: "17px", lineHeight: "22px", color: "#101a34", fontWeight: 600}}>{name}</Typography> 
+    <Typography sx={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "16px", color: "#5e6577"}}>{email}</Typography>
   </Box>
    </Box>
    
@@ -123,8 +124,8 @@ export default function NewProfile() {
    </Box>
    <Box display="flex" flexWrap="wrap" gap="5%">
    <div style={{display: "flex", flexDirection: "column", gap: "10px", width: "30%", marginBottom: "20px"}}>
-  <label for="lname" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Name:</label>
-  <input type="text" id="lname" name="lname" value={name} onChange={(e) => setName(e.target.value)}  style={{background: "#fff", borderRadius: "7px",
+  <label for="name" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Name:</label>
+  <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)}  style={{background: "#fff", borderRadius: "7px",
     width: "100%",       height:"44px",
     padding: "8px 15px", fontWeight: 400,
     fontSize: "16px", lineHeight: "20px",
@@ -133,8 +134,8 @@ export default function NewProfile() {
     fontFamily: "Poppins"}} />
     </div>
     <div style={{display: "flex", flexDirection: "column", gap: "10px", width: "30%",marginBottom: "20px"}}>
-  <label for="fname" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Gender:</label>
- <select value={gender} onChange={(e) => setGender(e.target.value)} style={{background: "#fff", borderRadius: "7px",
+  <label for="gender" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Gender:</label>
+ <select name="gender" value={gender} onChange={(e) => setGender(e.target.value)} style={{background: "#fff", borderRadius: "7px",
     width: "100%",       height:"44px",
     padding: "8px 15px", fontWeight: 400,
     fontSize: "16px", lineHeight: "20px",
@@ -147,8 +148,8 @@ export default function NewProfile() {
   </select>
   </div>
   <div style={{display: "flex", flexDirection: "column", gap: "10px", width: "30%",marginBottom: "20px"}}>
-  <label for="lname" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>City:</label>
-  <input type="text" id="lname" name="lname"    value={city} onChange={(e) => setCity(e.target.value)}  style={{background: "#fff", borderRadius: "7px",
+  <label for="city" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>City:</label>
+  <input type="text" id="city" name="city"    value={city} onChange={(e) => setCity(e.target.value)}  style={{background: "#fff", borderRadius: "7px",
     width: "100%",       height:"44px",
     padding: "8px 15px", fontWeight: 400,
     fontSize: "16px", lineHeight: "20px",
@@ -157,8 +158,8 @@ export default function NewProfile() {
     fontFamily: "Poppins"}} />
     </div>
     <div style={{display: "flex", flexDirection: "column", gap: "10px", width: "30%",marginBottom: "20px"}}>
-     <label for="lname" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Mobile:</label>
-  <input type="text" id="lname" name="lname"    value={mobile} onChange={(e) => setMobile(e.target.value)}  style={{background: "#fff", borderRadius: "7px",
+     <label for="mobile" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Mobile:</label>
+  <input type="text" id="mobile" name="mobile"    value={mobile} onChange={(e) => setMobile(e.target.value)}  style={{background: "#fff", borderRadius: "7px",
     width: "100%",       height:"44px",
     padding: "8px 15px", fontWeight: 400,
     fontSize: "16px", lineHeight: "20px",
@@ -167,8 +168,8 @@ export default function NewProfile() {
     fontFamily: "Poppins"}} />
     </div>
     <div style={{display: "flex", flexDirection: "column", gap: "10px", width: "30%",marginBottom: "20px"}}>
-     <label for="lname" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Email:</label>
-  <input type="text" id="lname" name="lname" value={email}    onChange={(e) => setEmail(e.target.value)} style={{background: "#fff", borderRadius: "7px",
+     <label for="email" style={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "18px", color: "#101a34", fontWeight: 600}}>Email:</label>
+  <input type="text" id="email" name="email" value={email}    onChange={(e) => setEmail(e.target.value)} style={{background: "#fff", borderRadius: "7px",
     width: "100%",       height:"44px",
     padding: "8px 15px", fontWeight: 400,
     fontSize: "16px", lineHeight: "20px",
