@@ -34,7 +34,7 @@ export default function NewDeleteEntry({ entryId, open, onClose }) {
       <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}>
         {/* <DialogTitle>Entry ID : {entryId}</DialogTitle> */}
         <DialogContent>
-          <DialogContentText sx={{color: "#121212", fontSize: "16px"}}>Are you sure want to Delete the Event Name & all their Entries?</DialogContentText>
+          <DialogContentText sx={{color: "#121212", fontSize: "16px", fontFamily: "Poppins", textAlign: "center", }}>Are you sure want to Delete the entry name?</DialogContentText>
           <br />
         </DialogContent>
         <DialogActions sx={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>

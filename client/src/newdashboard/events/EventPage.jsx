@@ -116,6 +116,7 @@ export default function NewEventPage() {
           />) : <></>}
           {editModalOpen ? (
             <NewEditEvent
+            eventName={eventsList.name}
               eventId={eventId}
               open={editModalOpen}
               onClose={() => setEditModalOpen(false)}

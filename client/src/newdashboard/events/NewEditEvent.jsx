@@ -19,7 +19,7 @@ import NewDeleteEvent from "./NewDeleteEvent";
 
 // import { RefreshContext } from "./index";
 
-export default function NewEditEvent({ open, onClose, eventId }) {
+export default function NewEditEvent({ open, onClose, eventId, eventName }) {
   
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [eventType, setEventType] = useState("");
@@ -99,17 +99,17 @@ export default function NewEditEvent({ open, onClose, eventId }) {
           "& .MuiInputBase-root": {
             color: "#121212",
           },
-          "& .MuiInput-underline:before": {
-            borderBottomColor: "#121212",
+          "& .MuiMenuItem-root": {
+            backgroundColor: "#fff",
           },
-          "& .MuiInput-underline:hover:before": {
-            borderBottomColor: "#121212",
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "green",
           },
-          "& .MuiInput-underline:after": {
-            borderBottomColor: "#121212",
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "blue",
           },
-          "& .MuiInput-underline.Mui-error:after": {
-            borderBottomColor: "#121212",
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "purple",
           },
           "& .MuiSelect-icon": {
             color: "#121212",
@@ -205,13 +205,14 @@ export default function NewEditEvent({ open, onClose, eventId }) {
           <br />
         </form>
         </DialogContent>
-        <DialogActions>
-          <Button type="submit" color="secondary" variant="contained" onClick={onClose}>CANCEL</Button>
-          <Button type="submit" color="secondary" variant="contained" onClick={handleEditSave}>EDIT</Button>
+        <DialogActions sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+          <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={onClose}>CANCEL</Button>
+          <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleEditSave}>EDIT</Button>
         </DialogActions>
       </Dialog>
       {deleteModalOpen ? (
             <NewDeleteEvent
+            eventName={eventName}
               eventId={eventId}
               open={deleteModalOpen}
               onClose={() => setDeleteModalOpen(false)}
