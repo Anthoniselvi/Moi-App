@@ -96,8 +96,8 @@ const navigateToCreateEvent = () => {
     },
   }}
 >
-  <Tab label="Upcoming (0)" {...a11yProps(0)} />
-  <Tab label={`Past (${eventslist.length})`} {...a11yProps(1)} />
+  <Tab label={`Events (${eventslist.length})`} {...a11yProps(0)} />
+  {/* <Tab label={`Past (${eventslist.length})`} {...a11yProps(1)} /> */}
 </Tabs>
 
       </Box>
@@ -106,16 +106,19 @@ const navigateToCreateEvent = () => {
           sx={{
             height: '100%',
             width: '100%',
-            // display: 'flex',
-            // flexWrap: 'wrap',
-            gap: '20px',
-            // backgroundColor: '#fff',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: "space-between",
+            // gap: '20px',
+          //  padding: "20px"
           }}
         >
           <Box onClick={navigateToCreateEvent}
             sx={{
-              height: '200px',
-              width: '200px',
+              height: '300px',
+              width: '30%',
+              // height: '200px',
+              // width: '200px',
               border: '1px solid #cad3dd',
               borderRadius: '10px',
               display: 'flex',
@@ -147,19 +150,7 @@ const navigateToCreateEvent = () => {
               Create a new Event
             </Typography>
           </Box>
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={1} sx={{ color: 'black', backgroundColor: '#fff' }}>
-      
-      <Box
-          sx={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '5%',
-          }}
-        >
+        
           {eventslist.map((singleEvent, eventId) => (
             <>
       {eventslist.length > 0 && (
@@ -257,9 +248,10 @@ const navigateToCreateEvent = () => {
         )}
         </>
         )}</>))}
-        </Box>
        
+        </Box>
       </TabPanel>
+     
     </Box>
   );
 }
