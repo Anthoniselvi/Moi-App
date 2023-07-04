@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { useContext } from "react";
 import Button from "@mui/material/Button";
 
@@ -11,7 +12,7 @@ import axios from "axios";
 // import { RefreshContext } from "./Entries";
 
 export default function NewDeleteEntry({ entryId, open, onClose }) {
-
+const [personName, setPersonName] = useState()
 //   const { updateRefreshCount } = useContext(RefreshContext);
 
   function refreshPage() {
@@ -29,12 +30,27 @@ export default function NewDeleteEntry({ entryId, open, onClose }) {
     onClose();
     // refreshPage();
   };
+
+  const getSelectedEntry = () => {
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/entries/single/${entryId}`)
+      .then((response) => {
+        // console.log(response);
+
+        console.log("Totals : " + JSON.stringify(response.data));
+        setPersonName(response.data.personName);
+      
+      });
+  };
+  useEffect(() => {
+    getSelectedEntry();
+  }, []);
   return (
     <div>
       <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}>
         {/* <DialogTitle>Entry ID : {entryId}</DialogTitle> */}
         <DialogContent>
-          <DialogContentText sx={{color: "#121212", fontSize: "16px", fontFamily: "Poppins", textAlign: "center", }}>Are you sure want to Delete the entry name?</DialogContentText>
+          <DialogContentText sx={{color: "#121212", fontSize: "16px", fontFamily: "Poppins", textAlign: "center", }}>Are you sure want to Delete <b>{personName}</b>?</DialogContentText>
           <br />
         </DialogContent>
         <DialogActions sx={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>
