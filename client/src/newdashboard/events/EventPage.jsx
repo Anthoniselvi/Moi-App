@@ -46,7 +46,7 @@ export default function NewEventPage() {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/events/single/${eventId}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setEventsList(response.data);
       });
   };
@@ -66,11 +66,12 @@ export default function NewEventPage() {
   };
   useEffect(() => {
     getSelectedEvent();
-    fetchAllEntries();
-      setLoading(true);
-      setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
-      setLoading(false);
-    }, [entries, selectedEvent]);
+    // fetchAllEntries();
+  //     setLoading(true);
+  // setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
+  //     setLoading(false);
+    }, []);
+    // [entries, selectedEvent]);
 
   return (
 

@@ -27,6 +27,7 @@ export default function NewEventsList({ eventslist }) {
   };
   const handleEditEvent = (eventId, event) => {
     event.stopPropagation(); // Stop event propagation to the parent Box
+
     setAnchorEl(null);
     setEditModalOpen(true);
     setSelectedRowId(eventId);
@@ -193,19 +194,20 @@ export default function NewEventsList({ eventslist }) {
                 }}
               />
             )}
-            {editModalOpen ? (
+           
+          </Box>      
+        ))}
+      </Box>
+      {editModalOpen ? (
               <NewEditEvent
-                eventName={singleEvent.name}
-                eventId={singleEvent.eventId}
+                // eventName={singleEvent.name}
+                eventId={selectedRowId}
                 open={editModalOpen}
                 onClose={() => setEditModalOpen(false)}
               />
             ) : (
               <></>
             )}
-          </Box>      
-        ))}
-      </Box>
     </Box>
   );
 }

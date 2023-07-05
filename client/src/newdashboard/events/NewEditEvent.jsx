@@ -20,7 +20,7 @@ import NewDeleteEvent from "./NewDeleteEvent";
 // import { RefreshContext } from "./index";
 
 export default function NewEditEvent({ open, onClose, eventId, eventName }) {
-  
+  console.log("eventId recd in NeweditEvent :" + eventId)
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [eventType, setEventType] = useState("");
   const [name, setName] = useState("");
@@ -212,7 +212,7 @@ export default function NewEditEvent({ open, onClose, eventId, eventName }) {
       </Dialog>
       {deleteModalOpen ? (
             <NewDeleteEvent
-            eventName={eventName}
+            eventName={name}
               eventId={eventId}
               open={deleteModalOpen}
               onClose={() => setDeleteModalOpen(false)}
