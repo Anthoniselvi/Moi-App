@@ -51,19 +51,15 @@ export default function NewHomePage() {
  
       <Box margin="20px" sx={{margrinTop:"0px"}}  >
         <Toolbar />
-        <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", height: "10%", width: "100%", }}>
+       
         <Typography sx={{color: "#101a34",  
     fontFamily: 'Poppins',   fontWeight: 600,
     fontSize: "32px", lineHeight: "34px", }}>
           Events
         </Typography>
-        <div style={{    color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
-    fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} onClick={navigateToCreateEvent}>
-      <ControlPointIcon />Add 
-      </div>
-      </Box>
+ 
       
-      <Box sx={{width: "100%", height:  "80vh", borderRadius: "10px", border: "1px solid #cad3dd", marginTop: "5%"}}>
+      <Box sx={{width: "100%", minHeight:  "80vh", borderRadius: "10px", marginTop: "5%"}}>
          <NewEventsList eventslist={eventslist}/>
         </Box>
         

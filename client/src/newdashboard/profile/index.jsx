@@ -79,8 +79,8 @@ export default function NewProfile() {
    <Box display="flex" gap="50px" padding="2% 0%" borderBottom="1px solid #cad3dd">
    <Box display="flex" alignItems="center" justifyContent="center" height="90px" width="90px" borderRadius="50%"  backgroundColor= "#50bcd9" color="#fff" fontFamily="Poppins" fontSize="35px">A</Box>
   <Box display="flex" flexDirection="column" gap="10px" alignItems="left" justifyContent="center">
-    <Typography sx={{fontFamily: "Poppins", fontSize: "17px", lineHeight: "22px", color: "#101a34", fontWeight: 600}}>Anthoni Selvi</Typography> 
-    <Typography sx={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "16px", color: "#5e6577"}}>anthoniselvi33@gmail.com</Typography>
+    <Typography sx={{fontFamily: "Poppins", fontSize: "17px", lineHeight: "22px", color: "#101a34", fontWeight: 600}}>{name}</Typography> 
+    <Typography sx={{fontFamily: "Poppins", fontSize: "13px", lineHeight: "16px", color: "#5e6577"}}>{email}</Typography>
   </Box>
    </Box>
    

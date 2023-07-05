@@ -148,7 +148,7 @@ export default function NewSidebar() {
 MOI APP
 </Typography>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon style={{color: "#121212"}}/> : <ChevronRightIcon style={{color: "#121212"}}/>}
           </IconButton>
    
         </DrawerHeader>

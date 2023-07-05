@@ -19,6 +19,7 @@ import NewFilterTable from '../../components/NewFilterTable';
 import { useUserAuth } from '../../auth';
 import image from "../../img/bg1.png"
 import NewSearch from '../../components/NewSearch';
+import NewSidebar from '../../scenes/global/NewSidebar';
 
 const drawerWidth = 240;
 
