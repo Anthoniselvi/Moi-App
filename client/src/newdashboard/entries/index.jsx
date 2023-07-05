@@ -107,21 +107,24 @@ export default function NewEntriesList({ entries, eventsList, totalAmount, total
       >
         <KeyboardArrowDownIcon />
       </Button>
-      <StyledMenu
+      <StyledMenu sx={{"& .MuiPopover-paper": {
+        backgroundColor: "#fff", 
+      }}}
         id="demo-customized-menu"
         MenuListProps={{
           'aria-labelledby': 'demo-customized-button',
+          backgroundColor: "#fff"
         }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => handleEditEntry(row.entryId)} disableRipple>
-          <EditIcon />
+        <MenuItem sx={{color: "#121212", cursor: "pointer"}} onClick={() => handleEditEntry(row.entryId)} disableRipple>
+          <EditIcon style={{color: "#121212"}} />
           Edit
         </MenuItem>
-        <MenuItem onClick={() => handleDeleteEntry(row.entryId)} disableRipple>
-          <DeleteOutlinedIcon />
+        <MenuItem sx={{color: "#121212", cursor: "pointer"}} onClick={() => handleDeleteEntry(row.entryId)} disableRipple>
+          <DeleteOutlinedIcon style={{color: "#121212"}}/>
           Delete
         </MenuItem>
        

@@ -68,10 +68,10 @@ export default function NewEventPage() {
     getSelectedEvent();
     fetchAllEntries();
       setLoading(true);
-  setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
+  // setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
       setLoading(false);
-    // }, []);
-  }, [entries, selectedEvent]);
+    }, []);
+  // }, [entries, selectedEvent]);
 
   return (
 
