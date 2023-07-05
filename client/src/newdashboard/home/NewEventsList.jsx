@@ -187,12 +187,15 @@ export default function NewEventsList({ eventslist }) {
               <EditIcon
                 onClick={(event) => handleEditEvent(singleEvent.eventId, event)}
                 sx={{
+                  fontSize: "30px",
                   position: 'absolute',
-                  top: '50%',
-                  left: '50%',
+                  top: '10%',
+                  left: '90%',
                   transform: 'translate(-50%, -50%)',
                   zIndex: 1,
-                  backgroundColor: "red"
+                  backgroundColor: "red",
+                  padding: "5px",
+                  borderRadius: "50%"
                 }}
               />
             )}
