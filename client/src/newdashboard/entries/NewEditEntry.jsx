@@ -249,7 +249,7 @@ export default function NewEditEntry({ open, onClose, entryId }) {
             <br />
           </form>
         </DialogContent>
-        <DialogActions sx={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>
+        <DialogActions >
           <Button sx={{backgroundColor: "rgb(80, 188, 217)"}}
             type="submit"
             color="secondary"
@@ -264,7 +264,7 @@ export default function NewEditEntry({ open, onClose, entryId }) {
             variant="contained"
             onClick={handleEditSave}
           >
-            EDIT
+            OK
           </Button>
         </DialogActions>
       </Dialog>

@@ -53,7 +53,7 @@ const [personName, setPersonName] = useState()
           <DialogContentText sx={{color: "#121212", fontSize: "16px", fontFamily: "Poppins", textAlign: "center", }}>Are you sure want to Delete <b>{personName}</b>?</DialogContentText>
           <br />
         </DialogContent>
-        <DialogActions sx={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>
+        <DialogActions >
           <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleClose}>No</Button>
           <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleDelete}>Yes</Button>
         </DialogActions>

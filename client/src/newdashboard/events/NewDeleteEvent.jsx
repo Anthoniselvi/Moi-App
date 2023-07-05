@@ -38,7 +38,7 @@ export default function NewDeleteEvent({ eventId, open, onClose, eventName }) {
         <DialogContentText sx={{fontFamily: "Poppins", textAlign: "center", color: "#121212", fontSize: "16px"}}>Are you sure want to Delete <b>{eventName}</b> & all their Entries?</DialogContentText>
           <br />
         </DialogContent>
-        <DialogActions sx={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>
+        <DialogActions >
           <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleClose}>No</Button>
           <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleDelete}>Yes</Button>
         </DialogActions>

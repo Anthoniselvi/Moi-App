@@ -66,12 +66,12 @@ export default function NewEventPage() {
   };
   useEffect(() => {
     getSelectedEvent();
-    // fetchAllEntries();
-  //     setLoading(true);
-  // setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
-  //     setLoading(false);
-    }, []);
-    // [entries, selectedEvent]);
+    fetchAllEntries();
+      setLoading(true);
+  setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
+      setLoading(false);
+    // }, []);
+  }, [entries, selectedEvent]);
 
   return (
 
@@ -81,22 +81,25 @@ export default function NewEventPage() {
         <Typography sx={{ color: '#101a34', fontFamily: 'Poppins', fontWeight: 600, fontSize: '25px', lineHeight: '34px' }}>
           {eventsList.name}
         </Typography>
-        {loading ? (
+        {/* <Box sx={{color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
+    fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} 
+    onClick={() => handleEditEvent(eventId)}> */}
+      <BorderColorOutlinedIcon style={{color: "#121212", cursor: "pointer"}} onClick={() => handleEditEvent(eventId)} /> 
+      </Box>
+      <Box sx={{color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
+    fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} 
+    >
+       
+      {loading ? (
           <span>Loading...</span>
         ) : (
-          <PDFDownloadLink
+          <PDFDownloadLink 
             document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
             fileName={`${eventsList.name}.pdf`}
           >
-            <DownloadForOfflineIcon sx={{ color: '#101a34', fontSize: '25px', cursor: 'pointer' }} />
+            <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", gap: "10px"}}><DownloadForOfflineIcon sx={{ color: '#101a34', fontSize: '25px', cursor: 'pointer' }} />Download</Box>
           </PDFDownloadLink>
         )}
-      </Box>
-
-        <Box sx={{color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
-    fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} 
-    onClick={() => handleEditEvent(eventId)}>
-      <BorderColorOutlinedIcon />Edit 
       </Box>
       
 </Box>

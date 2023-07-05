@@ -205,9 +205,10 @@ export default function NewEditEvent({ open, onClose, eventId, eventName }) {
           <br />
         </form>
         </DialogContent>
-        <DialogActions sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <DialogActions >
+     
           <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={onClose}>CANCEL</Button>
-          <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleEditSave}>EDIT</Button>
+          <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleEditSave}>OK</Button>
         </DialogActions>
       </Dialog>
       {deleteModalOpen ? (
