@@ -67,38 +67,84 @@ export default function NewCreateEntry({ open, onClose, eventId }) {
   };
  
   return (
-    <Dialog open={open}>
+    <Dialog open={open} PaperProps={{ sx: { backgroundColor: '#fff' , color: "#121212"} }}>
       <DialogTitle textAlign="center" variant="h4">Create</DialogTitle>
       <DialogContent>
         <form style={{paddingTop: 2}}>
           <TextField
-            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"} }}
+            sx={{ width: "300px", margin: "5px" , "& > div": { width: isNonMobile ? undefined : "250px"},
+            "& .MuiFormLabel-root": {
+              color: "#121212",
+            },
+            "& .MuiInputBase-root": {
+              color: "#121212",
+            },
+            "& .MuiMenuItem-root": {
+              backgroundColor: "#fff",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "green",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "blue",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "purple",
+            },
+            "& .MuiSelect-icon": {
+              color: "#121212",
+            }, }}
             type="text"
             label="Person Name"
             variant="outlined"
-            InputLabelProps={{
-              style: { color: "#fff" }
-            }}
             value={personName}
             onChange={(e) => setPersonName(e.target.value)}
           />
           <br />
           <br />
           <TextField
-            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
+            sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"} ,
+            "& .MuiFormLabel-root": {
+              color: "#121212",
+            },
+            "& .MuiInputBase-root": {
+              color: "#121212",
+            },
+            "& .MuiMenuItem-root": {
+              backgroundColor: "#fff",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "green",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "blue",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "purple",
+            },
+            "& .MuiSelect-icon": {
+              color: "#121212",
+            }, }}
             type="text"
             label="City"
             variant="outlined"
-            InputLabelProps={{
-              style: { color: "#fff" }
-            }}
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
           <br />
           <br />
-          <FormControl sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}   }}>
-            <FormLabel id="demo-controlled-radio-buttons-group"  style={{ width: "300px", margin: "5px", color: "#fff" }}>
+          <FormControl  sx={{
+                width: "300px",
+                margin: "5px",
+                "& > div": { width: isNonMobile ? undefined : "250px" },
+                "& .MuiFormLabel-root": {
+                  color: "#121212",
+                },
+                "& .MuiRadio-root": {
+                  color: "#121212",
+                },
+              }}>
+            <FormLabel id="demo-controlled-radio-buttons-group"  style={{ width: "300px", margin: "5px",  }}>
               Type of Presentation :
             </FormLabel><br />
             <RadioGroup
@@ -129,12 +175,23 @@ export default function NewCreateEntry({ open, onClose, eventId }) {
               {presentType === "amount" ? (
                 // <div>
                   <TextField
-                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
+                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"} ,
+                  "& .MuiInputLabel-root": { color: "#121212", },
+                  "& .MuiInputBase-input": {
+                    color: "#121212", 
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "green",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "blue",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "purple",
+                  }, }}
                     id="outlined-amount"
                     label="Rs."
-                    InputLabelProps={{
-                      style: { color: "#fff" }
-                    }}
+                    
                     onChange={(e) => setAmount(e.target.value)}
                     value={amount}
                     // sx={{ width: "300px", marginBottom: "5%" }}
@@ -143,12 +200,23 @@ export default function NewCreateEntry({ open, onClose, eventId }) {
               ) : (
                 // <div className="gift-box">
                   <TextField
-                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"}  }}
+                  sx={{ width: "300px", margin: "5px", "& > div": { width: isNonMobile ? undefined : "250px"},
+                  "& .MuiInputLabel-root": { color: "#121212", },
+                  "& .MuiInputBase-input": {
+                    color: "#121212", 
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "green",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "blue",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "purple",
+                  },  }}
                     id="outlined-multiline-static"
                     label="about gift"
-                    InputLabelProps={{
-                      style: { color: "#fff" }
-                    }}
+                   
                     multiline
                     // rows={4}
                     // sx={{ width: "300px", marginBottom: "5%" }}
@@ -166,8 +234,8 @@ export default function NewCreateEntry({ open, onClose, eventId }) {
         </form>
       </DialogContent>
       <DialogActions sx={{ p: "1.25rem" }}>
-        <Button type="submit" color="secondary" variant="contained" onClick={handleClose}>Cancel</Button>
-        <Button type="submit" color="secondary" variant="contained" onClick={(e)=>handleSubmit(e,eventId)}>
+        <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={handleClose}>Cancel</Button>
+        <Button sx={{backgroundColor: "rgb(80, 188, 217)"}} type="submit" color="secondary" variant="contained" onClick={(e)=>handleSubmit(e,eventId)}>
           Create
         </Button>
       </DialogActions>
