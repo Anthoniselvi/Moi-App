@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { useMediaQuery, Typography,Box } from '@mui/material';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import axios from 'axios';
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
@@ -22,6 +18,7 @@ export default function NewEventsList({ eventslist }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false); 
   const [selectedRowId, setSelectedRowId] = useState();
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -51,15 +48,19 @@ export default function NewEventsList({ eventslist }) {
           height: '100%',
           width: '100%',
           display: 'flex',
-          flexWrap: 'wrap',
+          // flexWrap: 'wrap',
           justifyContent: "space-between",
+          flexWrap: isNonMobile ? 'wrap' : 'nowrap', 
+          flexDirection: isNonMobile ? 'row' : 'column', 
+         
         }}
       >
         <Box
           onClick={navigateToCreateEvent}
           sx={{
             height: '300px',
-            width: '30%',
+            // width: '30%',
+            width: isNonMobile ? '30%' : '100%', 
             border: '1px solid #cad3dd',
             borderRadius: '10px',
             display: 'flex',
@@ -99,7 +100,8 @@ export default function NewEventsList({ eventslist }) {
             sx={{
               position: "relative",
               height: '300px',
-              width: '30%',
+               // width: '30%',
+            width: isNonMobile ? '30%' : '100%', 
               border: '1px solid #cad3dd',
               borderRadius: '10px',
               display: 'flex',

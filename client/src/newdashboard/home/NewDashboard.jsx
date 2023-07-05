@@ -239,6 +239,9 @@ const navigateToEvents = () => {
                 //    overflow="auto"
                    borderRadius="10px"
                     border= "1px solid #e8ecf1"  
+                    sx={{
+                        "& > div": { gridColumn: isNonMobile ? undefined : "span 12" },
+                      }}
                   
                 > 
                 <Box display="flex" flexDirection="column" padding="10px">
