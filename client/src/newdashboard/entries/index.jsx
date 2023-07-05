@@ -151,14 +151,14 @@ export default function NewEntriesList({ entries, eventsList, totalAmount, total
   return (
     <>
       <TableContainer component={Paper} sx={{ backgroundColor: '#fff' }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: '#101a34', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Person Name</TableCell>
-              <TableCell align="left" sx={{ color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>City</TableCell>
-              <TableCell align="left" sx={{ color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Amount</TableCell>
-              <TableCell align="left" sx={{ color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Gift</TableCell>
-              <TableCell align="left" sx={{ color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Actions</TableCell>
+              <TableCell sx={{ width: "20%", color: '#101a34', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Person Name</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>City</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Amount</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Gift</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -167,13 +167,13 @@ export default function NewEntriesList({ entries, eventsList, totalAmount, total
                 key={row.entryId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }, borderBottom: '1px solid #e8ecf1' }}
               >
-                <TableCell component="th" scope="row" sx={{ color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>
+                <TableCell component="th" scope="row" sx={{ width: "20%", color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>
                   {row.personName}
                 </TableCell>
-                <TableCell align="left" sx={{ color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>{row.city}</TableCell>
-                <TableCell align="left" sx={{ color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>{row.amount}</TableCell>
-                <TableCell align="left" sx={{ color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>{row.gift}</TableCell>
-                <TableCell align="left" sx={{ display: 'flex', gap: '20px', color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>
+                <TableCell align="left" sx={{ width: "20%", color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>{row.city}</TableCell>
+                <TableCell align="left" sx={{ width: "20%", color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>{row.amount}</TableCell>
+                <TableCell align="left" sx={{ width: "20%", color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>{row.gift}</TableCell>
+                <TableCell align="left" sx={{ width: "20%", display: 'flex', gap: '20px', color: '#101a34', fontSize: '15px', fontFamily: 'Poppins' }}>
                   {isMobile ? renderDropdownOptions(row) : renderEditDeleteButtons(row)}
                 </TableCell>
               </TableRow>

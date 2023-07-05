@@ -61,6 +61,7 @@ export default function NewEventsList({ eventslist }) {
             height: '300px',
             // width: '30%',
             width: isNonMobile ? '30%' : '100%', 
+            marginBottom: isNonMobile ? undefined : '5%',
             border: '1px solid #cad3dd',
             borderRadius: '10px',
             display: 'flex',
