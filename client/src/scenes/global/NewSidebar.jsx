@@ -121,7 +121,7 @@ export default function NewSidebar() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <MenuIcon style={{color: "#121212"}} />
           </IconButton>
      
         </Toolbar>

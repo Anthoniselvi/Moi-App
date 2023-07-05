@@ -111,7 +111,7 @@ export default function NewEventPage() {
       borderBottom: '2px solid #FE956F',
       fontFamily: 'Poppins',
       fontWeight: 600,
-      fontSize: '17px',}}>Entries ({entries.length})</Typography>
+      fontSize: '17px',}}>Guests ({entries.length})</Typography>
       <Button onClick={() => setCreateModalOpen(true)} sx={{display: "flex", alignItems: "center", justifyContent: "center" , gap: "5px", outline: "none",border: "none", color: "#50bcd9", background: "none"}}><AddCircleOutlineIcon />Add</Button>
       </Box>
      
