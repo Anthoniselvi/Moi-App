@@ -25,11 +25,12 @@ export default function NewEventsList({ eventslist }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const handleEditEvent = (eventId) => {
-    setAnchorEl(null)
-      setEditModalOpen(true);
-      setSelectedRowId(eventId);
-    };
+  const handleEditEvent = (eventId, event) => {
+    event.stopPropagation(); // Stop event propagation to the parent Box
+    setAnchorEl(null);
+    setEditModalOpen(true);
+    setSelectedRowId(eventId);
+  };
   const navigateToSingleEventPage = (eventId) => {
     navigate(`/eventpage?event=${eventId}`);
   };
@@ -115,7 +116,6 @@ export default function NewEventsList({ eventslist }) {
             }}
           >
             <div   
-            // onClick={() => navigateToSingleEventPage(singleEvent.eventId)}
               style={{
                 overflow: 'hidden',
                 width: '100%',
@@ -129,7 +129,6 @@ export default function NewEventsList({ eventslist }) {
             ></div>
 
             <Box
-              // onClick={() => navigateToSingleEventPage(singleEvent.eventId)}
               padding="0% 5%"
               width="100%"
               height="35%"
@@ -182,7 +181,8 @@ export default function NewEventsList({ eventslist }) {
               </Box>
             </Box>
             {hoveredIndex === index && (
-              <EditIcon onClick={() => handleEditEvent(singleEvent.eventId)}
+              <EditIcon
+                onClick={(event) => handleEditEvent(singleEvent.eventId, event)}
                 sx={{
                   position: 'absolute',
                   top: '50%',
@@ -193,9 +193,9 @@ export default function NewEventsList({ eventslist }) {
                 }}
               />
             )}
-             {editModalOpen ? (
+            {editModalOpen ? (
               <NewEditEvent
-              eventName={singleEvent.name}
+                eventName={singleEvent.name}
                 eventId={singleEvent.eventId}
                 open={editModalOpen}
                 onClose={() => setEditModalOpen(false)}
@@ -204,9 +204,8 @@ export default function NewEventsList({ eventslist }) {
               <></>
             )}
           </Box>      
-           ))}
+        ))}
       </Box>
-      
     </Box>
   );
 }
