@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Box , Typography, IconButton, TextField} from '@mui/material'
+import { Box , Typography, useMediaQuery, IconButton, TextField} from '@mui/material'
 import SidebarDrawer from './SidebarDrawer'
 import axios from 'axios';
 import StatBox1 from '../../components/StatBox1';
@@ -39,7 +39,7 @@ export default function NewDashboard() {
     const [createModalOpen, setCreateModalOpen] = useState(false);
     const [filterSearch, setFilterSearch] = useState(false);
     const [showSearch, setShowSearch] = useState(false)
-    
+    const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const handleFilterClick = () => {
       setFilterSearch(true);
     };
@@ -111,7 +111,9 @@ const navigateToEvents = () => {
           justifyContent="space-between"
           gridAutoRows="90px"
                 gap="20px"
-          
+                sx={{
+                    "& > div": { gridColumn: isNonMobile ? undefined : "span 12" },
+                  }}
         >
             {/* <Box m="20px 0px"
                 display="grid"
