@@ -105,141 +105,141 @@ const NewEntries = () => {
   }, [refreshCount]);
 
   return (
-    <RefreshContext.Provider value={{ updateRefreshCount }}>
-      <Box m="20px" width="100%" height="100%">
-        <Box
-          //   border="1px solid red"
-          width="100%"
-          //   pr="20px"
-          //   mt="20px"
-          display="grid"
-          gridTemplateColumns="repeat(12, 1fr)"
-          justifyContent="space-between"
-          //   gridAutoRows="90px"
-          gap="20px"
-          sx={{
-            "& > div": { gridColumn: isNonMobile ? undefined : "span 12" },
-          }}
-        >
-          {/* <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px"  > */}
-          {entries.length > 0 && (
-            <>
-              {entries.map((entry, index) => (
+    // <RefreshContext.Provider value={{ updateRefreshCount }}>
+    <Box m="20px" width="100%" height="100%">
+      <Box
+        //   border="1px solid red"
+        width="100%"
+        //   pr="20px"
+        //   mt="20px"
+        display="grid"
+        gridTemplateColumns="repeat(12, 1fr)"
+        justifyContent="space-between"
+        //   gridAutoRows="90px"
+        gap="20px"
+        sx={{
+          "& > div": { gridColumn: isNonMobile ? undefined : "span 12" },
+        }}
+      >
+        {/* <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px"  > */}
+        {entries.length > 0 && (
+          <>
+            {entries.map((entry, index) => (
+              <Box
+                gridColumn="span 6"
+                key={index}
+                onClick={() => handleEditEntry(entry.entryId)}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                gap="20px"
+                padding="2% 4%"
+                borderRadius="10px"
+                sx={{ backgroundColor: "#48cae4" }}
+              >
                 <Box
-                  gridColumn="span 6"
-                  key={index}
-                  onClick={() => handleEditEntry(entry.entryId)}
                   display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  gap="20px"
-                  padding="2% 4%"
-                  borderRadius="10px"
-                  sx={{ backgroundColor: "#48cae4" }}
+                  gap="20%"
+                  onClick={() => handleEditEntry(entry.entryId)}
                 >
+                  <Avatar
+                    name={entry.personName}
+                    size="40"
+                    round={true}
+                    maxInitials="1"
+                  />
+
                   <Box
                     display="flex"
-                    gap="20%"
-                    onClick={() => handleEditEntry(entry.entryId)}
+                    flexDirection="column"
+                    gap="5%"
+                    alignItems="flex-start"
                   >
-                    <Avatar
-                      name={entry.personName}
-                      size="40"
-                      round={true}
-                      maxInitials="1"
-                    />
-
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      gap="5%"
-                      alignItems="flex-start"
+                    <Typography
+                      variant="h5"
+                      fontWeight="bold"
+                      sx={{ color: "#023e8a", fontWeight: 600 }}
+                      textTransform="capitalize"
                     >
-                      <Typography
-                        variant="h5"
-                        fontWeight="bold"
-                        sx={{ color: "#023e8a", fontWeight: 600 }}
-                        textTransform="capitalize"
-                      >
-                        {entry.personName}
-                      </Typography>
-                      <Typography
-                        variant="h6"
-                        textTransform="capitalize"
-                        sx={{ color: colors.grey[100] }}
-                      >
-                        {entry.city}
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    onClick={() => handleEditEntry(entry.entryId)}
-                  >
-                    {entry.presentType === "amount" ? (
-                      <Typography
-                        variant="h4"
-                        sx={{ color: "#023e8a", fontWeight: 600 }}
-                      >
-                        ₹ {entry.amount}
-                      </Typography>
-                    ) : (
-                      <Typography
-                        variant="h4"
-                        sx={{ color: "#023e8a", fontWeight: 600 }}
-                      >
-                        {entry.gift}
-                      </Typography>
-                    )}
-
-                    <Box>
-                      {/* <EditOrDelete entryId={entry.entryId} /> */}
-                      <Button
-                        style={{ color: "#fff" }}
-                        onClick={(e) => handleDeleteEntry(e, entry.entryId)}
-                      >
-                        {" "}
-                        <Delete />
-                      </Button>
-                    </Box>
+                      {entry.personName}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      textTransform="capitalize"
+                      sx={{ color: colors.grey[100] }}
+                    >
+                      {entry.city}
+                    </Typography>
                   </Box>
                 </Box>
-              ))}
-            </>
-          )}
-        </Box>
 
-        {createModalOpen ? (
-          <NewCreateEntry
-            open={createModalOpen}
-            onClose={() => setCreateModalOpen(false)}
-            eventId={eventId}
-          />
-        ) : (
-          <></>
-        )}
-        {editModalOpen ? (
-          <NewEditEntry
-            entryId={selectedRowId}
-            open={editModalOpen}
-            onClose={() => setEditModalOpen(false)}
-          />
-        ) : (
-          <></>
-        )}
-        {deleteModalOpen ? (
-          <NewDeleteEntry
-            entryId={selectedRowId}
-            open={deleteModalOpen}
-            onClose={() => setDeleteModalOpen(false)}
-          />
-        ) : (
-          <></>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  onClick={() => handleEditEntry(entry.entryId)}
+                >
+                  {entry.presentType === "amount" ? (
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#023e8a", fontWeight: 600 }}
+                    >
+                      ₹ {entry.amount}
+                    </Typography>
+                  ) : (
+                    <Typography
+                      variant="h6"
+                      sx={{ color: "#023e8a", fontWeight: 600 }}
+                    >
+                      {entry.gift}
+                    </Typography>
+                  )}
+
+                  <Box>
+                    {/* <EditOrDelete entryId={entry.entryId} /> */}
+                    <Button
+                      style={{ color: "#fff" }}
+                      onClick={(e) => handleDeleteEntry(e, entry.entryId)}
+                    >
+                      {" "}
+                      <Delete />
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+          </>
         )}
       </Box>
-    </RefreshContext.Provider>
+
+      {createModalOpen ? (
+        <NewCreateEntry
+          open={createModalOpen}
+          onClose={() => setCreateModalOpen(false)}
+          eventId={eventId}
+        />
+      ) : (
+        <></>
+      )}
+      {editModalOpen ? (
+        <NewEditEntry
+          entryId={selectedRowId}
+          open={editModalOpen}
+          onClose={() => setEditModalOpen(false)}
+        />
+      ) : (
+        <></>
+      )}
+      {deleteModalOpen ? (
+        <NewDeleteEntry
+          entryId={selectedRowId}
+          open={deleteModalOpen}
+          onClose={() => setDeleteModalOpen(false)}
+        />
+      ) : (
+        <></>
+      )}
+    </Box>
+    // </RefreshContext.Provider>
   );
 };
 

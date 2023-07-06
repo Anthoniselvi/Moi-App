@@ -154,11 +154,11 @@ export default function NewEntriesList({ entries, eventsList, totalAmount, total
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ width: "20%", color: '#101a34', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Name</TableCell>
-              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>City</TableCell>
-              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Amount</TableCell>
-              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Gift</TableCell>
-              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '11px', fontWeight: 600 }}>Actions</TableCell>
+              <TableCell sx={{ width: "20%", color: '#101a34', fontFamily: 'Poppins', fontSize: '15px', fontWeight: 600 }}>Name</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '15px', fontWeight: 600 }}>City</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '15px', fontWeight: 600 }}>Amount</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '15px', fontWeight: 600 }}>Gift</TableCell>
+              <TableCell align="left" sx={{ width: "20%", color: '#121212', fontFamily: 'Poppins', fontSize: '15px', fontWeight: 600 }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

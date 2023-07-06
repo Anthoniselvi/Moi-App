@@ -71,10 +71,10 @@ export default function NewEventPage() {
     getSelectedEvent();
     fetchAllEntries();
       setLoading(true);
-  // setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
+  setSelectedEntries(entries.filter((entry) => entry.eventId === selectedEvent.eventId));
       setLoading(false);
-    }, []);
-  // }, [entries, selectedEvent]);
+    // }, []);
+  }, [entries, selectedEvent]);
 
   return (
 
@@ -89,7 +89,7 @@ export default function NewEventPage() {
     onClick={() => handleEditEvent(eventId)}> */}
       <BorderColorOutlinedIcon style={{color: "#121212", cursor: "pointer"}} onClick={() => handleEditEvent(eventId)} /> 
       </Box>
-      <Box sx={{color: "#101a34", background: "#fafbfd", border: "1px solid #cad3dd", display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
+      <Box sx={{color: "#101a34", background: "#fafbfd", border: isNonMobile ? "1px solid #cad3dd" : undefined, display: "flex", alignItems: "center", gap: "5px", padding: "8px 15px",
     fontWeight: 600, fontSize: "13px", lineHeight: "18px", borderRadius: "5px", fontFamily: "Poppins", cursor: "pointer"}} 
     >
        
@@ -100,7 +100,9 @@ export default function NewEventPage() {
             document={<EntriesPdf selectedEntries={selectedEntries} selectedEvent={eventsList.name} />}
             fileName={`${eventsList.name}.pdf`}
           >
+          {isNonMobile ? 
             <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", gap: "10px"}}><DownloadForOfflineIcon sx={{ color: '#101a34', fontSize: '25px', cursor: 'pointer' }} />Download</Box>
+            : <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", }}><DownloadForOfflineIcon sx={{ color: '#101a34', fontSize: '25px', cursor: 'pointer' }} /></Box>}
           </PDFDownloadLink>
         )}
       </Box>

@@ -56,12 +56,13 @@ export default function NewCreateEntry({ open, onClose, eventId }) {
         console.log(response);
         console.log("Created New Entry: " + response.data)
       })
-      onClose();
+      
       setPersonName("");
       setCity("");
       setPresentType("");
       setAmount("");
       setGift("");
+      onClose();
     //   refreshPage();
      
   };
