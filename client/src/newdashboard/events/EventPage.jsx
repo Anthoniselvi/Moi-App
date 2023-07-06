@@ -11,6 +11,8 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import { EntriesPdf } from '../../scenes/reports/DownloadEntries'
 import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import Entries from '../../scenes/entries/Entries'
+import NewEntries from '../entries/NewEntries'
 
 const drawerWidth = 240;
 export default function NewEventPage() {
@@ -112,11 +114,12 @@ export default function NewEventPage() {
       fontFamily: 'Poppins',
       fontWeight: 600,
       fontSize: '17px',}}>Guests ({entries.length})</Typography>
-      <Button onClick={() => setCreateModalOpen(true)} sx={{display: "flex", alignItems: "center", justifyContent: "center" , gap: "5px", outline: "none",border: "none", color: "#50bcd9", background: "none"}}><AddCircleOutlineIcon />Add</Button>
+      <Button onClick={() => setCreateModalOpen(true)} sx={{display: "flex", alignItems: "center", justifyContent: "center" , gap: "5px", outline: "none",border: "none", color: "#50bcd9", background: "none", fontWeight: 600}}><AddCircleOutlineIcon />Add</Button>
       </Box>
      
-     <Box sx={{padding: 0,height: "100%", width:"100%", display: "flex", flexWrap: "wrap", gap: "20px", backgroundColor: "#ffffff"}}>
-   <NewEntiesList entries={entries} eventsList={eventsList} totalAmount={totalAmount} totalGift={totalGift}/>
+     <Box sx={{padding: 0,height: "100%", width:"100%", display: "flex", backgroundColor: "#ffffff", }}>
+   {/* <NewEntiesList entries={entries} eventsList={eventsList} totalAmount={totalAmount} totalGift={totalGift}/> */}
+     <NewEntries />
         </Box>
         </Box>
         {createModalOpen ? (
