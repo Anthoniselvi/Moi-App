@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Box , Typography, Button} from '@mui/material'
+import { Box , Typography, Button, useMediaQuery} from '@mui/material'
 import SidebarDrawer from '../home/SidebarDrawer'
 import NewEntiesList from '../entries'
 import axios from 'axios'
@@ -29,6 +29,7 @@ export default function NewEventPage() {
   const selectedEvent = eventsList;
     const [selectedEntries, setSelectedEntries] = useState([])
     const [loading, setLoading] = useState(false);
+    const isNonMobile = useMediaQuery("(min-width: 1000px)");
     const getReports = (eventName) => {
       console.log("eventName :" + eventName);
       console.log("eventsList :", eventsList);
@@ -118,8 +119,8 @@ export default function NewEventPage() {
       </Box>
      
      <Box sx={{padding: 0,height: "100%", width:"100%", display: "flex", backgroundColor: "#ffffff", }}>
-   {/* <NewEntiesList entries={entries} eventsList={eventsList} totalAmount={totalAmount} totalGift={totalGift}/> */}
-     <NewEntries />
+   {isNonMobile ? <NewEntiesList entries={entries} eventsList={eventsList} totalAmount={totalAmount} totalGift={totalGift}/> :
+     <NewEntries />}
         </Box>
         </Box>
         {createModalOpen ? (
